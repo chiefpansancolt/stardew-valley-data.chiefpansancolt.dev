@@ -30,15 +30,15 @@ const seeds = joja().seeds().get()
 
 Each item conforms to the `JojaItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `seasons` | `Season[]` | Seasons when available. Empty array means year-round. |
-| `availability` | `string \| undefined` | Special purchase condition, if any. |
+| Field          | Type                  | Description                                           |
+| -------------- | --------------------- | ----------------------------------------------------- |
+| `id`           | `string`              | Unique identifier.                                    |
+| `name`         | `string`              | Display name of the item.                             |
+| `price`        | `number`              | Purchase price in gold.                               |
+| `description`  | `string`              | In-game description text.                             |
+| `image`        | `string`              | Path to the item's image.                             |
+| `seasons`      | `Season[]`            | Seasons when available. Empty array means year-round. |
+| `availability` | `string \| undefined` | Special purchase condition, if any.                   |
 
 ### Season
 
@@ -50,29 +50,29 @@ type Season = 'spring' | 'summer' | 'fall' | 'winter' | 'ginger island'
 
 `JojaQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `JojaItem[]` | Return all results as an array. |
-| `first()` | `JojaItem \| undefined` | Return the first result. |
-| `find(id)` | `JojaItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                 | Description                              |
+| ------------------ | ----------------------- | ---------------------------------------- |
+| `get()`            | `JojaItem[]`            | Return all results as an array.          |
+| `first()`          | `JojaItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `JojaItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `JojaItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `bySeason(season)` | `JojaQuery` | Filter to items available in the given season (includes permanent and multi-season items). |
-| `permanent()` | `JojaQuery` | Filter to year-round permanent stock only (no seasonal seeds). |
-| `seeds()` | `JojaQuery` | Filter to seasonal seed stock only (items with at least one season). |
-| `alwaysAvailable()` | `JojaQuery` | Filter to items with no special purchase condition. |
+| Method              | Returns     | Description                                                                                |
+| ------------------- | ----------- | ------------------------------------------------------------------------------------------ |
+| `bySeason(season)`  | `JojaQuery` | Filter to items available in the given season (includes permanent and multi-season items). |
+| `permanent()`       | `JojaQuery` | Filter to year-round permanent stock only (no seasonal seeds).                             |
+| `seeds()`           | `JojaQuery` | Filter to seasonal seed stock only (items with at least one season).                       |
+| `alwaysAvailable()` | `JojaQuery` | Filter to items with no special purchase condition.                                        |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `JojaQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `JojaQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns     | Description                                                      |
+| --------------------- | ----------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `JojaQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `JojaQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -109,6 +109,8 @@ import { joja } from 'stardew-valley-data'
 const priciest = joja().seeds().sortByPrice('desc').first()
 
 if (priciest) {
-  console.log(`${priciest.name} - ${priciest.price}g (${priciest.seasons.join(', ')})`)
+  console.log(
+    `${priciest.name} - ${priciest.price}g (${priciest.seasons.join(', ')})`,
+  )
 }
 ```

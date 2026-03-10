@@ -27,12 +27,12 @@ const slimeLoot = monsterLoot().droppedBy('green-slime').get()
 
 The `MonsterLoot` type represents a single loot item that can be dropped by monsters.
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `name` | `string` | Display name |
-| `sellPrice` | `number` | Sell price in gold |
-| `image` | `string` | Relative path to the item image |
+| Field       | Type       | Description                     |
+| ----------- | ---------- | ------------------------------- |
+| `id`        | `string`   | Unique identifier               |
+| `name`      | `string`   | Display name                    |
+| `sellPrice` | `number`   | Sell price in gold              |
+| `image`     | `string`   | Relative path to the item image |
 | `droppedBy` | `string[]` | Monster IDs that drop this item |
 
 ## Query Methods
@@ -41,21 +41,21 @@ Create a query with the `monsterLoot()` function. Every filter method returns a 
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method      | Signature                                        | Description                                           |
+| ----------- | ------------------------------------------------ | ----------------------------------------------------- |
 | `droppedBy` | `droppedBy(monsterId: string): MonsterLootQuery` | Filter to loot items dropped by the given monster ID. |
 
 ### Terminal Methods
 
 These methods are inherited from the base query and return actual values instead of a new query.
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get` | `get(): MonsterLoot[]` | Return all results as an array. |
-| `first` | `first(): MonsterLoot \| undefined` | Return the first result, or `undefined` if empty. |
-| `find` | `find(id: string): MonsterLoot \| undefined` | Find an item by its exact ID. |
+| Method       | Signature                                            | Description                                          |
+| ------------ | ---------------------------------------------------- | ---------------------------------------------------- |
+| `get`        | `get(): MonsterLoot[]`                               | Return all results as an array.                      |
+| `first`      | `first(): MonsterLoot \| undefined`                  | Return the first result, or `undefined` if empty.    |
+| `find`       | `find(id: string): MonsterLoot \| undefined`         | Find an item by its exact ID.                        |
 | `findByName` | `findByName(name: string): MonsterLoot \| undefined` | Find an item by name (case-insensitive exact match). |
-| `count` | `count(): number` | Return the number of results. |
+| `count`      | `count(): number`                                    | Return the number of results.                        |
 
 ## Examples
 
@@ -65,7 +65,9 @@ These methods are inherited from the base query and return actual values instead
 import { monsterLoot } from 'stardew-valley-data'
 
 const loot = monsterLoot().droppedBy('dust-sprite').get()
-loot.forEach((item) => console.log(`${item.name} (sells for ${item.sellPrice}g)`))
+loot.forEach((item) =>
+  console.log(`${item.name} (sells for ${item.sellPrice}g)`),
+)
 ```
 
 ### Look up a loot item by ID

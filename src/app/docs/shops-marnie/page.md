@@ -30,50 +30,55 @@ const hay = marnie().findByName('Hay')
 
 Each item conforms to the `MarnieItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `MarnieCategory` | Item category. |
+| Field          | Type                  | Description                         |
+| -------------- | --------------------- | ----------------------------------- |
+| `id`           | `string`              | Unique identifier.                  |
+| `name`         | `string`              | Display name of the item.           |
+| `price`        | `number`              | Purchase price in gold.             |
+| `description`  | `string`              | In-game description text.           |
+| `image`        | `string`              | Path to the item's image.           |
+| `category`     | `MarnieCategory`      | Item category.                      |
 | `availability` | `string \| undefined` | Special purchase condition, if any. |
 
 ### MarnieCategory
 
 ```ts
-type MarnieCategory = 'animal-supply' | 'tool' | 'furniture' | 'catalogue' | 'special'
+type MarnieCategory =
+  | 'animal-supply'
+  | 'tool'
+  | 'furniture'
+  | 'catalogue'
+  | 'special'
 ```
 
 ## Query Methods
 
 `MarnieQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `MarnieItem[]` | Return all results as an array. |
-| `first()` | `MarnieItem \| undefined` | Return the first result. |
-| `find(id)` | `MarnieItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                   | Description                              |
+| ------------------ | ------------------------- | ---------------------------------------- |
+| `get()`            | `MarnieItem[]`            | Return all results as an array.          |
+| `first()`          | `MarnieItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `MarnieItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `MarnieItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                  | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byCategory(category)` | `MarnieQuery` | Filter to items in the given category. |
-| `animalSupplies()` | `MarnieQuery` | Filter to animal supply items (Hay, Heater, Auto-Grabber). |
-| `tools()` | `MarnieQuery` | Filter to tools (Milk Pail, Shears). |
-| `furniture()` | `MarnieQuery` | Filter to furniture and decor items. |
-| `alwaysAvailable()` | `MarnieQuery` | Filter to items with no special purchase condition. |
+| Method                 | Returns       | Description                                                |
+| ---------------------- | ------------- | ---------------------------------------------------------- |
+| `byCategory(category)` | `MarnieQuery` | Filter to items in the given category.                     |
+| `animalSupplies()`     | `MarnieQuery` | Filter to animal supply items (Hay, Heater, Auto-Grabber). |
+| `tools()`              | `MarnieQuery` | Filter to tools (Milk Pail, Shears).                       |
+| `furniture()`          | `MarnieQuery` | Filter to furniture and decor items.                       |
+| `alwaysAvailable()`    | `MarnieQuery` | Filter to items with no special purchase condition.        |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `MarnieQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `MarnieQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns       | Description                                                      |
+| --------------------- | ------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `MarnieQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `MarnieQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -82,7 +87,13 @@ type MarnieCategory = 'animal-supply' | 'tool' | 'furniture' | 'catalogue' | 'sp
 ```js
 import { marnie } from 'stardew-valley-data'
 
-const categories = ['animal-supply', 'tool', 'furniture', 'catalogue', 'special']
+const categories = [
+  'animal-supply',
+  'tool',
+  'furniture',
+  'catalogue',
+  'special',
+]
 
 categories.forEach((cat) => {
   const items = marnie().byCategory(cat).get()

@@ -30,16 +30,16 @@ const permanent = oasis().permanent().sortByPrice().get()
 
 Each item conforms to the `OasisItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `OasisCategory` | Item category. |
-| `day` | `OasisDay \| undefined` | Day of the week when available (undefined for permanent stock). |
-| `availability` | `string \| undefined` | Special purchase condition, if any. |
+| Field          | Type                    | Description                                                     |
+| -------------- | ----------------------- | --------------------------------------------------------------- |
+| `id`           | `string`                | Unique identifier.                                              |
+| `name`         | `string`                | Display name of the item.                                       |
+| `price`        | `number`                | Purchase price in gold.                                         |
+| `description`  | `string`                | In-game description text.                                       |
+| `image`        | `string`                | Path to the item's image.                                       |
+| `category`     | `OasisCategory`         | Item category.                                                  |
+| `day`          | `OasisDay \| undefined` | Day of the week when available (undefined for permanent stock). |
+| `availability` | `string \| undefined`   | Special purchase condition, if any.                             |
 
 ### OasisCategory
 
@@ -51,41 +51,46 @@ type OasisCategory = 'seed' | 'food' | 'furniture' | 'clothing' | 'special'
 
 ```ts
 type OasisDay =
-  | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday'
-  | 'Friday' | 'Saturday' | 'Sunday'
+  | 'Monday'
+  | 'Tuesday'
+  | 'Wednesday'
+  | 'Thursday'
+  | 'Friday'
+  | 'Saturday'
+  | 'Sunday'
 ```
 
 ## Query Methods
 
 `OasisQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `OasisItem[]` | Return all results as an array. |
-| `first()` | `OasisItem \| undefined` | Return the first result. |
-| `find(id)` | `OasisItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                  | Description                              |
+| ------------------ | ------------------------ | ---------------------------------------- |
+| `get()`            | `OasisItem[]`            | Return all results as an array.          |
+| `first()`          | `OasisItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `OasisItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `OasisItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                 | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `seeds()` | `OasisQuery` | Filter to seeds only. |
-| `food()` | `OasisQuery` | Filter to food items only. |
-| `clothing()` | `OasisQuery` | Filter to clothing items only. |
-| `byCategory(category)` | `OasisQuery` | Filter to items in the given category. |
-| `permanent()` | `OasisQuery` | Filter to items always in stock (no day restriction). |
-| `daily()` | `OasisQuery` | Filter to day-specific rotating items only. |
-| `byDay(day)` | `OasisQuery` | Filter to all items available on the given day (permanent + that day's item). |
-| `alwaysAvailable()` | `OasisQuery` | Filter to items with no special purchase condition. |
+| Method                 | Returns      | Description                                                                   |
+| ---------------------- | ------------ | ----------------------------------------------------------------------------- |
+| `seeds()`              | `OasisQuery` | Filter to seeds only.                                                         |
+| `food()`               | `OasisQuery` | Filter to food items only.                                                    |
+| `clothing()`           | `OasisQuery` | Filter to clothing items only.                                                |
+| `byCategory(category)` | `OasisQuery` | Filter to items in the given category.                                        |
+| `permanent()`          | `OasisQuery` | Filter to items always in stock (no day restriction).                         |
+| `daily()`              | `OasisQuery` | Filter to day-specific rotating items only.                                   |
+| `byDay(day)`           | `OasisQuery` | Filter to all items available on the given day (permanent + that day's item). |
+| `alwaysAvailable()`    | `OasisQuery` | Filter to items with no special purchase condition.                           |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `OasisQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `OasisQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns      | Description                                                      |
+| --------------------- | ------------ | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `OasisQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `OasisQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -106,10 +111,21 @@ seeds.forEach((seed) => {
 ```js
 import { oasis } from 'stardew-valley-data'
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const days = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+]
 
 days.forEach((day) => {
-  const dailyItems = oasis().daily().get().filter((i) => i.day === day)
+  const dailyItems = oasis()
+    .daily()
+    .get()
+    .filter((i) => i.day === day)
   dailyItems.forEach((item) => {
     console.log(`${day}: ${item.name} - ${item.price}g`)
   })

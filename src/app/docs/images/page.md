@@ -95,32 +95,32 @@ const src = stardewImage(crop.image)
 
 Images are organized into directories by category. The following categories are available:
 
-| Directory | Content | Examples |
-| --- | --- | --- |
-| `images/crops/` | Crop item sprites and seed sprites | Parsnip.png, Melon Seeds.png |
-| `images/trees/` | Tree sprites, saplings, and fruit | Apple Tree.png, Oak Tree.png |
-| `images/fish/` | Fish sprites | Catfish.png, Pufferfish.png |
-| `images/animals/` | Animal sprites (pets and farm animals) | Chicken.png, Cat.png |
-| `images/villagers/` | Villager portraits | Penny.png, Abigail.png |
-| `images/monsters/` | Monster sprites | Slime.png, Skeleton.png |
-| `images/weapons/` | Weapon sprites | Galaxy Sword.png |
-| `images/tools/` | Tool sprites at various upgrade levels | Watering Can.png |
-| `images/hats/` | Hat sprites | Cowboy Hat.png |
-| `images/footwear/` | Boot and shoe sprites | Sneakers.png |
-| `images/rings/` | Ring sprites | Iridium Band.png |
-| `images/trinkets/` | Trinket sprites | Parrot Egg.png |
-| `images/minerals/` | Mineral, geode, ore, and gem sprites | Diamond.png, Geode.png |
-| `images/artifacts/` | Artifact sprites | Rusty Sword.png |
-| `images/artisan-goods/` | Artisan goods sprites | Wine.png, Cheese.png |
-| `images/cooking/` | Cooked dish sprites | Pizza.png |
-| `images/crafting/` | Crafted item sprites | Scarecrow.png |
-| `images/bait/` | Bait sprites | Bait.png |
-| `images/tackle/` | Tackle sprites | Spinner.png |
-| `images/forageables/` | Forageable item sprites | Daffodil.png |
-| `images/buildings/` | Farm building sprites | Barn.png, Coop.png |
-| `images/maps/` | Map images | Farm.png |
-| `images/seasons/` | Season icons and artwork | Spring.png |
-| `images/misc/` | Quality icons and UI elements | Silver Quality.png, Gold Quality.png |
+| Directory               | Content                                | Examples                             |
+| ----------------------- | -------------------------------------- | ------------------------------------ |
+| `images/crops/`         | Crop item sprites and seed sprites     | Parsnip.png, Melon Seeds.png         |
+| `images/trees/`         | Tree sprites, saplings, and fruit      | Apple Tree.png, Oak Tree.png         |
+| `images/fish/`          | Fish sprites                           | Catfish.png, Pufferfish.png          |
+| `images/animals/`       | Animal sprites (pets and farm animals) | Chicken.png, Cat.png                 |
+| `images/villagers/`     | Villager portraits                     | Penny.png, Abigail.png               |
+| `images/monsters/`      | Monster sprites                        | Slime.png, Skeleton.png              |
+| `images/weapons/`       | Weapon sprites                         | Galaxy Sword.png                     |
+| `images/tools/`         | Tool sprites at various upgrade levels | Watering Can.png                     |
+| `images/hats/`          | Hat sprites                            | Cowboy Hat.png                       |
+| `images/footwear/`      | Boot and shoe sprites                  | Sneakers.png                         |
+| `images/rings/`         | Ring sprites                           | Iridium Band.png                     |
+| `images/trinkets/`      | Trinket sprites                        | Parrot Egg.png                       |
+| `images/minerals/`      | Mineral, geode, ore, and gem sprites   | Diamond.png, Geode.png               |
+| `images/artifacts/`     | Artifact sprites                       | Rusty Sword.png                      |
+| `images/artisan-goods/` | Artisan goods sprites                  | Wine.png, Cheese.png                 |
+| `images/cooking/`       | Cooked dish sprites                    | Pizza.png                            |
+| `images/crafting/`      | Crafted item sprites                   | Scarecrow.png                        |
+| `images/bait/`          | Bait sprites                           | Bait.png                             |
+| `images/tackle/`        | Tackle sprites                         | Spinner.png                          |
+| `images/forageables/`   | Forageable item sprites                | Daffodil.png                         |
+| `images/buildings/`     | Farm building sprites                  | Barn.png, Coop.png                   |
+| `images/maps/`          | Map images                             | Farm.png                             |
+| `images/seasons/`       | Season icons and artwork               | Spring.png                           |
+| `images/misc/`          | Quality icons and UI elements          | Silver Quality.png, Gold Quality.png |
 
 ---
 
@@ -128,23 +128,23 @@ Images are organized into directories by category. The following categories are 
 
 Every data item with a visual representation has an `image` field. Some items have additional image fields:
 
-| Field | Found on | Description |
-| --- | --- | --- |
-| `image` | Most items | Primary item sprite |
-| `seedImage` | Crops, wild trees | Seed or sapling sprite |
-| `saplingImage` | Fruit trees | Sapling sprite |
-| `giantImage` | Crops (optional) | Giant crop sprite |
-| `spouseImage` | Villagers (optional) | Spouse room sprite |
-| `calendarIcon` | Festivals | Calendar icon sprite |
+| Field          | Found on             | Description            |
+| -------------- | -------------------- | ---------------------- |
+| `image`        | Most items           | Primary item sprite    |
+| `seedImage`    | Crops, wild trees    | Seed or sapling sprite |
+| `saplingImage` | Fruit trees          | Sapling sprite         |
+| `giantImage`   | Crops (optional)     | Giant crop sprite      |
+| `spouseImage`  | Villagers (optional) | Spouse room sprite     |
+| `calendarIcon` | Festivals            | Calendar icon sprite   |
 
 ```ts
 import { crops } from 'stardew-valley-data'
 
 const melon = crops().findByName('Melon')
 if (melon) {
-  console.log(melon.image)       // "images/crops/Melon.png"
-  console.log(melon.seedImage)   // "images/crops/Melon Seeds.png"
-  console.log(melon.giantImage)  // "images/crops/Giant Melon.png" (if available)
+  console.log(melon.image) // "images/crops/Melon.png"
+  console.log(melon.seedImage) // "images/crops/Melon Seeds.png"
+  console.log(melon.giantImage) // "images/crops/Giant Melon.png" (if available)
 }
 ```
 
@@ -154,17 +154,17 @@ if (melon) {
 
 The quality calculator module references quality tier icons from the `images/misc/` directory:
 
-| Quality | Icon path |
-| --- | --- |
-| Silver | `images/misc/Silver Quality.png` |
-| Gold | `images/misc/Gold Quality.png` |
+| Quality | Icon path                         |
+| ------- | --------------------------------- |
+| Silver  | `images/misc/Silver Quality.png`  |
+| Gold    | `images/misc/Gold Quality.png`    |
 | Iridium | `images/misc/Iridium Quality.png` |
 
 ```ts
 import { qualityCalculator } from 'stardew-valley-data'
 
 const prices = qualityCalculator().sellPrices(250)
-prices.forEach(p => {
+prices.forEach((p) => {
   console.log(`${p.quality}: ${p.value}g (icon: ${p.icon})`)
 })
 ```

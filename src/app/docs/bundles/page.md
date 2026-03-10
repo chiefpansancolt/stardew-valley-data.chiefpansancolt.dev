@@ -39,59 +39,59 @@ type Bundle = ItemBundle | GoldBundle | JojaBundle
 
 ### ItemBundle
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the bundle. |
-| `type` | `'items'` | Discriminator for item bundles. |
-| `name` | `string` | Display name of the bundle. |
-| `room` | `BundleRoom` | Community Center room the bundle belongs to. |
-| `bundleGroup` | `number` | Numeric group within the room. |
-| `image` | `string` | Path to the bundle image. |
-| `items` | `BundleItem[]` | Array of items that can be donated (see below). |
-| `itemsRequired` | `number` | Number of items needed to complete the bundle. |
-| `itemsChosenRandom` | `boolean` | Whether the available items are randomly selected. |
-| `numItemsAvailable` | `number` | Total number of item slots available. |
-| `reward` | `BundleReward` | Reward for completing the bundle (see below). |
-| `remixBundle` | `boolean` | Whether this is a remix variant. |
+| Field               | Type           | Description                                        |
+| ------------------- | -------------- | -------------------------------------------------- |
+| `id`                | `string`       | Unique identifier for the bundle.                  |
+| `type`              | `'items'`      | Discriminator for item bundles.                    |
+| `name`              | `string`       | Display name of the bundle.                        |
+| `room`              | `BundleRoom`   | Community Center room the bundle belongs to.       |
+| `bundleGroup`       | `number`       | Numeric group within the room.                     |
+| `image`             | `string`       | Path to the bundle image.                          |
+| `items`             | `BundleItem[]` | Array of items that can be donated (see below).    |
+| `itemsRequired`     | `number`       | Number of items needed to complete the bundle.     |
+| `itemsChosenRandom` | `boolean`      | Whether the available items are randomly selected. |
+| `numItemsAvailable` | `number`       | Total number of item slots available.              |
+| `reward`            | `BundleReward` | Reward for completing the bundle (see below).      |
+| `remixBundle`       | `boolean`      | Whether this is a remix variant.                   |
 
 ### GoldBundle
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the bundle. |
-| `type` | `'gold'` | Discriminator for gold bundles. |
-| `name` | `string` | Display name of the bundle. |
-| `room` | `BundleRoom` | Community Center room the bundle belongs to. |
-| `bundleGroup` | `number` | Numeric group within the room. |
-| `image` | `string` | Path to the bundle image. |
-| `goldCost` | `number` | Gold required to complete the bundle. |
-| `reward` | `BundleReward` | Reward for completing the bundle. |
-| `remixBundle` | `boolean` | Whether this is a remix variant. |
+| Field         | Type           | Description                                  |
+| ------------- | -------------- | -------------------------------------------- |
+| `id`          | `string`       | Unique identifier for the bundle.            |
+| `type`        | `'gold'`       | Discriminator for gold bundles.              |
+| `name`        | `string`       | Display name of the bundle.                  |
+| `room`        | `BundleRoom`   | Community Center room the bundle belongs to. |
+| `bundleGroup` | `number`       | Numeric group within the room.               |
+| `image`       | `string`       | Path to the bundle image.                    |
+| `goldCost`    | `number`       | Gold required to complete the bundle.        |
+| `reward`      | `BundleReward` | Reward for completing the bundle.            |
+| `remixBundle` | `boolean`      | Whether this is a remix variant.             |
 
 ### JojaBundle
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the bundle. |
-| `type` | `'joja mart'` | Discriminator for Joja bundles. |
-| `name` | `string` | Display name of the Joja restoration project. |
-| `description` | `string` | Description of what the project unlocks. |
-| `goldCost` | `number` | Gold cost to purchase the project. |
-| `unlock` | `string` | What the project unlocks in the game. |
+| Field         | Type          | Description                                   |
+| ------------- | ------------- | --------------------------------------------- |
+| `id`          | `string`      | Unique identifier for the bundle.             |
+| `type`        | `'joja mart'` | Discriminator for Joja bundles.               |
+| `name`        | `string`      | Display name of the Joja restoration project. |
+| `description` | `string`      | Description of what the project unlocks.      |
+| `goldCost`    | `number`      | Gold cost to purchase the project.            |
+| `unlock`      | `string`      | What the project unlocks in the game.         |
 
 ### BundleItem
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `name` | `string` | Display name of the item. |
-| `quantity` | `number` | Number required. |
-| `quality` | `'silver' \| 'gold' \| 'iridium' \| undefined` | Minimum quality required, if any. |
+| Field      | Type                                           | Description                       |
+| ---------- | ---------------------------------------------- | --------------------------------- |
+| `name`     | `string`                                       | Display name of the item.         |
+| `quantity` | `number`                                       | Number required.                  |
+| `quality`  | `'silver' \| 'gold' \| 'iridium' \| undefined` | Minimum quality required, if any. |
 
 ### BundleReward
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `name` | `string` | Display name of the reward item. |
+| Field      | Type     | Description                      |
+| ---------- | -------- | -------------------------------- |
+| `name`     | `string` | Display name of the reward item. |
 | `quantity` | `number` | Number of reward items received. |
 
 ### BundleRoom
@@ -102,31 +102,31 @@ type Bundle = ItemBundle | GoldBundle | JojaBundle
 
 `BundleQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `Bundle[]` | Return all results as an array. |
-| `first()` | `Bundle \| undefined` | Return the first result. |
-| `find(id)` | `Bundle \| undefined` | Find a bundle by exact ID. |
+| Method             | Returns               | Description                               |
+| ------------------ | --------------------- | ----------------------------------------- |
+| `get()`            | `Bundle[]`            | Return all results as an array.           |
+| `first()`          | `Bundle \| undefined` | Return the first result.                  |
+| `find(id)`         | `Bundle \| undefined` | Find a bundle by exact ID.                |
 | `findByName(name)` | `Bundle \| undefined` | Find a bundle by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`              | Return the number of results.             |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byRoom(room)` | `BundleQuery` | Filter to bundles in the given room. Joja bundles are excluded. |
-| `remix()` | `BundleQuery` | Return the active remix selection: for each bundle group, returns the remix variant if one exists, otherwise falls back to the standard entry. Joja bundles are excluded. |
-| `standard()` | `BundleQuery` | Filter to standard (non-remix) Community Center bundles. Joja bundles are excluded. |
-| `itemBundles()` | `BundleQuery` | Filter to item bundles (type `'items'`). |
-| `goldBundles()` | `BundleQuery` | Filter to gold bundles (type `'gold'`). |
-| `jojaBundles()` | `BundleQuery` | Filter to Joja Mart restoration bundles (type `'joja mart'`). |
+| Method          | Returns       | Description                                                                                                                                                               |
+| --------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `byRoom(room)`  | `BundleQuery` | Filter to bundles in the given room. Joja bundles are excluded.                                                                                                           |
+| `remix()`       | `BundleQuery` | Return the active remix selection: for each bundle group, returns the remix variant if one exists, otherwise falls back to the standard entry. Joja bundles are excluded. |
+| `standard()`    | `BundleQuery` | Filter to standard (non-remix) Community Center bundles. Joja bundles are excluded.                                                                                       |
+| `itemBundles()` | `BundleQuery` | Filter to item bundles (type `'items'`).                                                                                                                                  |
+| `goldBundles()` | `BundleQuery` | Filter to gold bundles (type `'gold'`).                                                                                                                                   |
+| `jojaBundles()` | `BundleQuery` | Filter to Joja Mart restoration bundles (type `'joja mart'`).                                                                                                             |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method                       | Returns       | Description                                                                                                |
+| ---------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
 | `sortByRoomAndBundleGroup()` | `BundleQuery` | Sort by room order (as they appear in the Community Center), then by bundle group number within each room. |
-| `sortByName(order?)` | `BundleQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| `sortByName(order?)`         | `BundleQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`.                                           |
 
 ## Examples
 
@@ -180,7 +180,9 @@ import { bundles } from 'stardew-valley-data'
 const springForaging = bundles().findByName('Spring Foraging Bundle')
 
 if (springForaging && springForaging.type === 'items') {
-  console.log(`${springForaging.name} (${springForaging.itemsRequired} of ${springForaging.numItemsAvailable}):`)
+  console.log(
+    `${springForaging.name} (${springForaging.itemsRequired} of ${springForaging.numItemsAvailable}):`,
+  )
   springForaging.items.forEach((item) => {
     const quality = item.quality ? ` (${item.quality})` : ''
     console.log(`  ${item.quantity}x ${item.name}${quality}`)

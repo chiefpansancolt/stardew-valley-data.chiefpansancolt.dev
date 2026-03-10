@@ -30,13 +30,13 @@ const sorted = starDrops().sortByName().get()
 
 Each stardrop record conforms to the `StarDrop` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the stardrop. |
-| `name` | `string` | Display name of the stardrop. |
-| `description` | `string` | How to obtain this stardrop. |
-| `source` | `StarDropSource` | The acquisition source category. |
-| `image` | `string` | Path to the stardrop's image. |
+| Field         | Type             | Description                         |
+| ------------- | ---------------- | ----------------------------------- |
+| `id`          | `string`         | Unique identifier for the stardrop. |
+| `name`        | `string`         | Display name of the stardrop.       |
+| `description` | `string`         | How to obtain this stardrop.        |
+| `source`      | `StarDropSource` | The acquisition source category.    |
+| `image`       | `string`         | Path to the stardrop's image.       |
 
 The `StarDropSource` type is a union of: `'purchase'`, `'exploration'`, `'friendship'`, `'achievement'`, `'collection'`.
 
@@ -44,24 +44,24 @@ The `StarDropSource` type is a union of: `'purchase'`, `'exploration'`, `'friend
 
 `StarDropQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `StarDrop[]` | Return all results as an array. |
-| `first()` | `StarDrop \| undefined` | Return the first result. |
-| `find(id)` | `StarDrop \| undefined` | Find a stardrop by exact ID. |
+| Method             | Returns                 | Description                                 |
+| ------------------ | ----------------------- | ------------------------------------------- |
+| `get()`            | `StarDrop[]`            | Return all results as an array.             |
+| `first()`          | `StarDrop \| undefined` | Return the first result.                    |
+| `find(id)`         | `StarDrop \| undefined` | Find a stardrop by exact ID.                |
 | `findByName(name)` | `StarDrop \| undefined` | Find a stardrop by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                | Return the number of results.               |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method             | Returns         | Description                                                                                                                       |
+| ------------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `bySource(source)` | `StarDropQuery` | Filter by acquisition source category. Accepts `'purchase'`, `'exploration'`, `'friendship'`, `'achievement'`, or `'collection'`. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method               | Returns         | Description                                                      |
+| -------------------- | --------------- | ---------------------------------------------------------------- |
 | `sortByName(order?)` | `StarDropQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -83,7 +83,13 @@ all.forEach((drop) => {
 ```js
 import { starDrops } from 'stardew-valley-data'
 
-const sources = ['purchase', 'exploration', 'friendship', 'achievement', 'collection']
+const sources = [
+  'purchase',
+  'exploration',
+  'friendship',
+  'achievement',
+  'collection',
+]
 
 sources.forEach((source) => {
   const count = starDrops().bySource(source).count()

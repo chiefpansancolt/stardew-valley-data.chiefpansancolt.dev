@@ -34,25 +34,25 @@ const enchantable = tools().canEnchant().get()
 
 #### UpgradeableTool
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `type` | `'upgradeable'` | Always `'upgradeable'` |
-| `name` | `string` | Display name (e.g., Hoe, Pickaxe, Axe) |
-| `description` | `string` | In-game description |
-| `canEnchant` | `boolean` | Whether the tool can be enchanted at the Forge |
-| `levels` | `UpgradeLevel[]` | Available upgrade tiers |
+| Field         | Type             | Description                                    |
+| ------------- | ---------------- | ---------------------------------------------- |
+| `id`          | `string`         | Unique identifier                              |
+| `type`        | `'upgradeable'`  | Always `'upgradeable'`                         |
+| `name`        | `string`         | Display name (e.g., Hoe, Pickaxe, Axe)         |
+| `description` | `string`         | In-game description                            |
+| `canEnchant`  | `boolean`        | Whether the tool can be enchanted at the Forge |
+| `levels`      | `UpgradeLevel[]` | Available upgrade tiers                        |
 
 #### UpgradeLevel
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `level` | `ToolLevel` | Upgrade tier name |
-| `image` | `string \| null` | Relative path to the image, or `null` |
-| `upgradeCost` | `number \| null` | Gold cost to upgrade, or `null` for the basic tier |
-| `materialName` | `string \| null` | Material needed (e.g., Copper Bar), or `null` |
-| `materialQuantity` | `number \| null` | Quantity of material needed, or `null` |
-| `description` | `string` | Description of what this upgrade level does |
+| Field              | Type             | Description                                        |
+| ------------------ | ---------------- | -------------------------------------------------- |
+| `level`            | `ToolLevel`      | Upgrade tier name                                  |
+| `image`            | `string \| null` | Relative path to the image, or `null`              |
+| `upgradeCost`      | `number \| null` | Gold cost to upgrade, or `null` for the basic tier |
+| `materialName`     | `string \| null` | Material needed (e.g., Copper Bar), or `null`      |
+| `materialQuantity` | `number \| null` | Quantity of material needed, or `null`             |
+| `description`      | `string`         | Description of what this upgrade level does        |
 
 #### ToolLevel
 
@@ -62,43 +62,43 @@ type ToolLevel = 'basic' | 'copper' | 'steel' | 'gold' | 'iridium'
 
 #### FishingRod
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `type` | `'fishing-rod'` | Always `'fishing-rod'` |
-| `name` | `string` | Display name |
-| `description` | `string` | In-game description |
-| `image` | `string` | Relative path to the rod image |
-| `cost` | `number \| null` | Purchase cost in gold, or `null` if free |
-| `fishingLevelRequired` | `number \| null` | Fishing level needed, or `null` |
-| `bait` | `boolean` | Whether the rod supports bait |
-| `tackleSlots` | `number` | Number of tackle slots |
-| `canEnchant` | `boolean` | Whether the rod can be enchanted at the Forge |
-| `obtain` | `string` | How to obtain this rod |
+| Field                  | Type             | Description                                   |
+| ---------------------- | ---------------- | --------------------------------------------- |
+| `id`                   | `string`         | Unique identifier                             |
+| `type`                 | `'fishing-rod'`  | Always `'fishing-rod'`                        |
+| `name`                 | `string`         | Display name                                  |
+| `description`          | `string`         | In-game description                           |
+| `image`                | `string`         | Relative path to the rod image                |
+| `cost`                 | `number \| null` | Purchase cost in gold, or `null` if free      |
+| `fishingLevelRequired` | `number \| null` | Fishing level needed, or `null`               |
+| `bait`                 | `boolean`        | Whether the rod supports bait                 |
+| `tackleSlots`          | `number`         | Number of tackle slots                        |
+| `canEnchant`           | `boolean`        | Whether the rod can be enchanted at the Forge |
+| `obtain`               | `string`         | How to obtain this rod                        |
 
 #### SimpleTool
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `type` | `'simple'` | Always `'simple'` |
-| `name` | `string` | Display name |
-| `description` | `string` | In-game description |
-| `image` | `string` | Relative path to the tool image |
-| `cost` | `number \| null` | Purchase cost in gold, or `null` if free |
-| `obtain` | `string` | How to obtain this tool |
+| Field         | Type             | Description                              |
+| ------------- | ---------------- | ---------------------------------------- |
+| `id`          | `string`         | Unique identifier                        |
+| `type`        | `'simple'`       | Always `'simple'`                        |
+| `name`        | `string`         | Display name                             |
+| `description` | `string`         | In-game description                      |
+| `image`       | `string`         | Relative path to the tool image          |
+| `cost`        | `number \| null` | Purchase cost in gold, or `null` if free |
+| `obtain`      | `string`         | How to obtain this tool                  |
 
 #### Backpack
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `type` | `'backpack'` | Always `'backpack'` |
-| `name` | `string` | Display name |
-| `description` | `string` | In-game description |
-| `image` | `string` | Relative path to the backpack image |
-| `cost` | `number` | Purchase cost in gold |
-| `slots` | `number` | Number of inventory slots |
+| Field         | Type         | Description                         |
+| ------------- | ------------ | ----------------------------------- |
+| `id`          | `string`     | Unique identifier                   |
+| `type`        | `'backpack'` | Always `'backpack'`                 |
+| `name`        | `string`     | Display name                        |
+| `description` | `string`     | In-game description                 |
+| `image`       | `string`     | Relative path to the backpack image |
+| `cost`        | `number`     | Purchase cost in gold               |
+| `slots`       | `number`     | Number of inventory slots           |
 
 ### ToolType
 
@@ -112,32 +112,32 @@ Create a query with the `tools()` function. Every filter and sort method returns
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `byType` | `byType(type: ToolType): ToolQuery` | Filter by tool type string. |
-| `upgradeable` | `upgradeable(): ToolQuery` | Filter to upgradeable tools (Hoe, Watering Can, Pickaxe, Axe, Trash Can). |
-| `fishingRods` | `fishingRods(): ToolQuery` | Filter to fishing rods. |
-| `simple` | `simple(): ToolQuery` | Filter to simple tools (no upgrades). |
-| `backpacks` | `backpacks(): ToolQuery` | Filter to backpacks. |
-| `canEnchant` | `canEnchant(): ToolQuery` | Filter to tools that can be enchanted at the Forge. |
+| Method        | Signature                           | Description                                                               |
+| ------------- | ----------------------------------- | ------------------------------------------------------------------------- |
+| `byType`      | `byType(type: ToolType): ToolQuery` | Filter by tool type string.                                               |
+| `upgradeable` | `upgradeable(): ToolQuery`          | Filter to upgradeable tools (Hoe, Watering Can, Pickaxe, Axe, Trash Can). |
+| `fishingRods` | `fishingRods(): ToolQuery`          | Filter to fishing rods.                                                   |
+| `simple`      | `simple(): ToolQuery`               | Filter to simple tools (no upgrades).                                     |
+| `backpacks`   | `backpacks(): ToolQuery`            | Filter to backpacks.                                                      |
+| `canEnchant`  | `canEnchant(): ToolQuery`           | Filter to tools that can be enchanted at the Forge.                       |
 
 ### Sort Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method       | Signature                                        | Description                                    |
+| ------------ | ------------------------------------------------ | ---------------------------------------------- |
 | `sortByName` | `sortByName(order?: 'asc' \| 'desc'): ToolQuery` | Sort alphabetically by name. Default: `'asc'`. |
 
 ### Terminal Methods
 
 These methods are inherited from the base query and return actual values instead of a new query.
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get` | `get(): Tool[]` | Return all results as an array. |
-| `first` | `first(): Tool \| undefined` | Return the first result, or `undefined` if empty. |
-| `find` | `find(id: string): Tool \| undefined` | Find an item by its exact ID. |
+| Method       | Signature                                     | Description                                          |
+| ------------ | --------------------------------------------- | ---------------------------------------------------- |
+| `get`        | `get(): Tool[]`                               | Return all results as an array.                      |
+| `first`      | `first(): Tool \| undefined`                  | Return the first result, or `undefined` if empty.    |
+| `find`       | `find(id: string): Tool \| undefined`         | Find an item by its exact ID.                        |
 | `findByName` | `findByName(name: string): Tool \| undefined` | Find an item by name (case-insensitive exact match). |
-| `count` | `count(): number` | Return the number of results. |
+| `count`      | `count(): number`                             | Return the number of results.                        |
 
 ## Examples
 
@@ -150,7 +150,9 @@ const upgradeableTools = tools().upgradeable().get()
 upgradeableTools.forEach((tool) => {
   console.log(`\n${tool.name}:`)
   tool.levels.forEach((lvl) => {
-    const cost = lvl.upgradeCost ? `${lvl.upgradeCost}g + ${lvl.materialQuantity}x ${lvl.materialName}` : 'Starting tool'
+    const cost = lvl.upgradeCost
+      ? `${lvl.upgradeCost}g + ${lvl.materialQuantity}x ${lvl.materialName}`
+      : 'Starting tool'
     console.log(`  ${lvl.level}: ${cost}`)
   })
 })
@@ -167,7 +169,7 @@ const baitRods = tools()
   .filter((rod) => rod.bait)
 
 baitRods.forEach((rod) =>
-  console.log(`${rod.name}: ${rod.tackleSlots} tackle slot(s)`)
+  console.log(`${rod.name}: ${rod.tackleSlots} tackle slot(s)`),
 )
 ```
 
@@ -187,7 +189,7 @@ import { tools } from 'stardew-valley-data'
 
 const backpacks = tools().backpacks().get()
 backpacks.forEach((bp) =>
-  console.log(`${bp.name}: ${bp.slots} slots — ${bp.cost}g`)
+  console.log(`${bp.name}: ${bp.slots} slots — ${bp.cost}g`),
 )
 ```
 

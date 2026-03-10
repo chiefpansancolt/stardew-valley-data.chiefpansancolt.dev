@@ -27,26 +27,26 @@ const craftableRings = rings().craftable().sortBySellPrice('desc').get()
 
 The `Ring` type represents a single ring item.
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `name` | `string` | Display name |
-| `description` | `string` | In-game description |
-| `sellPrice` | `number` | Sell price in gold |
-| `image` | `string` | Relative path to the ring image |
-| `craftingLevel` | `number \| null` | Required crafting level, or `null` if not craftable |
+| Field           | Type                           | Description                                          |
+| --------------- | ------------------------------ | ---------------------------------------------------- |
+| `id`            | `string`                       | Unique identifier                                    |
+| `name`          | `string`                       | Display name                                         |
+| `description`   | `string`                       | In-game description                                  |
+| `sellPrice`     | `number`                       | Sell price in gold                                   |
+| `image`         | `string`                       | Relative path to the ring image                      |
+| `craftingLevel` | `number \| null`               | Required crafting level, or `null` if not craftable  |
 | `craftingSkill` | `'combat' \| 'mining' \| null` | Skill associated with the crafting recipe, or `null` |
-| `ingredients` | `Ingredient[]` | Crafting ingredients (empty array if not craftable) |
-| `purchasePrice` | `number \| null` | Purchase price in gold, or `null` if not purchasable |
-| `sources` | `string[]` | How the ring can be obtained |
+| `ingredients`   | `Ingredient[]`                 | Crafting ingredients (empty array if not craftable)  |
+| `purchasePrice` | `number \| null`               | Purchase price in gold, or `null` if not purchasable |
+| `sources`       | `string[]`                     | How the ring can be obtained                         |
 
 ### Ingredient
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `name` | `string` | Ingredient name |
-| `id` | `string` | Ingredient item ID |
-| `quantity` | `number` | Quantity required |
+| Field      | Type     | Description        |
+| ---------- | -------- | ------------------ |
+| `name`     | `string` | Ingredient name    |
+| `id`       | `string` | Ingredient item ID |
+| `quantity` | `number` | Quantity required  |
 
 ## Query Methods
 
@@ -54,28 +54,28 @@ Create a query with the `rings()` function. Every filter and sort method returns
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `craftable` | `craftable(): RingQuery` | Filter to rings that have crafting ingredients. |
+| Method        | Signature                  | Description                                                      |
+| ------------- | -------------------------- | ---------------------------------------------------------------- |
+| `craftable`   | `craftable(): RingQuery`   | Filter to rings that have crafting ingredients.                  |
 | `purchasable` | `purchasable(): RingQuery` | Filter to rings available for purchase (have a `purchasePrice`). |
 
 ### Sort Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method            | Signature                                             | Description                                                  |
+| ----------------- | ----------------------------------------------------- | ------------------------------------------------------------ |
 | `sortBySellPrice` | `sortBySellPrice(order?: 'asc' \| 'desc'): RingQuery` | Sort by sell price. Default: `'desc'` (most valuable first). |
 
 ### Terminal Methods
 
 These methods are inherited from the base query and return actual values instead of a new query.
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get` | `get(): Ring[]` | Return all results as an array. |
-| `first` | `first(): Ring \| undefined` | Return the first result, or `undefined` if empty. |
-| `find` | `find(id: string): Ring \| undefined` | Find an item by its exact ID. |
+| Method       | Signature                                     | Description                                          |
+| ------------ | --------------------------------------------- | ---------------------------------------------------- |
+| `get`        | `get(): Ring[]`                               | Return all results as an array.                      |
+| `first`      | `first(): Ring \| undefined`                  | Return the first result, or `undefined` if empty.    |
+| `find`       | `find(id: string): Ring \| undefined`         | Find an item by its exact ID.                        |
 | `findByName` | `findByName(name: string): Ring \| undefined` | Find an item by name (case-insensitive exact match). |
-| `count` | `count(): number` | Return the number of results. |
+| `count`      | `count(): number`                             | Return the number of results.                        |
 
 ## Examples
 
@@ -86,7 +86,9 @@ import { rings } from 'stardew-valley-data'
 
 const craftable = rings().craftable().get()
 craftable.forEach((ring) => {
-  const recipe = ring.ingredients.map((i) => `${i.quantity}x ${i.name}`).join(', ')
+  const recipe = ring.ingredients
+    .map((i) => `${i.quantity}x ${i.name}`)
+    .join(', ')
   console.log(`${ring.name} (Combat Lv ${ring.craftingLevel}): ${recipe}`)
 })
 ```
@@ -96,14 +98,10 @@ craftable.forEach((ring) => {
 ```js
 import { rings } from 'stardew-valley-data'
 
-const valuable = rings()
-  .purchasable()
-  .sortBySellPrice('desc')
-  .get()
-  .slice(0, 5)
+const valuable = rings().purchasable().sortBySellPrice('desc').get().slice(0, 5)
 
 valuable.forEach((r) =>
-  console.log(`${r.name}: Buy ${r.purchasePrice}g / Sell ${r.sellPrice}g`)
+  console.log(`${r.name}: Buy ${r.purchasePrice}g / Sell ${r.sellPrice}g`),
 )
 ```
 
@@ -112,7 +110,7 @@ valuable.forEach((r) =>
 ```js
 import { rings } from 'stardew-valley-data'
 
-const ring = rings().findByName('Burglar\'s Ring')
+const ring = rings().findByName("Burglar's Ring")
 if (ring) {
   console.log(`Sources: ${ring.sources.join(', ')}`)
 }

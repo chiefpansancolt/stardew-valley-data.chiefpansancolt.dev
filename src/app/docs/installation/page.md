@@ -79,18 +79,23 @@ function displayCrop(crop: Crop): string {
 
 The package exposes three entry points through its exports map:
 
-| Entry point | Description | Example import |
-| --- | --- | --- |
-| `stardew-valley-data` | Main entry -- all query builders, types, utilities, and the save file parser | `import { crops } from 'stardew-valley-data'` |
-| `stardew-valley-data/data/*` | Raw JSON data files for each module | `import cropsData from 'stardew-valley-data/data/crops'` |
-| `stardew-valley-data/images/*` | Image assets (PNG files) for items, characters, and UI elements | Referenced via file path in bundlers |
+| Entry point                    | Description                                                                  | Example import                                           |
+| ------------------------------ | ---------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `stardew-valley-data`          | Main entry -- all query builders, types, utilities, and the save file parser | `import { crops } from 'stardew-valley-data'`            |
+| `stardew-valley-data/data/*`   | Raw JSON data files for each module                                          | `import cropsData from 'stardew-valley-data/data/crops'` |
+| `stardew-valley-data/images/*` | Image assets (PNG files) for items, characters, and UI elements              | Referenced via file path in bundlers                     |
 
 ### Main entry point
 
 The main entry point re-exports everything: factory functions for all 68 data modules, all TypeScript types, the `search()` utility, the `qualityCalculator()` utility, and the `parseSaveFile()` function.
 
 ```ts
-import { crops, search, qualityCalculator, parseSaveFile } from 'stardew-valley-data'
+import {
+  crops,
+  search,
+  qualityCalculator,
+  parseSaveFile,
+} from 'stardew-valley-data'
 ```
 
 ### Direct data access

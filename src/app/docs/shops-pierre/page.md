@@ -30,21 +30,27 @@ const available = pierre().alwaysAvailable().get()
 
 Each item conforms to the `PierreItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `seasons` | `Season[]` | Seasons when available. Empty array means year-round. |
-| `category` | `PierreCategory` | Item category. |
-| `availability` | `string \| undefined` | Special purchase condition, if any. |
+| Field          | Type                  | Description                                           |
+| -------------- | --------------------- | ----------------------------------------------------- |
+| `id`           | `string`              | Unique identifier.                                    |
+| `name`         | `string`              | Display name of the item.                             |
+| `price`        | `number`              | Purchase price in gold.                               |
+| `description`  | `string`              | In-game description text.                             |
+| `image`        | `string`              | Path to the item's image.                             |
+| `seasons`      | `Season[]`            | Seasons when available. Empty array means year-round. |
+| `category`     | `PierreCategory`      | Item category.                                        |
+| `availability` | `string \| undefined` | Special purchase condition, if any.                   |
 
 ### PierreCategory
 
 ```ts
-type PierreCategory = 'seed' | 'sapling' | 'ingredient' | 'fertilizer' | 'recipe' | 'special'
+type PierreCategory =
+  | 'seed'
+  | 'sapling'
+  | 'ingredient'
+  | 'fertilizer'
+  | 'recipe'
+  | 'special'
 ```
 
 ### Season
@@ -57,34 +63,34 @@ type Season = 'spring' | 'summer' | 'fall' | 'winter' | 'ginger island'
 
 `PierreQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `PierreItem[]` | Return all results as an array. |
-| `first()` | `PierreItem \| undefined` | Return the first result. |
-| `find(id)` | `PierreItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                   | Description                              |
+| ------------------ | ------------------------- | ---------------------------------------- |
+| `get()`            | `PierreItem[]`            | Return all results as an array.          |
+| `first()`          | `PierreItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `PierreItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `PierreItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                  | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `bySeason(season)` | `PierreQuery` | Filter to items available in the given season (includes permanent and multi-season items). |
-| `permanent()` | `PierreQuery` | Filter to year-round permanent stock only (no seasonal seeds). |
-| `seeds()` | `PierreQuery` | Filter to seasonal seed stock only. |
-| `saplings()` | `PierreQuery` | Filter to fruit tree saplings only. |
-| `ingredients()` | `PierreQuery` | Filter to cooking ingredients only. |
-| `fertilizers()` | `PierreQuery` | Filter to fertilizers and farming supplies only. |
-| `recipes()` | `PierreQuery` | Filter to recipe items only. |
-| `byCategory(category)` | `PierreQuery` | Filter by category. |
-| `alwaysAvailable()` | `PierreQuery` | Filter to items with no special purchase condition. |
+| Method                 | Returns       | Description                                                                                |
+| ---------------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| `bySeason(season)`     | `PierreQuery` | Filter to items available in the given season (includes permanent and multi-season items). |
+| `permanent()`          | `PierreQuery` | Filter to year-round permanent stock only (no seasonal seeds).                             |
+| `seeds()`              | `PierreQuery` | Filter to seasonal seed stock only.                                                        |
+| `saplings()`           | `PierreQuery` | Filter to fruit tree saplings only.                                                        |
+| `ingredients()`        | `PierreQuery` | Filter to cooking ingredients only.                                                        |
+| `fertilizers()`        | `PierreQuery` | Filter to fertilizers and farming supplies only.                                           |
+| `recipes()`            | `PierreQuery` | Filter to recipe items only.                                                               |
+| `byCategory(category)` | `PierreQuery` | Filter by category.                                                                        |
+| `alwaysAvailable()`    | `PierreQuery` | Filter to items with no special purchase condition.                                        |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `PierreQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `PierreQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns       | Description                                                      |
+| --------------------- | ------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `PierreQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `PierreQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -93,11 +99,7 @@ type Season = 'spring' | 'summer' | 'fall' | 'winter' | 'ginger island'
 ```js
 import { pierre } from 'stardew-valley-data'
 
-const springSeeds = pierre()
-  .bySeason('spring')
-  .seeds()
-  .sortByPrice()
-  .get()
+const springSeeds = pierre().bySeason('spring').seeds().sortByPrice().get()
 
 springSeeds.forEach((seed) => {
   console.log(`${seed.name} - ${seed.price}g`)

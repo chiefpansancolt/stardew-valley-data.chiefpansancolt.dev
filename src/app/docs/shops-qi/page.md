@@ -30,18 +30,18 @@ const items = qiStock().items().get()
 
 Each item conforms to the `QiStockItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `cost` | `number` | Purchase cost in the specified currency. |
-| `currency` | `QiCurrency` | Currency used for purchase. |
-| `quantity` | `number` | Quantity received per purchase. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `isRecipe` | `boolean` | Whether this item is a recipe unlock. |
-| `availability` | `string \| undefined` | Special availability condition, if any. |
-| `note` | `string \| undefined` | Additional notes about the item. |
+| Field          | Type                  | Description                              |
+| -------------- | --------------------- | ---------------------------------------- |
+| `id`           | `string`              | Unique identifier.                       |
+| `name`         | `string`              | Display name of the item.                |
+| `cost`         | `number`              | Purchase cost in the specified currency. |
+| `currency`     | `QiCurrency`          | Currency used for purchase.              |
+| `quantity`     | `number`              | Quantity received per purchase.          |
+| `description`  | `string`              | In-game description text.                |
+| `image`        | `string`              | Path to the item's image.                |
+| `isRecipe`     | `boolean`             | Whether this item is a recipe unlock.    |
+| `availability` | `string \| undefined` | Special availability condition, if any.  |
+| `note`         | `string \| undefined` | Additional notes about the item.         |
 
 ### QiCurrency
 
@@ -53,28 +53,28 @@ type QiCurrency = 'qi-gem' | 'golden-walnut'
 
 `QiStockQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `QiStockItem[]` | Return all results as an array. |
-| `first()` | `QiStockItem \| undefined` | Return the first result. |
-| `find(id)` | `QiStockItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                    | Description                              |
+| ------------------ | -------------------------- | ---------------------------------------- |
+| `get()`            | `QiStockItem[]`            | Return all results as an array.          |
+| `first()`          | `QiStockItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `QiStockItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `QiStockItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                   | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byCurrency(currency)` | `QiStockQuery` | Filter to items purchased with the given currency. |
-| `recipes()` | `QiStockQuery` | Filter to recipe unlocks only. |
-| `items()` | `QiStockQuery` | Filter to non-recipe items only. |
-| `alwaysAvailable()` | `QiStockQuery` | Filter to items with no special availability condition. |
+| Method                 | Returns        | Description                                             |
+| ---------------------- | -------------- | ------------------------------------------------------- |
+| `byCurrency(currency)` | `QiStockQuery` | Filter to items purchased with the given currency.      |
+| `recipes()`            | `QiStockQuery` | Filter to recipe unlocks only.                          |
+| `items()`              | `QiStockQuery` | Filter to non-recipe items only.                        |
+| `alwaysAvailable()`    | `QiStockQuery` | Filter to items with no special availability condition. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByCost(order?)` | `QiStockQuery` | Sort by cost. Pass `'asc'` (default) or `'desc'`. |
+| Method               | Returns        | Description                                                      |
+| -------------------- | -------------- | ---------------------------------------------------------------- |
+| `sortByCost(order?)` | `QiStockQuery` | Sort by cost. Pass `'asc'` (default) or `'desc'`.                |
 | `sortByName(order?)` | `QiStockQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -84,10 +84,7 @@ type QiCurrency = 'qi-gem' | 'golden-walnut'
 ```js
 import { qiStock } from 'stardew-valley-data'
 
-const qiGemItems = qiStock()
-  .byCurrency('qi-gem')
-  .sortByCost()
-  .get()
+const qiGemItems = qiStock().byCurrency('qi-gem').sortByCost().get()
 
 qiGemItems.forEach((item) => {
   console.log(`${item.name} - ${item.cost} Qi Gems (x${item.quantity})`)

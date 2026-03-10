@@ -30,22 +30,28 @@ const swords = guild().byWeaponType('sword').get()
 
 Each item conforms to the `GuildItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `GuildCategory` | Item category. |
-| `weaponType` | `GuildWeaponType \| undefined` | Weapon type (only present for weapon category items). |
-| `mineLevel` | `number \| undefined` | Minimum mine level required to unlock this item. |
-| `availability` | `string \| undefined` | Special purchase condition, if any. |
+| Field          | Type                           | Description                                           |
+| -------------- | ------------------------------ | ----------------------------------------------------- |
+| `id`           | `string`                       | Unique identifier.                                    |
+| `name`         | `string`                       | Display name of the item.                             |
+| `price`        | `number`                       | Purchase price in gold.                               |
+| `description`  | `string`                       | In-game description text.                             |
+| `image`        | `string`                       | Path to the item's image.                             |
+| `category`     | `GuildCategory`                | Item category.                                        |
+| `weaponType`   | `GuildWeaponType \| undefined` | Weapon type (only present for weapon category items). |
+| `mineLevel`    | `number \| undefined`          | Minimum mine level required to unlock this item.      |
+| `availability` | `string \| undefined`          | Special purchase condition, if any.                   |
 
 ### GuildCategory
 
 ```ts
-type GuildCategory = 'weapon' | 'boots' | 'ring' | 'slingshot' | 'ammo' | 'furniture'
+type GuildCategory =
+  | 'weapon'
+  | 'boots'
+  | 'ring'
+  | 'slingshot'
+  | 'ammo'
+  | 'furniture'
 ```
 
 ### GuildWeaponType
@@ -58,33 +64,33 @@ type GuildWeaponType = 'sword' | 'dagger' | 'club'
 
 `GuildQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `GuildItem[]` | Return all results as an array. |
-| `first()` | `GuildItem \| undefined` | Return the first result. |
-| `find(id)` | `GuildItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                  | Description                              |
+| ------------------ | ------------------------ | ---------------------------------------- |
+| `get()`            | `GuildItem[]`            | Return all results as an array.          |
+| `first()`          | `GuildItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `GuildItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `GuildItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                 | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `weapons()` | `GuildQuery` | Filter to weapons only. |
-| `boots()` | `GuildQuery` | Filter to boots only. |
-| `rings()` | `GuildQuery` | Filter to rings only. |
-| `slingshots()` | `GuildQuery` | Filter to slingshots only. |
-| `byCategory(category)` | `GuildQuery` | Filter to items in the given category. |
-| `byWeaponType(type)` | `GuildQuery` | Filter weapons by type: `'sword'`, `'dagger'`, or `'club'`. |
-| `byMineLevel(level)` | `GuildQuery` | Filter to items that unlock at or below the given mine level. |
-| `alwaysAvailable()` | `GuildQuery` | Filter to items with no special purchase condition. |
+| Method                 | Returns      | Description                                                   |
+| ---------------------- | ------------ | ------------------------------------------------------------- |
+| `weapons()`            | `GuildQuery` | Filter to weapons only.                                       |
+| `boots()`              | `GuildQuery` | Filter to boots only.                                         |
+| `rings()`              | `GuildQuery` | Filter to rings only.                                         |
+| `slingshots()`         | `GuildQuery` | Filter to slingshots only.                                    |
+| `byCategory(category)` | `GuildQuery` | Filter to items in the given category.                        |
+| `byWeaponType(type)`   | `GuildQuery` | Filter weapons by type: `'sword'`, `'dagger'`, or `'club'`.   |
+| `byMineLevel(level)`   | `GuildQuery` | Filter to items that unlock at or below the given mine level. |
+| `alwaysAvailable()`    | `GuildQuery` | Filter to items with no special purchase condition.           |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `GuildQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `GuildQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                    | Returns      | Description                                                      |
+| ------------------------- | ------------ | ---------------------------------------------------------------- |
+| `sortByPrice(order?)`     | `GuildQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`      | `GuildQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 | `sortByMineLevel(order?)` | `GuildQuery` | Sort by mine level required. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -94,10 +100,7 @@ type GuildWeaponType = 'sword' | 'dagger' | 'club'
 ```js
 import { guild } from 'stardew-valley-data'
 
-const daggers = guild()
-  .byWeaponType('dagger')
-  .sortByPrice()
-  .get()
+const daggers = guild().byWeaponType('dagger').sortByPrice().get()
 
 daggers.forEach((d) => {
   console.log(`${d.name} - ${d.price}g (mine level ${d.mineLevel ?? 'none'})`)

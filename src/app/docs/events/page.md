@@ -30,39 +30,39 @@ const marriageEvents = events().marriageEvents().get()
 
 Each event record conforms to the `GameEvent` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the event. |
-| `name` | `string` | Auto-generated display name in the format `"Villager N-Heart"`. |
-| `villager` | `string` | Name of the villager this event belongs to. |
-| `hearts` | `number` | The heart level required to trigger this event. |
-| `description` | `string` | Description of the event scene. |
+| Field         | Type     | Description                                                     |
+| ------------- | -------- | --------------------------------------------------------------- |
+| `id`          | `string` | Unique identifier for the event.                                |
+| `name`        | `string` | Auto-generated display name in the format `"Villager N-Heart"`. |
+| `villager`    | `string` | Name of the villager this event belongs to.                     |
+| `hearts`      | `number` | The heart level required to trigger this event.                 |
+| `description` | `string` | Description of the event scene.                                 |
 
 ## Query Methods
 
 `EventQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `GameEvent[]` | Return all results as an array. |
-| `first()` | `GameEvent \| undefined` | Return the first result. |
-| `find(id)` | `GameEvent \| undefined` | Find an event by exact ID. |
+| Method             | Returns                  | Description                               |
+| ------------------ | ------------------------ | ----------------------------------------- |
+| `get()`            | `GameEvent[]`            | Return all results as an array.           |
+| `first()`          | `GameEvent \| undefined` | Return the first result.                  |
+| `find(id)`         | `GameEvent \| undefined` | Find an event by exact ID.                |
 | `findByName(name)` | `GameEvent \| undefined` | Find an event by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                 | Return the number of results.             |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byVillager(villager)` | `EventQuery` | Filter by villager name (case-insensitive exact match). |
-| `byHearts(hearts)` | `EventQuery` | Filter by heart level (e.g., `2`, `4`, `6`, `8`, `10`, `14`). |
-| `marriageEvents()` | `EventQuery` | Filter to only marriage candidate events (hearts 2, 4, 6, 8, 10, 14). |
+| Method                 | Returns      | Description                                                           |
+| ---------------------- | ------------ | --------------------------------------------------------------------- |
+| `byVillager(villager)` | `EventQuery` | Filter by villager name (case-insensitive exact match).               |
+| `byHearts(hearts)`     | `EventQuery` | Filter by heart level (e.g., `2`, `4`, `6`, `8`, `10`, `14`).         |
+| `marriageEvents()`     | `EventQuery` | Filter to only marriage candidate events (hearts 2, 4, 6, 8, 10, 14). |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByHearts(order?)` | `EventQuery` | Sort by heart level. Pass `'asc'` (default) or `'desc'`. |
+| Method                   | Returns      | Description                                                               |
+| ------------------------ | ------------ | ------------------------------------------------------------------------- |
+| `sortByHearts(order?)`   | `EventQuery` | Sort by heart level. Pass `'asc'` (default) or `'desc'`.                  |
 | `sortByVillager(order?)` | `EventQuery` | Sort alphabetically by villager name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -72,10 +72,7 @@ Each event record conforms to the `GameEvent` interface:
 ```js
 import { events } from 'stardew-valley-data'
 
-const samEvents = events()
-  .byVillager('Sam')
-  .sortByHearts()
-  .get()
+const samEvents = events().byVillager('Sam').sortByHearts().get()
 
 samEvents.forEach((e) => {
   console.log(`${e.hearts}-Heart: ${e.description}`)
@@ -98,10 +95,7 @@ for (const level of [2, 4, 6, 8, 10, 14]) {
 ```js
 import { events } from 'stardew-valley-data'
 
-const results = events()
-  .marriageEvents()
-  .sortByVillager()
-  .get()
+const results = events().marriageEvents().sortByVillager().get()
 
 results.forEach((e) => {
   console.log(`${e.villager} — ${e.hearts}-Heart Event`)

@@ -30,14 +30,14 @@ const item = saloon().findByName('Pizza')
 
 Each item conforms to the `SaloonItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `SaloonCategory` | Item category. |
+| Field          | Type                  | Description                         |
+| -------------- | --------------------- | ----------------------------------- |
+| `id`           | `string`              | Unique identifier.                  |
+| `name`         | `string`              | Display name of the item.           |
+| `price`        | `number`              | Purchase price in gold.             |
+| `description`  | `string`              | In-game description text.           |
+| `image`        | `string`              | Path to the item's image.           |
+| `category`     | `SaloonCategory`      | Item category.                      |
 | `availability` | `string \| undefined` | Special purchase condition, if any. |
 
 ### SaloonCategory
@@ -50,29 +50,29 @@ type SaloonCategory = 'food' | 'recipe'
 
 `SaloonQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `SaloonItem[]` | Return all results as an array. |
-| `first()` | `SaloonItem \| undefined` | Return the first result. |
-| `find(id)` | `SaloonItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                   | Description                              |
+| ------------------ | ------------------------- | ---------------------------------------- |
+| `get()`            | `SaloonItem[]`            | Return all results as an array.          |
+| `first()`          | `SaloonItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `SaloonItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `SaloonItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                  | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `food()` | `SaloonQuery` | Filter to food and drink items only. |
-| `recipes()` | `SaloonQuery` | Filter to cooking recipe items only. |
-| `byCategory(category)` | `SaloonQuery` | Filter by category. |
-| `alwaysAvailable()` | `SaloonQuery` | Filter to items with no special purchase condition. |
+| Method                 | Returns       | Description                                         |
+| ---------------------- | ------------- | --------------------------------------------------- |
+| `food()`               | `SaloonQuery` | Filter to food and drink items only.                |
+| `recipes()`            | `SaloonQuery` | Filter to cooking recipe items only.                |
+| `byCategory(category)` | `SaloonQuery` | Filter by category.                                 |
+| `alwaysAvailable()`    | `SaloonQuery` | Filter to items with no special purchase condition. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `SaloonQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `SaloonQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns       | Description                                                      |
+| --------------------- | ------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `SaloonQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `SaloonQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 

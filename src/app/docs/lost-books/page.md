@@ -30,24 +30,24 @@ const first = lostBooks().first()
 
 Each lost book record conforms to the `LostBook` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the book. |
-| `name` | `string` | Title of the lost book. |
-| `description` | `string` | The text content of the book. |
-| `image` | `string` | Path to the book image. |
+| Field         | Type     | Description                     |
+| ------------- | -------- | ------------------------------- |
+| `id`          | `string` | Unique identifier for the book. |
+| `name`        | `string` | Title of the lost book.         |
+| `description` | `string` | The text content of the book.   |
+| `image`       | `string` | Path to the book image.         |
 
 ## Query Methods
 
 `LostBookQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `LostBook[]` | Return all results as an array. |
-| `first()` | `LostBook \| undefined` | Return the first result. |
-| `find(id)` | `LostBook \| undefined` | Find a book by exact ID. |
+| Method             | Returns                 | Description                             |
+| ------------------ | ----------------------- | --------------------------------------- |
+| `get()`            | `LostBook[]`            | Return all results as an array.         |
+| `first()`          | `LostBook \| undefined` | Return the first result.                |
+| `find(id)`         | `LostBook \| undefined` | Find a book by exact ID.                |
 | `findByName(name)` | `LostBook \| undefined` | Find a book by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                | Return the number of results.           |
 
 ## Examples
 

@@ -52,21 +52,21 @@ interface ArtisanGood {
 
 ### Field Reference
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name (e.g. `"Wine"`, `"Cheese"`). |
-| `description` | `string` | In-game description text. |
-| `equipment` | `string` | Equipment used to produce this good (e.g. `"Keg"`, `"Preserves Jar"`). |
-| `ingredients` | `ArtisanIngredient[]` | Array of required ingredients. |
-| `processingMinutes` | `number` | In-game processing time in minutes. |
-| `processingDays` | `number` | Approximate processing time in days. |
-| `sellPrice` | `number \| null` | Fixed sell price, or `null` if the price is formula-based. |
-| `sellPriceFormula` | `string \| null` | Human-readable formula string (e.g. `"2 * Base Price + 50"`), or `null` for fixed-price goods. |
-| `priceFormula` | `PriceFormula \| null` | Structured formula for calculating sell price from an ingredient, or `null`. |
-| `qualityLevels` | `boolean` | Whether this good supports Silver/Gold/Iridium quality. |
-| `cask` | `CaskAging \| null` | Cask aging data, or `null` if it cannot be aged. |
-| `image` | `string` | Path to the image asset. |
+| Field               | Type                   | Description                                                                                    |
+| ------------------- | ---------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`                | `string`               | Unique identifier.                                                                             |
+| `name`              | `string`               | Display name (e.g. `"Wine"`, `"Cheese"`).                                                      |
+| `description`       | `string`               | In-game description text.                                                                      |
+| `equipment`         | `string`               | Equipment used to produce this good (e.g. `"Keg"`, `"Preserves Jar"`).                         |
+| `ingredients`       | `ArtisanIngredient[]`  | Array of required ingredients.                                                                 |
+| `processingMinutes` | `number`               | In-game processing time in minutes.                                                            |
+| `processingDays`    | `number`               | Approximate processing time in days.                                                           |
+| `sellPrice`         | `number \| null`       | Fixed sell price, or `null` if the price is formula-based.                                     |
+| `sellPriceFormula`  | `string \| null`       | Human-readable formula string (e.g. `"2 * Base Price + 50"`), or `null` for fixed-price goods. |
+| `priceFormula`      | `PriceFormula \| null` | Structured formula for calculating sell price from an ingredient, or `null`.                   |
+| `qualityLevels`     | `boolean`              | Whether this good supports Silver/Gold/Iridium quality.                                        |
+| `cask`              | `CaskAging \| null`    | Cask aging data, or `null` if it cannot be aged.                                               |
+| `image`             | `string`               | Path to the image asset.                                                                       |
 
 ### Supporting Types
 
@@ -95,30 +95,33 @@ The `artisanGoods()` function returns an `ArtisanGoodQuery` instance. All method
 
 ### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `ArtisanGood[]` | Return all results as an array. |
-| `.first()` | `ArtisanGood \| undefined` | Return the first result. |
-| `.find(id)` | `ArtisanGood \| undefined` | Find by exact ID. |
+| Method              | Returns                    | Description                      |
+| ------------------- | -------------------------- | -------------------------------- |
+| `.get()`            | `ArtisanGood[]`            | Return all results as an array.  |
+| `.first()`          | `ArtisanGood \| undefined` | Return the first result.         |
+| `.find(id)`         | `ArtisanGood \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `ArtisanGood \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`                   | Return the number of results.    |
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `byEquipment` | `byEquipment(equipment: string)` | Filter by the equipment that produces the good (case-insensitive). |
-| `caskAgeable` | `caskAgeable()` | Filter to goods that can be aged in a Cask. |
-| `withQualityLevels` | `withQualityLevels()` | Filter to goods that support Silver/Gold/Iridium quality. |
-| `fixedPrice` | `fixedPrice()` | Filter to goods with a fixed sell price (not formula-based). |
-| `formulaPrice` | `formulaPrice()` | Filter to goods whose sell price depends on the ingredient. |
+| Method              | Signature                        | Description                                                        |
+| ------------------- | -------------------------------- | ------------------------------------------------------------------ |
+| `byEquipment`       | `byEquipment(equipment: string)` | Filter by the equipment that produces the good (case-insensitive). |
+| `caskAgeable`       | `caskAgeable()`                  | Filter to goods that can be aged in a Cask.                        |
+| `withQualityLevels` | `withQualityLevels()`            | Filter to goods that support Silver/Gold/Iridium quality.          |
+| `fixedPrice`        | `fixedPrice()`                   | Filter to goods with a fixed sell price (not formula-based).       |
+| `formulaPrice`      | `formulaPrice()`                 | Filter to goods whose sell price depends on the ingredient.        |
 
 ## Helper Functions
 
 ### calculateArtisanPrice
 
 ```ts
-function calculateArtisanPrice(good: ArtisanGood, ingredientBasePrice: number): number | null
+function calculateArtisanPrice(
+  good: ArtisanGood,
+  ingredientBasePrice: number,
+): number | null
 ```
 
 Calculate the sell price of a formula-based artisan good given the ingredient's base price. Returns `null` if the good has a fixed price (no formula).
@@ -128,7 +131,10 @@ The formula applied is: `Math.floor(ingredientBasePrice * multiplier) + addend`
 ### applyPriceFormula
 
 ```ts
-function applyPriceFormula(formula: PriceFormula, ingredientBasePrice: number): number
+function applyPriceFormula(
+  formula: PriceFormula,
+  ingredientBasePrice: number,
+): number
 ```
 
 Apply a `PriceFormula` directly to an ingredient base price. Useful when you already have a formula object.
@@ -142,7 +148,7 @@ import { artisanGoods } from 'stardew-valley-data'
 
 const kegGoods = artisanGoods().byEquipment('Keg').get()
 
-kegGoods.forEach(g => {
+kegGoods.forEach((g) => {
   console.log(`${g.name}: ${g.processingDays} day(s)`)
 })
 ```
@@ -156,7 +162,7 @@ const wine = artisanGoods().findByName('Wine')
 const fruitPrices = [50, 150, 300, 750] // base prices of various fruits
 
 if (wine) {
-  fruitPrices.forEach(base => {
+  fruitPrices.forEach((base) => {
     const sellPrice = calculateArtisanPrice(wine, base)
     console.log(`${base}g fruit -> Wine sells for ${sellPrice}g`)
   })
@@ -168,9 +174,11 @@ if (wine) {
 ```js
 const caskable = artisanGoods().caskAgeable().get()
 
-caskable.forEach(g => {
+caskable.forEach((g) => {
   if (g.cask) {
-    console.log(`${g.name}: Silver ${g.cask.silverDays}d, Gold ${g.cask.goldDays}d, Iridium ${g.cask.iridiumDays}d`)
+    console.log(
+      `${g.name}: Silver ${g.cask.silverDays}d, Gold ${g.cask.goldDays}d, Iridium ${g.cask.iridiumDays}d`,
+    )
   }
 })
 ```
@@ -181,5 +189,7 @@ caskable.forEach(g => {
 const fixedCount = artisanGoods().fixedPrice().count()
 const formulaCount = artisanGoods().formulaPrice().count()
 
-console.log(`${fixedCount} fixed-price goods, ${formulaCount} formula-based goods`)
+console.log(
+  `${fixedCount} fixed-price goods, ${formulaCount} formula-based goods`,
+)
 ```

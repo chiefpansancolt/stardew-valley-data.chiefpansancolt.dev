@@ -29,14 +29,14 @@ const trades = booksellerTrades().get()
 
 Each purchasable book conforms to the `BooksellerItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the book. |
-| `availability` | `BooksellerAvailability` | When the book appears in stock. |
-| `price` | `number` | Base purchase price in gold. |
-| `priceTiers` | `[number, number, number] \| undefined` | Optional tiered pricing array. |
-| `image` | `string` | Path to the book's image. |
+| Field          | Type                                    | Description                     |
+| -------------- | --------------------------------------- | ------------------------------- |
+| `id`           | `string`                                | Unique identifier.              |
+| `name`         | `string`                                | Display name of the book.       |
+| `availability` | `BooksellerAvailability`                | When the book appears in stock. |
+| `price`        | `number`                                | Base purchase price in gold.    |
+| `priceTiers`   | `[number, number, number] \| undefined` | Optional tiered pricing array.  |
+| `image`        | `string`                                | Path to the book's image.       |
 
 ### BooksellerAvailability
 
@@ -53,13 +53,13 @@ type BooksellerAvailability =
 
 Each trade-in offer conforms to the `BooksellerTrade` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `bookId` | `string` | ID of the book being traded. |
-| `bookName` | `string` | Display name of the book. |
-| `bookImage` | `string` | Path to the book's image. |
-| `receiveItems` | `string[]` | Item names you receive in exchange. |
-| `receiveQuantity` | `number` | Quantity of items received. |
+| Field             | Type       | Description                         |
+| ----------------- | ---------- | ----------------------------------- |
+| `bookId`          | `string`   | ID of the book being traded.        |
+| `bookName`        | `string`   | Display name of the book.           |
+| `bookImage`       | `string`   | Path to the book's image.           |
+| `receiveItems`    | `string[]` | Item names you receive in exchange. |
+| `receiveQuantity` | `number`   | Quantity of items received.         |
 
 ## Query Methods
 
@@ -67,34 +67,34 @@ Each trade-in offer conforms to the `BooksellerTrade` interface:
 
 `BooksellerItemQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `BooksellerItem[]` | Return all results as an array. |
-| `first()` | `BooksellerItem \| undefined` | Return the first result. |
-| `find(id)` | `BooksellerItem \| undefined` | Find a book by exact ID. |
+| Method             | Returns                       | Description                             |
+| ------------------ | ----------------------------- | --------------------------------------- |
+| `get()`            | `BooksellerItem[]`            | Return all results as an array.         |
+| `first()`          | `BooksellerItem \| undefined` | Return the first result.                |
+| `find(id)`         | `BooksellerItem \| undefined` | Find a book by exact ID.                |
 | `findByName(name)` | `BooksellerItem \| undefined` | Find a book by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                      | Return the number of results.           |
 
 #### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method                         | Returns               | Description                                       |
+| ------------------------------ | --------------------- | ------------------------------------------------- |
 | `byAvailability(availability)` | `BooksellerItemQuery` | Filter to books with the given availability type. |
-| `alwaysAvailable()` | `BooksellerItemQuery` | Filter to books that are always in stock. |
+| `alwaysAvailable()`            | `BooksellerItemQuery` | Filter to books that are always in stock.         |
 
 #### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `BooksellerItemQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `BooksellerItemQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns               | Description                                                      |
+| --------------------- | --------------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `BooksellerItemQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `BooksellerItemQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ### BooksellerTradeQuery
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `BooksellerTrade[]` | Return all trade-in offers. |
-| `count()` | `number` | Return the number of trade-in offers. |
+| Method                 | Returns                        | Description                                        |
+| ---------------------- | ------------------------------ | -------------------------------------------------- |
+| `get()`                | `BooksellerTrade[]`            | Return all trade-in offers.                        |
+| `count()`              | `number`                       | Return the number of trade-in offers.              |
 | `findByBookId(bookId)` | `BooksellerTrade \| undefined` | Find a trade-in offer by the book ID being traded. |
 
 ## Examples
@@ -119,6 +119,8 @@ import { booksellerTrades } from 'stardew-valley-data'
 const trade = booksellerTrades().findByBookId('book_of_stars')
 
 if (trade) {
-  console.log(`Trade ${trade.bookName} for ${trade.receiveQuantity}x ${trade.receiveItems.join(', ')}`)
+  console.log(
+    `Trade ${trade.bookName} for ${trade.receiveQuantity}x ${trade.receiveItems.join(', ')}`,
+  )
 }
 ```

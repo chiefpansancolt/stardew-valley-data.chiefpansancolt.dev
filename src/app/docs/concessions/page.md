@@ -30,13 +30,13 @@ const priciest = concessions().sortByPrice('desc').get()
 
 Each concession record conforms to the `Concession` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the concession item. |
-| `name` | `string` | Display name of the concession. |
-| `price` | `number` | Gold cost at the concession stand. |
-| `tags` | `ConcessionTag[]` | Flavor and category tags for the item. |
-| `image` | `string` | Path to the concession image. |
+| Field   | Type              | Description                                |
+| ------- | ----------------- | ------------------------------------------ |
+| `id`    | `string`          | Unique identifier for the concession item. |
+| `name`  | `string`          | Display name of the concession.            |
+| `price` | `number`          | Gold cost at the concession stand.         |
+| `tags`  | `ConcessionTag[]` | Flavor and category tags for the item.     |
+| `image` | `string`          | Path to the concession image.              |
 
 ### ConcessionTag
 
@@ -46,26 +46,26 @@ Each concession record conforms to the `Concession` interface:
 
 `ConcessionQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `Concession[]` | Return all results as an array. |
-| `first()` | `Concession \| undefined` | Return the first result. |
-| `find(id)` | `Concession \| undefined` | Find a concession by exact ID. |
+| Method             | Returns                   | Description                                   |
+| ------------------ | ------------------------- | --------------------------------------------- |
+| `get()`            | `Concession[]`            | Return all results as an array.               |
+| `first()`          | `Concession \| undefined` | Return the first result.                      |
+| `find(id)`         | `Concession \| undefined` | Find a concession by exact ID.                |
 | `findByName(name)` | `Concession \| undefined` | Find a concession by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                  | Return the number of results.                 |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method       | Returns           | Description                                 |
+| ------------ | ----------------- | ------------------------------------------- |
 | `byTag(tag)` | `ConcessionQuery` | Filter to items that include the given tag. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `ConcessionQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `ConcessionQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns           | Description                                                      |
+| --------------------- | ----------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `ConcessionQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `ConcessionQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 

@@ -20,7 +20,7 @@ import { search } from 'stardew-valley-data'
 const results = search('Melon')
 // Returns all items whose name contains "Melon" or whose ID is "melon"
 
-results.forEach(r => {
+results.forEach((r) => {
   console.log(`[${r.kind}] ${r.name} - ${r.sellPrice ?? 'N/A'}g`)
 })
 ```
@@ -35,10 +35,10 @@ function search(query: string, kinds?: SearchResultKind[]): SearchResult[]
 
 ### Parameters
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `query` | `string` | Name substring or exact ID to search for (case-insensitive) |
-| `kinds` | `SearchResultKind[]` | Optional filter to restrict results to specific item kinds |
+| Parameter | Type                 | Description                                                 |
+| --------- | -------------------- | ----------------------------------------------------------- |
+| `query`   | `string`             | Name substring or exact ID to search for (case-insensitive) |
+| `kinds`   | `SearchResultKind[]` | Optional filter to restrict results to specific item kinds  |
 
 ### Returns
 
@@ -59,14 +59,14 @@ interface SearchResult {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `kind` | `SearchResultKind` | The category of the item (e.g., `'crop'`, `'fish'`, `'weapon'`) |
-| `id` | `string` | The item's unique identifier |
-| `name` | `string` | The item's display name |
-| `image` | `string` | Relative path to the item's image file |
-| `sellPrice` | `number \| null` | Sell price in gold, or `null` if the item cannot be sold |
-| `parents` | `{ id: string; name: string }[]` | Parent items that produce this item (for nested items like animal produce) |
+| Field       | Type                             | Description                                                                |
+| ----------- | -------------------------------- | -------------------------------------------------------------------------- |
+| `kind`      | `SearchResultKind`               | The category of the item (e.g., `'crop'`, `'fish'`, `'weapon'`)            |
+| `id`        | `string`                         | The item's unique identifier                                               |
+| `name`      | `string`                         | The item's display name                                                    |
+| `image`     | `string`                         | Relative path to the item's image file                                     |
+| `sellPrice` | `number \| null`                 | Sell price in gold, or `null` if the item cannot be sold                   |
+| `parents`   | `{ id: string; name: string }[]` | Parent items that produce this item (for nested items like animal produce) |
 
 ---
 
@@ -140,7 +140,7 @@ const eggResults = search('Egg', ['animal-produce'])
 for (const result of eggResults) {
   console.log(`${result.name} (${result.kind})`)
   if (result.parents) {
-    const sources = result.parents.map(p => p.name).join(', ')
+    const sources = result.parents.map((p) => p.name).join(', ')
     console.log(`  Produced by: ${sources}`)
   }
 }
@@ -162,26 +162,26 @@ This means searching for "Egg" returns one result with `parents: [{ name: 'White
 
 The search function covers 20 data modules:
 
-| Module | Kinds returned |
-| --- | --- |
-| Crops | `crop`, `crop-seed` |
-| Trees | `fruit-tree`, `fruit-tree-produce`, `wild-tree`, `wild-tree-seed`, `wild-tree-tapper` |
-| Animals | `animal`, `animal-produce` |
-| Monsters | `monster`, `monster-loot` |
-| Rings | `ring` |
-| Tools | `tool` |
-| Weapons | `weapon` |
-| Artisan goods | `artisan-good` |
-| Hats | `hat` |
-| Footwear | `footwear` |
-| Forageables | `forageable` |
-| Fish | `fish` |
-| Bait | `bait` |
-| Tackle | `tackle` |
-| Cooking | `cooked-dish` |
-| Artifacts | `artifact` |
-| Crafting | `crafting-recipe` |
-| Minerals | `mineral`, `geode`, `mining-node`, `mineral-resource` |
+| Module        | Kinds returned                                                                        |
+| ------------- | ------------------------------------------------------------------------------------- |
+| Crops         | `crop`, `crop-seed`                                                                   |
+| Trees         | `fruit-tree`, `fruit-tree-produce`, `wild-tree`, `wild-tree-seed`, `wild-tree-tapper` |
+| Animals       | `animal`, `animal-produce`                                                            |
+| Monsters      | `monster`, `monster-loot`                                                             |
+| Rings         | `ring`                                                                                |
+| Tools         | `tool`                                                                                |
+| Weapons       | `weapon`                                                                              |
+| Artisan goods | `artisan-good`                                                                        |
+| Hats          | `hat`                                                                                 |
+| Footwear      | `footwear`                                                                            |
+| Forageables   | `forageable`                                                                          |
+| Fish          | `fish`                                                                                |
+| Bait          | `bait`                                                                                |
+| Tackle        | `tackle`                                                                              |
+| Cooking       | `cooked-dish`                                                                         |
+| Artifacts     | `artifact`                                                                            |
+| Crafting      | `crafting-recipe`                                                                     |
+| Minerals      | `mineral`, `geode`, `mining-node`, `mineral-resource`                                 |
 
 ---
 
@@ -198,7 +198,7 @@ function autocomplete(input: string): SearchResult[] {
 }
 
 const suggestions = autocomplete('star')
-suggestions.forEach(s => {
+suggestions.forEach((s) => {
   console.log(`${s.name} [${s.kind}] - ${s.image}`)
 })
 ```
@@ -206,7 +206,11 @@ suggestions.forEach(s => {
 ### Grouping results by kind
 
 ```ts
-import { search, type SearchResult, type SearchResultKind } from 'stardew-valley-data'
+import {
+  search,
+  type SearchResult,
+  type SearchResultKind,
+} from 'stardew-valley-data'
 
 function groupByKind(query: string): Map<SearchResultKind, SearchResult[]> {
   const results = search(query)
@@ -224,7 +228,7 @@ function groupByKind(query: string): Map<SearchResultKind, SearchResult[]> {
 const groups = groupByKind('Gold')
 for (const [kind, items] of groups) {
   console.log(`\n${kind} (${items.length}):`)
-  items.forEach(i => console.log(`  ${i.name}`))
+  items.forEach((i) => console.log(`  ${i.name}`))
 }
 ```
 

@@ -30,52 +30,58 @@ const bait = willy().bait().get()
 
 Each item conforms to the `WillyItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `WillyCategory` | Item category. |
+| Field                  | Type                  | Description                               |
+| ---------------------- | --------------------- | ----------------------------------------- |
+| `id`                   | `string`              | Unique identifier.                        |
+| `name`                 | `string`              | Display name of the item.                 |
+| `price`                | `number`              | Purchase price in gold.                   |
+| `description`          | `string`              | In-game description text.                 |
+| `image`                | `string`              | Path to the item's image.                 |
+| `category`             | `WillyCategory`       | Item category.                            |
 | `fishingLevelRequired` | `number \| undefined` | Minimum fishing level needed to purchase. |
-| `availability` | `string \| undefined` | Special purchase condition, if any. |
+| `availability`         | `string \| undefined` | Special purchase condition, if any.       |
 
 ### WillyCategory
 
 ```ts
-type WillyCategory = 'rod' | 'bait' | 'tackle' | 'equipment' | 'recipe' | 'furniture'
+type WillyCategory =
+  | 'rod'
+  | 'bait'
+  | 'tackle'
+  | 'equipment'
+  | 'recipe'
+  | 'furniture'
 ```
 
 ## Query Methods
 
 `WillyQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `WillyItem[]` | Return all results as an array. |
-| `first()` | `WillyItem \| undefined` | Return the first result. |
-| `find(id)` | `WillyItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                  | Description                              |
+| ------------------ | ------------------------ | ---------------------------------------- |
+| `get()`            | `WillyItem[]`            | Return all results as an array.          |
+| `first()`          | `WillyItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `WillyItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `WillyItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                 | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `rods()` | `WillyQuery` | Filter to fishing rods only. |
-| `bait()` | `WillyQuery` | Filter to bait items only. |
-| `tackle()` | `WillyQuery` | Filter to tackle items only. |
-| `byCategory(category)` | `WillyQuery` | Filter to items in the given category. |
+| Method                  | Returns      | Description                                                 |
+| ----------------------- | ------------ | ----------------------------------------------------------- |
+| `rods()`                | `WillyQuery` | Filter to fishing rods only.                                |
+| `bait()`                | `WillyQuery` | Filter to bait items only.                                  |
+| `tackle()`              | `WillyQuery` | Filter to tackle items only.                                |
+| `byCategory(category)`  | `WillyQuery` | Filter to items in the given category.                      |
 | `byFishingLevel(level)` | `WillyQuery` | Filter to items requiring the given fishing level or lower. |
-| `alwaysAvailable()` | `WillyQuery` | Filter to items with no special purchase condition. |
+| `alwaysAvailable()`     | `WillyQuery` | Filter to items with no special purchase condition.         |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `WillyQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `WillyQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                       | Returns      | Description                                                         |
+| ---------------------------- | ------------ | ------------------------------------------------------------------- |
+| `sortByPrice(order?)`        | `WillyQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.                  |
+| `sortByName(order?)`         | `WillyQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`.    |
 | `sortByFishingLevel(order?)` | `WillyQuery` | Sort by fishing level required. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -88,7 +94,9 @@ import { willy } from 'stardew-valley-data'
 const rods = willy().rods().sortByFishingLevel().get()
 
 rods.forEach((rod) => {
-  console.log(`${rod.name} - ${rod.price}g (level ${rod.fishingLevelRequired ?? 0})`)
+  console.log(
+    `${rod.name} - ${rod.price}g (level ${rod.fishingLevelRequired ?? 0})`,
+  )
 })
 ```
 

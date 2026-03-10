@@ -15,21 +15,21 @@ import { universalGifts } from 'stardew-valley-data'
 
 const gifts = universalGifts()
 
-console.log(gifts.loves)    // Items universally loved
-console.log(gifts.hates)    // Items universally hated
+console.log(gifts.loves) // Items universally loved
+console.log(gifts.hates) // Items universally hated
 ```
 
 ## Type Definition
 
 The `universalGifts()` function returns a single `UniversalGifts` object (which is an alias for `GiftPreferences`):
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `loves` | `string[]` | Items that are universally loved by all villagers. |
-| `likes` | `string[]` | Items that are universally liked by all villagers. |
-| `neutrals` | `string[]` | Items that all villagers feel neutral about. |
+| Field      | Type       | Description                                           |
+| ---------- | ---------- | ----------------------------------------------------- |
+| `loves`    | `string[]` | Items that are universally loved by all villagers.    |
+| `likes`    | `string[]` | Items that are universally liked by all villagers.    |
+| `neutrals` | `string[]` | Items that all villagers feel neutral about.          |
 | `dislikes` | `string[]` | Items that are universally disliked by all villagers. |
-| `hates` | `string[]` | Items that are universally hated by all villagers. |
+| `hates`    | `string[]` | Items that are universally hated by all villagers.    |
 
 {% callout title="Note" %}
 Individual villagers can override these universal preferences. A villager's personal gift lists take priority over the universal defaults. Use the [Villagers](/docs/villagers) module to check each villager's specific preferences.

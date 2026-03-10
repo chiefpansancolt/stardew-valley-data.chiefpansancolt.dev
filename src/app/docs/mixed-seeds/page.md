@@ -41,15 +41,15 @@ type MixedSeedProduces = Partial<Record<Season, string[]>>
 
 ### Field Reference
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name. |
-| `sellPrice` | `number` | Base sell price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the image asset. |
-| `buyPrices` | `SeedBuyPrice[]` | Array of `{ place, price }` listing purchase locations and costs. |
-| `produces` | `MixedSeedProduces` | Mapping of season to crop names that the seed can produce. Keys are season strings; values are string arrays of crop names. Not all seasons may be present. |
+| Field         | Type                | Description                                                                                                                                                 |
+| ------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`          | `string`            | Unique identifier.                                                                                                                                          |
+| `name`        | `string`            | Display name.                                                                                                                                               |
+| `sellPrice`   | `number`            | Base sell price in gold.                                                                                                                                    |
+| `description` | `string`            | In-game description text.                                                                                                                                   |
+| `image`       | `string`            | Path to the image asset.                                                                                                                                    |
+| `buyPrices`   | `SeedBuyPrice[]`    | Array of `{ place, price }` listing purchase locations and costs.                                                                                           |
+| `produces`    | `MixedSeedProduces` | Mapping of season to crop names that the seed can produce. Keys are season strings; values are string arrays of crop names. Not all seasons may be present. |
 
 ### Supporting Types
 
@@ -68,20 +68,20 @@ The `mixedSeeds()` function returns a `MixedSeedQuery` instance. All methods ret
 
 ### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `MixedSeed[]` | Return all results as an array. |
-| `.first()` | `MixedSeed \| undefined` | Return the first result. |
-| `.find(id)` | `MixedSeed \| undefined` | Find by exact ID. |
+| Method              | Returns                  | Description                      |
+| ------------------- | ------------------------ | -------------------------------- |
+| `.get()`            | `MixedSeed[]`            | Return all results as an array.  |
+| `.first()`          | `MixedSeed \| undefined` | Return the first result.         |
+| `.find(id)`         | `MixedSeed \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `MixedSeed \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`                 | Return the number of results.    |
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `byProduces` | `byProduces(season: Season)` | Filter to mixed seeds that can produce crops in the given season. |
-| `withBuyPrices` | `withBuyPrices()` | Filter to mixed seeds that have at least one purchase price listed. |
+| Method          | Signature                    | Description                                                         |
+| --------------- | ---------------------------- | ------------------------------------------------------------------- |
+| `byProduces`    | `byProduces(season: Season)` | Filter to mixed seeds that can produce crops in the given season.   |
+| `withBuyPrices` | `withBuyPrices()`            | Filter to mixed seeds that have at least one purchase price listed. |
 
 ## Examples
 
@@ -92,7 +92,7 @@ import { mixedSeeds } from 'stardew-valley-data'
 
 const summerSeeds = mixedSeeds().byProduces('summer').get()
 
-summerSeeds.forEach(seed => {
+summerSeeds.forEach((seed) => {
   const crops = seed.produces.summer
   console.log(`${seed.name} can grow: ${crops?.join(', ')}`)
 })
@@ -103,8 +103,8 @@ summerSeeds.forEach(seed => {
 ```js
 const buyable = mixedSeeds().withBuyPrices().get()
 
-buyable.forEach(seed => {
-  seed.buyPrices.forEach(bp => {
+buyable.forEach((seed) => {
+  seed.buyPrices.forEach((bp) => {
     console.log(`${seed.name} at ${bp.place}: ${bp.price}g`)
   })
 })

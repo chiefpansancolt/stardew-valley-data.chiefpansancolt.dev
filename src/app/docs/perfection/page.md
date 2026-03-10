@@ -30,31 +30,31 @@ const count = perfection().count()
 
 Each perfection category conforms to the `PerfectionCategory` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the category. |
-| `name` | `string` | Display name of the perfection category. |
-| `requirement` | `string` | Description of what must be completed. |
-| `count` | `number` | Number of items or tasks to complete in this category. |
-| `unit` | `string` | The unit of measurement (e.g., `"items"`, `"fish"`, `"friends"`). |
-| `weight` | `number` | Percentage weight toward the 100% perfection total. |
+| Field         | Type     | Description                                                       |
+| ------------- | -------- | ----------------------------------------------------------------- |
+| `id`          | `string` | Unique identifier for the category.                               |
+| `name`        | `string` | Display name of the perfection category.                          |
+| `requirement` | `string` | Description of what must be completed.                            |
+| `count`       | `number` | Number of items or tasks to complete in this category.            |
+| `unit`        | `string` | The unit of measurement (e.g., `"items"`, `"fish"`, `"friends"`). |
+| `weight`      | `number` | Percentage weight toward the 100% perfection total.               |
 
 ## Query Methods
 
 `PerfectionQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `PerfectionCategory[]` | Return all results as an array. |
-| `first()` | `PerfectionCategory \| undefined` | Return the first result. |
-| `find(id)` | `PerfectionCategory \| undefined` | Find a category by exact ID. |
+| Method             | Returns                           | Description                                 |
+| ------------------ | --------------------------------- | ------------------------------------------- |
+| `get()`            | `PerfectionCategory[]`            | Return all results as an array.             |
+| `first()`          | `PerfectionCategory \| undefined` | Return the first result.                    |
+| `find(id)`         | `PerfectionCategory \| undefined` | Find a category by exact ID.                |
 | `findByName(name)` | `PerfectionCategory \| undefined` | Find a category by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                          | Return the number of results.               |
 
 ### Additional Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method          | Returns  | Description                                                                                         |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------- |
 | `totalWeight()` | `number` | Returns the sum of all category weights in the current query. For the full dataset this equals 100. |
 
 ## Examples
@@ -97,8 +97,8 @@ const categories = perfection().get()
 
 // Example: track player progress as a map of category ID to completed count
 const playerProgress = {
-  'shipping': 100,
-  'obelisks': 4,
+  shipping: 100,
+  obelisks: 4,
   // ... more categories
 }
 

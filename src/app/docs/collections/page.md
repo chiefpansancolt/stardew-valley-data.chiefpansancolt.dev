@@ -30,11 +30,11 @@ const cookingCount = collections().cooking().count()
 
 Each resolved collection item conforms to the `CollectionItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the item. |
-| `name` | `string` | Display name of the item. |
-| `image` | `string` | Path to the item image. |
+| Field   | Type     | Description                     |
+| ------- | -------- | ------------------------------- |
+| `id`    | `string` | Unique identifier for the item. |
+| `name`  | `string` | Display name of the item.       |
+| `image` | `string` | Path to the item image.         |
 
 ## Query Methods
 
@@ -42,26 +42,26 @@ Each resolved collection item conforms to the `CollectionItem` interface:
 
 The `collections()` function returns a `CollectionsQuery` object. Use one of the collection accessors below to get items for a specific tab.
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `itemsShipped()` | `CollectionItemQuery` | Items that appear in the Items Shipped collection tab. |
-| `fish()` | `CollectionItemQuery` | Items that appear in the Fish collection tab. |
-| `artifacts()` | `CollectionItemQuery` | Items that appear in the Artifacts collection tab (museum donations). |
-| `minerals()` | `CollectionItemQuery` | Items that appear in the Minerals collection tab (museum donations). |
-| `cooking()` | `CollectionItemQuery` | Items that appear in the Cooking collection tab. |
-| `crafting()` | `CollectionItemQuery` | Items that appear in the Crafting collection tab. |
+| Method           | Returns               | Description                                                           |
+| ---------------- | --------------------- | --------------------------------------------------------------------- |
+| `itemsShipped()` | `CollectionItemQuery` | Items that appear in the Items Shipped collection tab.                |
+| `fish()`         | `CollectionItemQuery` | Items that appear in the Fish collection tab.                         |
+| `artifacts()`    | `CollectionItemQuery` | Items that appear in the Artifacts collection tab (museum donations). |
+| `minerals()`     | `CollectionItemQuery` | Items that appear in the Minerals collection tab (museum donations).  |
+| `cooking()`      | `CollectionItemQuery` | Items that appear in the Cooking collection tab.                      |
+| `crafting()`     | `CollectionItemQuery` | Items that appear in the Crafting collection tab.                     |
 
 ### CollectionItemQuery
 
 `CollectionItemQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `CollectionItem[]` | Return all results as an array. |
-| `first()` | `CollectionItem \| undefined` | Return the first result. |
-| `find(id)` | `CollectionItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                       | Description                              |
+| ------------------ | ----------------------------- | ---------------------------------------- |
+| `get()`            | `CollectionItem[]`            | Return all results as an array.          |
+| `first()`          | `CollectionItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `CollectionItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `CollectionItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                      | Return the number of results.            |
 
 ## Examples
 

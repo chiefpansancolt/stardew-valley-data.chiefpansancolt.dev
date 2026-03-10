@@ -32,35 +32,35 @@ const freeOnes = houseRenovations().free().get()
 
 Each farmhouse upgrade conforms to the `HouseUpgrade` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the upgrade. |
-| `name` | `string` | Display name of the upgrade tier. |
-| `tier` | `number` | Sequential upgrade tier (1 through 4). |
-| `cost` | `number` | Gold cost for the upgrade. |
-| `materials` | `HouseUpgradeMaterial[]` | Array of materials required (see below). |
-| `description` | `string` | Description of what the upgrade adds. |
-| `image` | `string` | Path to the upgrade image. |
-| `prerequisite` | `string \| null` | ID of the required prior upgrade, or `null` for the first tier. |
+| Field          | Type                     | Description                                                     |
+| -------------- | ------------------------ | --------------------------------------------------------------- |
+| `id`           | `string`                 | Unique identifier for the upgrade.                              |
+| `name`         | `string`                 | Display name of the upgrade tier.                               |
+| `tier`         | `number`                 | Sequential upgrade tier (1 through 4).                          |
+| `cost`         | `number`                 | Gold cost for the upgrade.                                      |
+| `materials`    | `HouseUpgradeMaterial[]` | Array of materials required (see below).                        |
+| `description`  | `string`                 | Description of what the upgrade adds.                           |
+| `image`        | `string`                 | Path to the upgrade image.                                      |
+| `prerequisite` | `string \| null`         | ID of the required prior upgrade, or `null` for the first tier. |
 
 ### HouseUpgradeMaterial
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `item` | `string` | Display name of the material. |
+| Field      | Type     | Description                       |
+| ---------- | -------- | --------------------------------- |
+| `item`     | `string` | Display name of the material.     |
 | `quantity` | `number` | Number of this material required. |
 
 ### HouseRenovation
 
 Each renovation conforms to the `HouseRenovation` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the renovation. |
-| `name` | `string` | Display name of the renovation. |
-| `cost` | `number` | Gold cost for the renovation. |
-| `description` | `string` | Description of the renovation. |
-| `image` | `string` | Path to the renovation image. |
+| Field          | Type             | Description                                           |
+| -------------- | ---------------- | ----------------------------------------------------- |
+| `id`           | `string`         | Unique identifier for the renovation.                 |
+| `name`         | `string`         | Display name of the renovation.                       |
+| `cost`         | `number`         | Gold cost for the renovation.                         |
+| `description`  | `string`         | Description of the renovation.                        |
+| `image`        | `string`         | Path to the renovation image.                         |
 | `prerequisite` | `string \| null` | ID of a required prior renovation, or `null` if none. |
 
 ## Query Methods
@@ -69,51 +69,51 @@ Each renovation conforms to the `HouseRenovation` interface:
 
 `HouseUpgradeQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `HouseUpgrade[]` | Return all results as an array. |
-| `first()` | `HouseUpgrade \| undefined` | Return the first result. |
-| `find(id)` | `HouseUpgrade \| undefined` | Find an upgrade by exact ID. |
+| Method             | Returns                     | Description                                 |
+| ------------------ | --------------------------- | ------------------------------------------- |
+| `get()`            | `HouseUpgrade[]`            | Return all results as an array.             |
+| `first()`          | `HouseUpgrade \| undefined` | Return the first result.                    |
+| `find(id)`         | `HouseUpgrade \| undefined` | Find an upgrade by exact ID.                |
 | `findByName(name)` | `HouseUpgrade \| undefined` | Find an upgrade by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                    | Return the number of results.               |
 
 #### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method         | Returns             | Description                                  |
+| -------------- | ------------------- | -------------------------------------------- |
 | `byTier(tier)` | `HouseUpgradeQuery` | Filter to upgrades at the given tier number. |
 
 #### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method               | Returns             | Description                                       |
+| -------------------- | ------------------- | ------------------------------------------------- |
 | `sortByTier(order?)` | `HouseUpgradeQuery` | Sort by tier. Pass `'asc'` (default) or `'desc'`. |
 
 ### HouseRenovationQuery
 
 `HouseRenovationQuery` extends `QueryBase` and inherits the same five terminal methods.
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `HouseRenovation[]` | Return all results as an array. |
-| `first()` | `HouseRenovation \| undefined` | Return the first result. |
-| `find(id)` | `HouseRenovation \| undefined` | Find a renovation by exact ID. |
+| Method             | Returns                        | Description                                   |
+| ------------------ | ------------------------------ | --------------------------------------------- |
+| `get()`            | `HouseRenovation[]`            | Return all results as an array.               |
+| `first()`          | `HouseRenovation \| undefined` | Return the first result.                      |
+| `find(id)`         | `HouseRenovation \| undefined` | Find a renovation by exact ID.                |
 | `findByName(name)` | `HouseRenovation \| undefined` | Find a renovation by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                       | Return the number of results.                 |
 
 #### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `free()` | `HouseRenovationQuery` | Filter to free renovations (cost is 0). |
+| Method               | Returns                | Description                                                                  |
+| -------------------- | ---------------------- | ---------------------------------------------------------------------------- |
+| `free()`             | `HouseRenovationQuery` | Filter to free renovations (cost is 0).                                      |
 | `withPrerequisite()` | `HouseRenovationQuery` | Filter to renovations that require another renovation to be completed first. |
 
 #### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `HouseRenovationQuery` | Sort by cost. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `HouseRenovationQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns                | Description                                                      |
+| --------------------- | ---------------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `HouseRenovationQuery` | Sort by cost. Pass `'asc'` (default) or `'desc'`.                |
+| `sortByName(order?)`  | `HouseRenovationQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 

@@ -42,13 +42,13 @@ interface Bait {
 
 #### Field Reference
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name (e.g. `"Bait"`, `"Magnet"`). |
-| `description` | `string` | In-game description text. |
-| `sellPrice` | `number` | Base sell price in gold. |
-| `image` | `string` | Path to the image asset. |
+| Field         | Type     | Description                               |
+| ------------- | -------- | ----------------------------------------- |
+| `id`          | `string` | Unique identifier.                        |
+| `name`        | `string` | Display name (e.g. `"Bait"`, `"Magnet"`). |
+| `description` | `string` | In-game description text.                 |
+| `sellPrice`   | `number` | Base sell price in gold.                  |
+| `image`       | `string` | Path to the image asset.                  |
 
 ### Bait Query Methods
 
@@ -56,19 +56,19 @@ The `bait()` function returns a `BaitQuery` instance. All methods return a new `
 
 #### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Bait[]` | Return all results as an array. |
-| `.first()` | `Bait \| undefined` | Return the first result. |
-| `.find(id)` | `Bait \| undefined` | Find by exact ID. |
+| Method              | Returns             | Description                      |
+| ------------------- | ------------------- | -------------------------------- |
+| `.get()`            | `Bait[]`            | Return all results as an array.  |
+| `.first()`          | `Bait \| undefined` | Return the first result.         |
+| `.find(id)`         | `Bait \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `Bait \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`            | Return the number of results.    |
 
 #### Sort Methods
 
-| Method | Signature | Default | Description |
-| --- | --- | --- | --- |
-| `sortByName` | `sortByName(order?: 'asc' \| 'desc')` | `'asc'` | Sort alphabetically by name. |
+| Method            | Signature                                  | Default  | Description                               |
+| ----------------- | ------------------------------------------ | -------- | ----------------------------------------- |
+| `sortByName`      | `sortByName(order?: 'asc' \| 'desc')`      | `'asc'`  | Sort alphabetically by name.              |
 | `sortBySellPrice` | `sortBySellPrice(order?: 'asc' \| 'desc')` | `'desc'` | Sort by sell price (most valuable first). |
 
 ---
@@ -89,13 +89,13 @@ interface Tackle {
 
 #### Field Reference
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name (e.g. `"Spinner"`, `"Trap Bobber"`). |
-| `description` | `string` | In-game description text. |
-| `sellPrice` | `number` | Base sell price in gold. |
-| `image` | `string` | Path to the image asset. |
+| Field         | Type     | Description                                       |
+| ------------- | -------- | ------------------------------------------------- |
+| `id`          | `string` | Unique identifier.                                |
+| `name`        | `string` | Display name (e.g. `"Spinner"`, `"Trap Bobber"`). |
+| `description` | `string` | In-game description text.                         |
+| `sellPrice`   | `number` | Base sell price in gold.                          |
+| `image`       | `string` | Path to the image asset.                          |
 
 ### Tackle Query Methods
 
@@ -103,19 +103,19 @@ The `tackle()` function returns a `TackleQuery` instance. All methods return a n
 
 #### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Tackle[]` | Return all results as an array. |
-| `.first()` | `Tackle \| undefined` | Return the first result. |
-| `.find(id)` | `Tackle \| undefined` | Find by exact ID. |
+| Method              | Returns               | Description                      |
+| ------------------- | --------------------- | -------------------------------- |
+| `.get()`            | `Tackle[]`            | Return all results as an array.  |
+| `.first()`          | `Tackle \| undefined` | Return the first result.         |
+| `.find(id)`         | `Tackle \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `Tackle \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`              | Return the number of results.    |
 
 #### Sort Methods
 
-| Method | Signature | Default | Description |
-| --- | --- | --- | --- |
-| `sortByName` | `sortByName(order?: 'asc' \| 'desc')` | `'asc'` | Sort alphabetically by name. |
+| Method            | Signature                                  | Default  | Description                               |
+| ----------------- | ------------------------------------------ | -------- | ----------------------------------------- |
+| `sortByName`      | `sortByName(order?: 'asc' \| 'desc')`      | `'asc'`  | Sort alphabetically by name.              |
 | `sortBySellPrice` | `sortBySellPrice(order?: 'asc' \| 'desc')` | `'desc'` | Sort by sell price (most valuable first). |
 
 ## Examples
@@ -125,9 +125,12 @@ The `tackle()` function returns a `TackleQuery` instance. All methods return a n
 ```js
 import { bait } from 'stardew-valley-data'
 
-bait().sortByName().get().forEach(b => {
-  console.log(`${b.name}: ${b.description}`)
-})
+bait()
+  .sortByName()
+  .get()
+  .forEach((b) => {
+    console.log(`${b.name}: ${b.description}`)
+  })
 ```
 
 ### Compare tackle by sell price
@@ -137,7 +140,7 @@ import { tackle } from 'stardew-valley-data'
 
 const sorted = tackle().sortBySellPrice().get()
 
-sorted.forEach(t => {
+sorted.forEach((t) => {
   console.log(`${t.name}: ${t.sellPrice}g`)
 })
 ```

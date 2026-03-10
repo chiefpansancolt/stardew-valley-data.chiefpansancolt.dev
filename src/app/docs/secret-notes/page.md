@@ -30,39 +30,39 @@ const note = secretNotes().findByName('Secret Note #1')
 
 Each secret note record conforms to the `SecretNote` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the note. |
-| `name` | `string` | Display name of the note or scrap. |
-| `type` | `SecretNoteType` | The type of note (see below). |
-| `description` | `string` | The text content of the note. |
+| Field         | Type             | Description                        |
+| ------------- | ---------------- | ---------------------------------- |
+| `id`          | `string`         | Unique identifier for the note.    |
+| `name`        | `string`         | Display name of the note or scrap. |
+| `type`        | `SecretNoteType` | The type of note (see below).      |
+| `description` | `string`         | The text content of the note.      |
 
 ### SecretNoteType
 
-| Value | Description |
-| --- | --- |
-| `'secret-note'` | Secret Notes found in The Valley. |
+| Value             | Description                            |
+| ----------------- | -------------------------------------- |
+| `'secret-note'`   | Secret Notes found in The Valley.      |
 | `'journal-scrap'` | Journal Scraps found on Ginger Island. |
 
 ## Query Methods
 
 `SecretNoteQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `SecretNote[]` | Return all results as an array. |
-| `first()` | `SecretNote \| undefined` | Return the first result. |
-| `find(id)` | `SecretNote \| undefined` | Find a note by exact ID. |
+| Method             | Returns                   | Description                             |
+| ------------------ | ------------------------- | --------------------------------------- |
+| `get()`            | `SecretNote[]`            | Return all results as an array.         |
+| `first()`          | `SecretNote \| undefined` | Return the first result.                |
+| `find(id)`         | `SecretNote \| undefined` | Find a note by exact ID.                |
 | `findByName(name)` | `SecretNote \| undefined` | Find a note by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                  | Return the number of results.           |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byType(type)` | `SecretNoteQuery` | Filter to notes of the given type. Accepts `'secret-note'` or `'journal-scrap'`. |
-| `notes()` | `SecretNoteQuery` | Shorthand for `byType('secret-note')`. Returns Secret Notes only. |
-| `journalScraps()` | `SecretNoteQuery` | Shorthand for `byType('journal-scrap')`. Returns Journal Scraps only. |
+| Method            | Returns           | Description                                                                      |
+| ----------------- | ----------------- | -------------------------------------------------------------------------------- |
+| `byType(type)`    | `SecretNoteQuery` | Filter to notes of the given type. Accepts `'secret-note'` or `'journal-scrap'`. |
+| `notes()`         | `SecretNoteQuery` | Shorthand for `byType('secret-note')`. Returns Secret Notes only.                |
+| `journalScraps()` | `SecretNoteQuery` | Shorthand for `byType('journal-scrap')`. Returns Journal Scraps only.            |
 
 ## Examples
 

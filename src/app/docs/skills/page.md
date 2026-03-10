@@ -11,7 +11,12 @@ Access the complete Stardew Valley skills dataset and use utility functions to c
 ## Quick Start
 
 ```js
-import { skills, getTitle, getMasteryLevel, getProfessionOptions } from 'stardew-valley-data'
+import {
+  skills,
+  getTitle,
+  getMasteryLevel,
+  getProfessionOptions,
+} from 'stardew-valley-data'
 
 // Get all skills
 const all = skills().get()
@@ -33,56 +38,56 @@ const options = getProfessionOptions('Farming', 'Tiller')
 
 Each skill record conforms to the `Skill` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the skill. |
-| `name` | `string` | Display name of the skill (e.g., `"Farming"`, `"Mining"`). |
-| `description` | `string` | Description of the skill. |
-| `toolBonus` | `string` | The tool proficiency bonus gained from leveling this skill. |
-| `image` | `string` | Path to the skill's icon image. |
-| `levels` | `SkillLevel[]` | Array of level progression data (see below). |
-| `mastery` | `SkillMastery` | Mastery unlock information for this skill. |
+| Field         | Type           | Description                                                 |
+| ------------- | -------------- | ----------------------------------------------------------- |
+| `id`          | `string`       | Unique identifier for the skill.                            |
+| `name`        | `string`       | Display name of the skill (e.g., `"Farming"`, `"Mining"`).  |
+| `description` | `string`       | Description of the skill.                                   |
+| `toolBonus`   | `string`       | The tool proficiency bonus gained from leveling this skill. |
+| `image`       | `string`       | Path to the skill's icon image.                             |
+| `levels`      | `SkillLevel[]` | Array of level progression data (see below).                |
+| `mastery`     | `SkillMastery` | Mastery unlock information for this skill.                  |
 
 ### SkillLevel
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `level` | `number` | The level number (1--10). |
-| `xpRequired` | `number` | XP required to reach this level from the previous level. |
-| `totalXp` | `number` | Cumulative XP required to reach this level. |
-| `recipes` | `SkillLevelRecipes` | Recipes unlocked at this level. |
+| Field        | Type                | Description                                              |
+| ------------ | ------------------- | -------------------------------------------------------- |
+| `level`      | `number`            | The level number (1--10).                                |
+| `xpRequired` | `number`            | XP required to reach this level from the previous level. |
+| `totalXp`    | `number`            | Cumulative XP required to reach this level.              |
+| `recipes`    | `SkillLevelRecipes` | Recipes unlocked at this level.                          |
 
 ### SkillLevelRecipes
 
-| Field | Type | Description |
-| --- | --- | --- |
+| Field      | Type       | Description                              |
+| ---------- | ---------- | ---------------------------------------- |
 | `crafting` | `string[]` | Crafting recipes unlocked at this level. |
-| `cooking` | `string[]` | Cooking recipes unlocked at this level. |
+| `cooking`  | `string[]` | Cooking recipes unlocked at this level.  |
 
 ### SkillMastery
 
-| Field | Type | Description |
-| --- | --- | --- |
+| Field     | Type              | Description                              |
+| --------- | ----------------- | ---------------------------------------- |
 | `unlocks` | `MasteryUnlock[]` | Array of mastery unlocks for this skill. |
 
 ### MasteryUnlock
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `name` | `string` | Name of the mastery unlock. |
+| Field         | Type     | Description                              |
+| ------------- | -------- | ---------------------------------------- |
+| `name`        | `string` | Name of the mastery unlock.              |
 | `description` | `string` | Description of what this mastery grants. |
 
 ## Query Methods
 
 `SkillQuery` extends `QueryBase` and inherits five terminal methods. It does not add additional filter or sort methods -- use the utility functions below for calculations.
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `Skill[]` | Return all results as an array. |
-| `first()` | `Skill \| undefined` | Return the first result. |
-| `find(id)` | `Skill \| undefined` | Find a skill by exact ID. |
+| Method             | Returns              | Description                              |
+| ------------------ | -------------------- | ---------------------------------------- |
+| `get()`            | `Skill[]`            | Return all results as an array.          |
+| `first()`          | `Skill \| undefined` | Return the first result.                 |
+| `find(id)`         | `Skill \| undefined` | Find a skill by exact ID.                |
 | `findByName(name)` | `Skill \| undefined` | Find a skill by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`             | Return the number of results.            |
 
 ## Utility Functions
 
@@ -104,7 +109,7 @@ Returns the player's title string based on their combined skill levels. Uses the
 import { getTitle } from 'stardew-valley-data'
 
 const title = getTitle(10, 10, 10, 10, 10) // "Farmer"
-const newbie = getTitle(1, 0, 0, 0, 0)     // "Newcomer"
+const newbie = getTitle(1, 0, 0, 0, 0) // "Newcomer"
 ```
 
 ### getMasteryLevel(masteryXp)
@@ -114,9 +119,9 @@ Returns the current mastery level (0--5) for a given total mastery XP amount.
 ```js
 import { getMasteryLevel } from 'stardew-valley-data'
 
-getMasteryLevel(0)       // 0
-getMasteryLevel(10000)   // 1
-getMasteryLevel(100000)  // 5
+getMasteryLevel(0) // 0
+getMasteryLevel(10000) // 1
+getMasteryLevel(100000) // 5
 ```
 
 ### getProfessionOptions(skillName, level5Profession)
@@ -140,43 +145,43 @@ options.forEach((p) => {
 
 An array of `TitleThreshold` objects sorted from highest to lowest `minScore`. Each entry maps a minimum score to a title.
 
-| Field | Type | Description |
-| --- | --- | --- |
+| Field      | Type     | Description                   |
+| ---------- | -------- | ----------------------------- |
 | `minScore` | `number` | Minimum title score required. |
-| `title` | `string` | Title displayed in-game. |
+| `title`    | `string` | Title displayed in-game.      |
 
 The full title ladder:
 
-| Score | Title |
-| --- | --- |
-| 30 | Farm King |
-| 29 | Cropmaster |
-| 27 | Agriculturist |
-| 25 | Farmer |
-| 23 | Rancher |
-| 21 | Planter |
-| 19 | Granger |
-| 17 | Farmgirl / Farmboy |
-| 15 | Sodbuster |
-| 13 | Smallholder |
-| 11 | Tiller |
-| 9 | Farmhand |
-| 7 | Cowpoke |
-| 5 | Bumpkin |
-| 3 | Greenhorn |
-| 0 | Newcomer |
+| Score | Title              |
+| ----- | ------------------ |
+| 30    | Farm King          |
+| 29    | Cropmaster         |
+| 27    | Agriculturist      |
+| 25    | Farmer             |
+| 23    | Rancher            |
+| 21    | Planter            |
+| 19    | Granger            |
+| 17    | Farmgirl / Farmboy |
+| 15    | Sodbuster          |
+| 13    | Smallholder        |
+| 11    | Tiller             |
+| 9     | Farmhand           |
+| 7     | Cowpoke            |
+| 5     | Bumpkin            |
+| 3     | Greenhorn          |
+| 0     | Newcomer           |
 
 ### MASTERY_LEVELS
 
 An array of `MasteryLevel` objects describing the XP thresholds for each mastery level.
 
 | Level | XP Required | Total XP |
-| --- | --- | --- |
-| 1 | 10,000 | 10,000 |
-| 2 | 15,000 | 25,000 |
-| 3 | 20,000 | 45,000 |
-| 4 | 25,000 | 70,000 |
-| 5 | 30,000 | 100,000 |
+| ----- | ----------- | -------- |
+| 1     | 10,000      | 10,000   |
+| 2     | 15,000      | 25,000   |
+| 3     | 20,000      | 45,000   |
+| 4     | 25,000      | 70,000   |
+| 5     | 30,000      | 100,000  |
 
 ## Examples
 
@@ -185,14 +190,18 @@ An array of `MasteryLevel` objects describing the XP thresholds for each mastery
 ```js
 import { skills } from 'stardew-valley-data'
 
-skills().get().forEach((skill) => {
-  console.log(`\n${skill.name}`)
-  skill.levels.forEach((lvl) => {
-    const crafting = lvl.recipes.crafting.join(', ') || 'none'
-    const cooking = lvl.recipes.cooking.join(', ') || 'none'
-    console.log(`  Level ${lvl.level}: Crafting: ${crafting} | Cooking: ${cooking}`)
+skills()
+  .get()
+  .forEach((skill) => {
+    console.log(`\n${skill.name}`)
+    skill.levels.forEach((lvl) => {
+      const crafting = lvl.recipes.crafting.join(', ') || 'none'
+      const cooking = lvl.recipes.cooking.join(', ') || 'none'
+      console.log(
+        `  Level ${lvl.level}: Crafting: ${crafting} | Cooking: ${cooking}`,
+      )
+    })
   })
-})
 ```
 
 ### Build a player stats summary
@@ -200,7 +209,11 @@ skills().get().forEach((skill) => {
 ```js
 import { getTitle, getTitleScore, getMasteryLevel } from 'stardew-valley-data'
 
-const farming = 10, fishing = 8, foraging = 7, mining = 9, combat = 6
+const farming = 10,
+  fishing = 8,
+  foraging = 7,
+  mining = 9,
+  combat = 6
 const score = getTitleScore(farming, fishing, foraging, mining, combat)
 const title = getTitle(farming, fishing, foraging, mining, combat)
 const mastery = getMasteryLevel(45000)

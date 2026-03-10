@@ -17,10 +17,7 @@ import { forageables } from 'stardew-valley-data'
 const all = forageables().get()
 
 // Spring forageables sorted by sell price
-const springBest = forageables()
-  .bySeason('spring')
-  .sortBySellPrice()
-  .get()
+const springBest = forageables().bySeason('spring').sortBySellPrice().get()
 ```
 
 ## Type Definition
@@ -39,15 +36,15 @@ interface Forageable {
 
 ### Field Reference
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name (e.g. `"Leek"`). |
-| `description` | `string` | In-game description text. |
-| `seasons` | `Season[]` | Seasons the item can be foraged (`'spring'`, `'summer'`, `'fall'`, `'winter'`, `'ginger island'`). |
-| `locations` | `string` | Description of where the item can be found. |
-| `sellPrice` | `number` | Base sell price in gold. |
-| `image` | `string` | Path to the image asset. |
+| Field         | Type       | Description                                                                                        |
+| ------------- | ---------- | -------------------------------------------------------------------------------------------------- |
+| `id`          | `string`   | Unique identifier.                                                                                 |
+| `name`        | `string`   | Display name (e.g. `"Leek"`).                                                                      |
+| `description` | `string`   | In-game description text.                                                                          |
+| `seasons`     | `Season[]` | Seasons the item can be foraged (`'spring'`, `'summer'`, `'fall'`, `'winter'`, `'ginger island'`). |
+| `locations`   | `string`   | Description of where the item can be found.                                                        |
+| `sellPrice`   | `number`   | Base sell price in gold.                                                                           |
+| `image`       | `string`   | Path to the image asset.                                                                           |
 
 ## Query Methods
 
@@ -55,25 +52,25 @@ The `forageables()` function returns a `ForageableQuery` instance. All methods r
 
 ### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Forageable[]` | Return all results as an array. |
-| `.first()` | `Forageable \| undefined` | Return the first result. |
-| `.find(id)` | `Forageable \| undefined` | Find by exact ID. |
+| Method              | Returns                   | Description                      |
+| ------------------- | ------------------------- | -------------------------------- |
+| `.get()`            | `Forageable[]`            | Return all results as an array.  |
+| `.first()`          | `Forageable \| undefined` | Return the first result.         |
+| `.find(id)`         | `Forageable \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `Forageable \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`                  | Return the number of results.    |
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method     | Signature                  | Description                                          |
+| ---------- | -------------------------- | ---------------------------------------------------- |
 | `bySeason` | `bySeason(season: Season)` | Filter to forageables available in the given season. |
 
 ### Sort Methods
 
-| Method | Signature | Default | Description |
-| --- | --- | --- | --- |
-| `sortByName` | `sortByName(order?: 'asc' \| 'desc')` | `'asc'` | Sort alphabetically by name. |
+| Method            | Signature                                  | Default  | Description                               |
+| ----------------- | ------------------------------------------ | -------- | ----------------------------------------- |
+| `sortByName`      | `sortByName(order?: 'asc' \| 'desc')`      | `'asc'`  | Sort alphabetically by name.              |
 | `sortBySellPrice` | `sortBySellPrice(order?: 'asc' \| 'desc')` | `'desc'` | Sort by sell price (most valuable first). |
 
 ## Examples
@@ -85,7 +82,7 @@ import { forageables } from 'stardew-valley-data'
 
 const seasons = ['spring', 'summer', 'fall', 'winter']
 
-seasons.forEach(season => {
+seasons.forEach((season) => {
   const best = forageables().bySeason(season).sortBySellPrice().first()
   if (best) {
     console.log(`Best ${season} forageable: ${best.name} (${best.sellPrice}g)`)
@@ -104,5 +101,5 @@ console.log(`There are ${springCount} spring forageables`)
 
 ```js
 const sorted = forageables().sortByName().get()
-sorted.forEach(f => console.log(f.name))
+sorted.forEach((f) => console.log(f.name))
 ```

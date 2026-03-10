@@ -124,17 +124,17 @@ const totalSpring = springFish.count()
 
 Each module exports a **factory function** that creates a fresh query builder instance. The factory function name matches the data it represents:
 
-| Factory function | Returns | Data |
-| --- | --- | --- |
-| `crops()` | `CropQuery` | All crops |
-| `fish()` | `FishQuery` | All fish |
-| `villagers()` | `VillagerQuery` | All villagers |
-| `animals()` | `AnimalQuery` | All animals (pets + farm animals) |
-| `trees()` | `TreeQuery` | All trees (fruit + wild) |
-| `weapons()` | `WeaponQuery` | All weapons |
-| `cooking()` | `CookingQuery` | All cooking recipes |
-| `minerals()` | `MineralQuery` | All minerals |
-| ... | ... | 68 modules total |
+| Factory function | Returns         | Data                              |
+| ---------------- | --------------- | --------------------------------- |
+| `crops()`        | `CropQuery`     | All crops                         |
+| `fish()`         | `FishQuery`     | All fish                          |
+| `villagers()`    | `VillagerQuery` | All villagers                     |
+| `animals()`      | `AnimalQuery`   | All animals (pets + farm animals) |
+| `trees()`        | `TreeQuery`     | All trees (fruit + wild)          |
+| `weapons()`      | `WeaponQuery`   | All weapons                       |
+| `cooking()`      | `CookingQuery`  | All cooking recipes               |
+| `minerals()`     | `MineralQuery`  | All minerals                      |
+| ...              | ...             | 68 modules total                  |
 
 ### Custom source data
 

@@ -30,53 +30,53 @@ const baseBuildings = buildings().base().sortByName().get()
 
 Each building record conforms to the `Building` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the building. |
-| `name` | `string` | Display name of the building. |
-| `description` | `string` | In-game description of the building. |
-| `builder` | `'Robin' \| 'Wizard'` | The NPC who constructs this building. |
-| `buildCost` | `number` | Gold cost to construct the building. |
-| `buildDays` | `number` | Number of days required to complete construction. |
-| `materials` | `BuildingMaterial[]` | Array of materials required (see below). |
-| `upgradeFrom` | `string \| null` | ID of the building this upgrades from, or `null` for base buildings. |
-| `magical` | `boolean` | Whether this is a magical building (constructed instantly by the Wizard). |
-| `image` | `string` | Path to the building image. |
+| Field         | Type                  | Description                                                               |
+| ------------- | --------------------- | ------------------------------------------------------------------------- |
+| `id`          | `string`              | Unique identifier for the building.                                       |
+| `name`        | `string`              | Display name of the building.                                             |
+| `description` | `string`              | In-game description of the building.                                      |
+| `builder`     | `'Robin' \| 'Wizard'` | The NPC who constructs this building.                                     |
+| `buildCost`   | `number`              | Gold cost to construct the building.                                      |
+| `buildDays`   | `number`              | Number of days required to complete construction.                         |
+| `materials`   | `BuildingMaterial[]`  | Array of materials required (see below).                                  |
+| `upgradeFrom` | `string \| null`      | ID of the building this upgrades from, or `null` for base buildings.      |
+| `magical`     | `boolean`             | Whether this is a magical building (constructed instantly by the Wizard). |
+| `image`       | `string`              | Path to the building image.                                               |
 
 ### BuildingMaterial
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the material item. |
-| `item` | `string` | Display name of the material. |
-| `quantity` | `number` | Number of this material required. |
+| Field      | Type     | Description                              |
+| ---------- | -------- | ---------------------------------------- |
+| `id`       | `string` | Unique identifier for the material item. |
+| `item`     | `string` | Display name of the material.            |
+| `quantity` | `number` | Number of this material required.        |
 
 ## Query Methods
 
 `BuildingQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `Building[]` | Return all results as an array. |
-| `first()` | `Building \| undefined` | Return the first result. |
-| `find(id)` | `Building \| undefined` | Find a building by exact ID. |
+| Method             | Returns                 | Description                                 |
+| ------------------ | ----------------------- | ------------------------------------------- |
+| `get()`            | `Building[]`            | Return all results as an array.             |
+| `first()`          | `Building \| undefined` | Return the first result.                    |
+| `find(id)`         | `Building \| undefined` | Find a building by exact ID.                |
 | `findByName(name)` | `Building \| undefined` | Find a building by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                | Return the number of results.               |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byBuilder(builder)` | `BuildingQuery` | Filter by builder. Accepts `'Robin'` or `'Wizard'`. |
-| `magical()` | `BuildingQuery` | Filter to magical buildings only (Wizard buildings constructed instantly). |
-| `upgrades()` | `BuildingQuery` | Filter to buildings that are upgrades of another building. |
-| `base()` | `BuildingQuery` | Filter to base buildings (not upgrades). |
+| Method               | Returns         | Description                                                                |
+| -------------------- | --------------- | -------------------------------------------------------------------------- |
+| `byBuilder(builder)` | `BuildingQuery` | Filter by builder. Accepts `'Robin'` or `'Wizard'`.                        |
+| `magical()`          | `BuildingQuery` | Filter to magical buildings only (Wizard buildings constructed instantly). |
+| `upgrades()`         | `BuildingQuery` | Filter to buildings that are upgrades of another building.                 |
+| `base()`             | `BuildingQuery` | Filter to base buildings (not upgrades).                                   |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByCost(order?)` | `BuildingQuery` | Sort by build cost. Pass `'asc'` (default) or `'desc'`. |
+| Method               | Returns         | Description                                                      |
+| -------------------- | --------------- | ---------------------------------------------------------------- |
+| `sortByCost(order?)` | `BuildingQuery` | Sort by build cost. Pass `'asc'` (default) or `'desc'`.          |
 | `sortByName(order?)` | `BuildingQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples

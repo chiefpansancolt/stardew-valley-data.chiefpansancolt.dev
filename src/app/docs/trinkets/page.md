@@ -20,25 +20,22 @@ const allTrinkets = trinkets().get()
 const parrotEgg = trinkets().findByName('Parrot Egg')
 
 // Get forgeable trinkets from combat drops
-const forgeableCombat = trinkets()
-  .bySource('combat-drop')
-  .forgeable()
-  .get()
+const forgeableCombat = trinkets().bySource('combat-drop').forgeable().get()
 ```
 
 ## Type Definition
 
 The `Trinket` type represents a single trinket item.
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `name` | `string` | Display name |
-| `effect` | `string` | Description of the trinket's effect |
-| `source` | `TrinketSource` | Where the trinket is obtained |
-| `forgeable` | `boolean` | Whether the trinket can be re-forged at the Forge |
-| `sellPrice` | `number` | Sell price in gold |
-| `image` | `string` | Relative path to the trinket image |
+| Field       | Type            | Description                                       |
+| ----------- | --------------- | ------------------------------------------------- |
+| `id`        | `string`        | Unique identifier                                 |
+| `name`      | `string`        | Display name                                      |
+| `effect`    | `string`        | Description of the trinket's effect               |
+| `source`    | `TrinketSource` | Where the trinket is obtained                     |
+| `forgeable` | `boolean`       | Whether the trinket can be re-forged at the Forge |
+| `sellPrice` | `number`        | Sell price in gold                                |
+| `image`     | `string`        | Relative path to the trinket image                |
 
 ### TrinketSource
 
@@ -52,28 +49,28 @@ Create a query with the `trinkets()` function. Every filter and sort method retu
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `bySource` | `bySource(source: TrinketSource): TrinketQuery` | Filter to trinkets from the given source (`'combat-drop'` or `'desert-festival'`). |
-| `forgeable` | `forgeable(): TrinketQuery` | Filter to trinkets that can be re-forged at the Forge. |
+| Method      | Signature                                       | Description                                                                        |
+| ----------- | ----------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `bySource`  | `bySource(source: TrinketSource): TrinketQuery` | Filter to trinkets from the given source (`'combat-drop'` or `'desert-festival'`). |
+| `forgeable` | `forgeable(): TrinketQuery`                     | Filter to trinkets that can be re-forged at the Forge.                             |
 
 ### Sort Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method       | Signature                                           | Description                                    |
+| ------------ | --------------------------------------------------- | ---------------------------------------------- |
 | `sortByName` | `sortByName(order?: 'asc' \| 'desc'): TrinketQuery` | Sort alphabetically by name. Default: `'asc'`. |
 
 ### Terminal Methods
 
 These methods are inherited from the base query and return actual values instead of a new query.
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get` | `get(): Trinket[]` | Return all results as an array. |
-| `first` | `first(): Trinket \| undefined` | Return the first result, or `undefined` if empty. |
-| `find` | `find(id: string): Trinket \| undefined` | Find an item by its exact ID. |
+| Method       | Signature                                        | Description                                          |
+| ------------ | ------------------------------------------------ | ---------------------------------------------------- |
+| `get`        | `get(): Trinket[]`                               | Return all results as an array.                      |
+| `first`      | `first(): Trinket \| undefined`                  | Return the first result, or `undefined` if empty.    |
+| `find`       | `find(id: string): Trinket \| undefined`         | Find an item by its exact ID.                        |
 | `findByName` | `findByName(name: string): Trinket \| undefined` | Find an item by name (case-insensitive exact match). |
-| `count` | `count(): number` | Return the number of results. |
+| `count`      | `count(): number`                                | Return the number of results.                        |
 
 ## Examples
 
@@ -102,7 +99,7 @@ import { trinkets } from 'stardew-valley-data'
 
 const festivalTrinkets = trinkets().bySource('desert-festival').get()
 festivalTrinkets.forEach((t) =>
-  console.log(`${t.name}: ${t.effect} — Sells for ${t.sellPrice}g`)
+  console.log(`${t.name}: ${t.effect} — Sells for ${t.sellPrice}g`),
 )
 ```
 
@@ -113,5 +110,7 @@ import { trinkets } from 'stardew-valley-data'
 
 console.log(`Total trinkets: ${trinkets().count()}`)
 console.log(`Combat drops: ${trinkets().bySource('combat-drop').count()}`)
-console.log(`Desert Festival: ${trinkets().bySource('desert-festival').count()}`)
+console.log(
+  `Desert Festival: ${trinkets().bySource('desert-festival').count()}`,
+)
 ```

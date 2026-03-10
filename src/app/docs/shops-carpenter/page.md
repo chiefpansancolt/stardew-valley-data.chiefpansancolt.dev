@@ -27,17 +27,17 @@ const monday = carpenter().byDay('Monday').sortByPrice().get()
 
 Each item conforms to the `CarpenterItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in gold. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `CarpenterCategory` | Item category. |
-| `day` | `CarpenterDay \| undefined` | Day of the week when available (undefined for permanent stock). |
-| `isRecipe` | `boolean` | Whether this item is a crafting recipe. |
-| `availability` | `string \| undefined` | Special purchase condition, if any. |
+| Field          | Type                        | Description                                                     |
+| -------------- | --------------------------- | --------------------------------------------------------------- |
+| `id`           | `string`                    | Unique identifier.                                              |
+| `name`         | `string`                    | Display name of the item.                                       |
+| `price`        | `number`                    | Purchase price in gold.                                         |
+| `description`  | `string`                    | In-game description text.                                       |
+| `image`        | `string`                    | Path to the item's image.                                       |
+| `category`     | `CarpenterCategory`         | Item category.                                                  |
+| `day`          | `CarpenterDay \| undefined` | Day of the week when available (undefined for permanent stock). |
+| `isRecipe`     | `boolean`                   | Whether this item is a crafting recipe.                         |
+| `availability` | `string \| undefined`       | Special purchase condition, if any.                             |
 
 ### CarpenterCategory
 
@@ -49,39 +49,44 @@ type CarpenterCategory = 'material' | 'recipe' | 'furniture' | 'craftable'
 
 ```ts
 type CarpenterDay =
-  | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday'
-  | 'Friday' | 'Saturday' | 'Sunday'
+  | 'Monday'
+  | 'Tuesday'
+  | 'Wednesday'
+  | 'Thursday'
+  | 'Friday'
+  | 'Saturday'
+  | 'Sunday'
 ```
 
 ## Query Methods
 
 `CarpenterQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `CarpenterItem[]` | Return all results as an array. |
-| `first()` | `CarpenterItem \| undefined` | Return the first result. |
-| `find(id)` | `CarpenterItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                      | Description                              |
+| ------------------ | ---------------------------- | ---------------------------------------- |
+| `get()`            | `CarpenterItem[]`            | Return all results as an array.          |
+| `first()`          | `CarpenterItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `CarpenterItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `CarpenterItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                     | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byCategory(category)` | `CarpenterQuery` | Filter to items in the given category. |
-| `recipes()` | `CarpenterQuery` | Filter to crafting recipe items only. |
-| `materials()` | `CarpenterQuery` | Filter to materials (Wood and Stone). |
-| `byDay(day)` | `CarpenterQuery` | Filter to items available on the given day. Permanent items are always included. |
-| `permanent()` | `CarpenterQuery` | Filter to items always available (not day-specific). |
-| `alwaysAvailable()` | `CarpenterQuery` | Filter to items with no special purchase condition. |
+| Method                 | Returns          | Description                                                                      |
+| ---------------------- | ---------------- | -------------------------------------------------------------------------------- |
+| `byCategory(category)` | `CarpenterQuery` | Filter to items in the given category.                                           |
+| `recipes()`            | `CarpenterQuery` | Filter to crafting recipe items only.                                            |
+| `materials()`          | `CarpenterQuery` | Filter to materials (Wood and Stone).                                            |
+| `byDay(day)`           | `CarpenterQuery` | Filter to items available on the given day. Permanent items are always included. |
+| `permanent()`          | `CarpenterQuery` | Filter to items always available (not day-specific).                             |
+| `alwaysAvailable()`    | `CarpenterQuery` | Filter to items with no special purchase condition.                              |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `CarpenterQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `CarpenterQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns          | Description                                                      |
+| --------------------- | ---------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `CarpenterQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `CarpenterQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -90,10 +95,7 @@ type CarpenterDay =
 ```js
 import { carpenter } from 'stardew-valley-data'
 
-const furniture = carpenter()
-  .byCategory('furniture')
-  .sortByPrice()
-  .get()
+const furniture = carpenter().byCategory('furniture').sortByPrice().get()
 
 furniture.forEach((item) => {
   console.log(`${item.name} - ${item.price}g`)
@@ -105,7 +107,15 @@ furniture.forEach((item) => {
 ```js
 import { carpenter } from 'stardew-valley-data'
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const days = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+]
 
 days.forEach((day) => {
   const count = carpenter().byDay(day).count()
@@ -118,11 +128,7 @@ days.forEach((day) => {
 ```js
 import { carpenter } from 'stardew-valley-data'
 
-const permanentRecipes = carpenter()
-  .permanent()
-  .recipes()
-  .sortByName()
-  .get()
+const permanentRecipes = carpenter().permanent().recipes().sortByName().get()
 
 permanentRecipes.forEach((r) => {
   console.log(`${r.name} - ${r.price}g`)

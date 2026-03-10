@@ -30,48 +30,48 @@ const springBirthdays = villagers().byBirthdaySeason('spring').get()
 
 Each villager record conforms to the `Villager` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the villager. |
-| `name` | `string` | Display name of the villager. |
-| `birthday` | `{ day: number; season: 'spring' \| 'summer' \| 'fall' \| 'winter' }` | The villager's birthday, with season and day of month (1--28). |
-| `address` | `string` | Where the villager lives. |
-| `occupation` | `string` | The villager's job or role. |
-| `marriageable` | `boolean` | Whether the villager can be married or become a roommate. |
-| `image` | `string` | Path to the villager's portrait image. |
-| `spouseImage` | `string \| undefined` | Path to the spouse-specific portrait image (only present for marriageable villagers). |
-| `hearts` | `{ max: number; bouquetIncrease: number; spouseIncrease: number }` | Heart progression details: maximum hearts, bonus from bouquet, and bonus from marriage. |
-| `loves` | `string[]` | Items the villager loves receiving as gifts. |
-| `likes` | `string[]` | Items the villager likes receiving as gifts. |
-| `neutrals` | `string[]` | Items the villager is neutral about. |
-| `dislikes` | `string[]` | Items the villager dislikes receiving. |
-| `hates` | `string[]` | Items the villager hates receiving. |
+| Field          | Type                                                                  | Description                                                                             |
+| -------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `id`           | `string`                                                              | Unique identifier for the villager.                                                     |
+| `name`         | `string`                                                              | Display name of the villager.                                                           |
+| `birthday`     | `{ day: number; season: 'spring' \| 'summer' \| 'fall' \| 'winter' }` | The villager's birthday, with season and day of month (1--28).                          |
+| `address`      | `string`                                                              | Where the villager lives.                                                               |
+| `occupation`   | `string`                                                              | The villager's job or role.                                                             |
+| `marriageable` | `boolean`                                                             | Whether the villager can be married or become a roommate.                               |
+| `image`        | `string`                                                              | Path to the villager's portrait image.                                                  |
+| `spouseImage`  | `string \| undefined`                                                 | Path to the spouse-specific portrait image (only present for marriageable villagers).   |
+| `hearts`       | `{ max: number; bouquetIncrease: number; spouseIncrease: number }`    | Heart progression details: maximum hearts, bonus from bouquet, and bonus from marriage. |
+| `loves`        | `string[]`                                                            | Items the villager loves receiving as gifts.                                            |
+| `likes`        | `string[]`                                                            | Items the villager likes receiving as gifts.                                            |
+| `neutrals`     | `string[]`                                                            | Items the villager is neutral about.                                                    |
+| `dislikes`     | `string[]`                                                            | Items the villager dislikes receiving.                                                  |
+| `hates`        | `string[]`                                                            | Items the villager hates receiving.                                                     |
 
 ## Query Methods
 
 `VillagerQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `Villager[]` | Return all results as an array. |
-| `first()` | `Villager \| undefined` | Return the first result. |
-| `find(id)` | `Villager \| undefined` | Find a villager by exact ID. |
+| Method             | Returns                 | Description                                 |
+| ------------------ | ----------------------- | ------------------------------------------- |
+| `get()`            | `Villager[]`            | Return all results as an array.             |
+| `first()`          | `Villager \| undefined` | Return the first result.                    |
+| `find(id)`         | `Villager \| undefined` | Find a villager by exact ID.                |
 | `findByName(name)` | `Villager \| undefined` | Find a villager by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                | Return the number of results.               |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `marriageable()` | `VillagerQuery` | Filter to villagers who can be married or become roommates. |
+| Method                     | Returns         | Description                                                                                                       |
+| -------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `marriageable()`           | `VillagerQuery` | Filter to villagers who can be married or become roommates.                                                       |
 | `byBirthdaySeason(season)` | `VillagerQuery` | Filter to villagers with a birthday in the given season. Accepts `'spring'`, `'summer'`, `'fall'`, or `'winter'`. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByName(order?)` | `VillagerQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
-| `sortByBirthday()` | `VillagerQuery` | Sort by birthday in calendar order (spring through winter, day 1 through 28). |
+| Method               | Returns         | Description                                                                   |
+| -------------------- | --------------- | ----------------------------------------------------------------------------- |
+| `sortByName(order?)` | `VillagerQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`.              |
+| `sortByBirthday()`   | `VillagerQuery` | Sort by birthday in calendar order (spring through winter, day 1 through 28). |
 
 ## Examples
 

@@ -17,11 +17,11 @@ Every query builder wraps an internal array of typed data. When you call a filte
 ```ts
 import { crops } from 'stardew-valley-data'
 
-const results = crops()          // Start with all crops
-  .bySeason('summer')            // Filter to summer crops
-  .regrowing()                   // Keep only regrowing crops
-  .sortBySellPrice('desc')       // Sort by price, highest first
-  .get()                         // Extract the array
+const results = crops() // Start with all crops
+  .bySeason('summer') // Filter to summer crops
+  .regrowing() // Keep only regrowing crops
+  .sortBySellPrice('desc') // Sort by price, highest first
+  .get() // Extract the array
 ```
 
 ---
@@ -79,10 +79,7 @@ const rainySpringFish = fish()
   .get()
 
 // All ocean fish sorted by name
-const oceanFish = fish()
-  .byLocation('ocean')
-  .sortByName()
-  .get()
+const oceanFish = fish().byLocation('ocean').sortByName().get()
 ```
 
 ### Villagers example
@@ -93,10 +90,7 @@ The `VillagerQuery` provides filters for marriageable status and birthday season
 import { villagers } from 'stardew-valley-data'
 
 // All marriageable villagers sorted by birthday
-const singles = villagers()
-  .marriageable()
-  .sortByBirthday()
-  .get()
+const singles = villagers().marriageable().sortByBirthday().get()
 
 // Spring birthdays alphabetically
 const springBirthdays = villagers()
@@ -113,15 +107,10 @@ The `AnimalQuery` provides filters for pets, farm animals, building type, harves
 import { animals } from 'stardew-valley-data'
 
 // All coop animals
-const coopAnimals = animals()
-  .byBuilding('Coop')
-  .get()
+const coopAnimals = animals().byBuilding('Coop').get()
 
 // Farm animals you can buy at Marnie's
-const purchasable = animals()
-  .farmAnimals()
-  .purchasable()
-  .get()
+const purchasable = animals().farmAnimals().purchasable().get()
 ```
 
 ### Trees example
@@ -138,9 +127,7 @@ const summerFruit = trees()
   .get()
 
 // Wild trees you can tap
-const tappable = trees()
-  .tappable()
-  .get()
+const tappable = trees().tappable().get()
 ```
 
 ---
@@ -200,7 +187,7 @@ import { crops, fish } from 'stardew-valley-data'
 const springCropNames = crops()
   .bySeason('spring')
   .get()
-  .map(c => c.name)
+  .map((c) => c.name)
 
 // Use the results in application logic
 console.log(`Spring crops: ${springCropNames.join(', ')}`)
@@ -217,10 +204,7 @@ import { crops, Crop } from 'stardew-valley-data'
 const myFavorites: Crop[] = await fetchFavoriteCrops()
 
 // Wrap in a query builder for filtering and sorting
-const sorted = crops(myFavorites)
-  .regrowing()
-  .sortBySellPrice('desc')
-  .get()
+const sorted = crops(myFavorites).regrowing().sortBySellPrice('desc').get()
 ```
 
 ---
@@ -230,27 +214,29 @@ const sorted = crops(myFavorites)
 ### As an array
 
 ```ts
-const allCrops = crops().get()               // Crop[]
-const names = crops().get().map(c => c.name)  // string[]
+const allCrops = crops().get() // Crop[]
+const names = crops()
+  .get()
+  .map((c) => c.name) // string[]
 ```
 
 ### First item only
 
 ```ts
-const best = crops().sortBySellPrice('desc').first()  // Crop | undefined
+const best = crops().sortBySellPrice('desc').first() // Crop | undefined
 ```
 
 ### By ID or name
 
 ```ts
-const crop = crops().find('248')              // Crop | undefined
-const melon = crops().findByName('Melon')     // Crop | undefined
+const crop = crops().find('248') // Crop | undefined
+const melon = crops().findByName('Melon') // Crop | undefined
 ```
 
 ### Count
 
 ```ts
-const total = crops().count()                 // number
+const total = crops().count() // number
 ```
 
 ---
@@ -263,7 +249,9 @@ const total = crops().count()                 // number
 import { villagers } from 'stardew-valley-data'
 
 const villagerMap = new Map(
-  villagers().get().map(v => [v.id, v])
+  villagers()
+    .get()
+    .map((v) => [v.id, v]),
 )
 
 const penny = villagerMap.get('penny_id')

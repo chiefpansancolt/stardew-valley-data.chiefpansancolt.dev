@@ -27,13 +27,13 @@ const sorted = hats().sortByName().get()
 
 The `Hat` type represents a single hat item.
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `name` | `string` | Display name |
-| `description` | `string` | In-game description |
-| `obtain` | `string` | How to obtain this hat |
-| `image` | `string` | Relative path to the hat image |
+| Field         | Type     | Description                    |
+| ------------- | -------- | ------------------------------ |
+| `id`          | `string` | Unique identifier              |
+| `name`        | `string` | Display name                   |
+| `description` | `string` | In-game description            |
+| `obtain`      | `string` | How to obtain this hat         |
+| `image`       | `string` | Relative path to the hat image |
 
 ## Query Methods
 
@@ -41,21 +41,21 @@ Create a query with the `hats()` function. Every sort method returns a new `HatQ
 
 ### Sort Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method       | Signature                                       | Description                                    |
+| ------------ | ----------------------------------------------- | ---------------------------------------------- |
 | `sortByName` | `sortByName(order?: 'asc' \| 'desc'): HatQuery` | Sort alphabetically by name. Default: `'asc'`. |
 
 ### Terminal Methods
 
 These methods are inherited from the base query and return actual values instead of a new query.
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get` | `get(): Hat[]` | Return all results as an array. |
-| `first` | `first(): Hat \| undefined` | Return the first result, or `undefined` if empty. |
-| `find` | `find(id: string): Hat \| undefined` | Find an item by its exact ID. |
+| Method       | Signature                                    | Description                                          |
+| ------------ | -------------------------------------------- | ---------------------------------------------------- |
+| `get`        | `get(): Hat[]`                               | Return all results as an array.                      |
+| `first`      | `first(): Hat \| undefined`                  | Return the first result, or `undefined` if empty.    |
+| `find`       | `find(id: string): Hat \| undefined`         | Find an item by its exact ID.                        |
 | `findByName` | `findByName(name: string): Hat \| undefined` | Find an item by name (case-insensitive exact match). |
-| `count` | `count(): number` | Return the number of results. |
+| `count`      | `count(): number`                            | Return the number of results.                        |
 
 ## Examples
 

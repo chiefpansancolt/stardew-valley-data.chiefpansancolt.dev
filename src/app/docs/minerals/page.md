@@ -31,7 +31,13 @@ const frozen = minerals().fromGeode('Frozen Geode').get()
 Minerals use a discriminated union with six variants based on the `kind` field:
 
 ```ts
-type Mineral = MineralItem | GeodeContainer | OreItem | BarItem | NodeItem | ResourceItem
+type Mineral =
+  | MineralItem
+  | GeodeContainer
+  | OreItem
+  | BarItem
+  | NodeItem
+  | ResourceItem
 ```
 
 ### MineralItem
@@ -51,12 +57,12 @@ interface MineralItem {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `kind` | `'mineral'` | Discriminator. |
-| `sellPrice` | `number` | Base sell price. |
-| `gemologistPrice` | `number` | Sell price with the Gemologist profession. |
-| `locations` | `string[]` | Where this mineral can be found. |
+| Field             | Type        | Description                                |
+| ----------------- | ----------- | ------------------------------------------ |
+| `kind`            | `'mineral'` | Discriminator.                             |
+| `sellPrice`       | `number`    | Base sell price.                           |
+| `gemologistPrice` | `number`    | Sell price with the Gemologist profession. |
+| `locations`       | `string[]`  | Where this mineral can be found.           |
 
 ### GeodeContainer
 
@@ -114,8 +120,8 @@ interface SmeltRecipe {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
+| Field          | Type            | Description                                         |
+| -------------- | --------------- | --------------------------------------------------- |
 | `smeltRecipes` | `SmeltRecipe[]` | Smelting recipes with ore/coal quantities and time. |
 
 ### NodeItem
@@ -141,10 +147,10 @@ interface NodeDrop {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `drops` | `NodeDrop[]` | Items dropped when the node is broken, with quantity and optional drop chance. |
-| `miningXP` | `number` | Mining XP gained from breaking this node. |
+| Field      | Type         | Description                                                                    |
+| ---------- | ------------ | ------------------------------------------------------------------------------ |
+| `drops`    | `NodeDrop[]` | Items dropped when the node is broken, with quantity and optional drop chance. |
+| `miningXP` | `number`     | Mining XP gained from breaking this node.                                      |
 
 ### ResourceItem
 
@@ -166,12 +172,12 @@ interface ResourceItem {
 
 All mineral variants share these fields:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name. |
-| `kind` | `string` | Discriminator: `'mineral'`, `'geode'`, `'ore'`, `'bar'`, `'node'`, or `'resource'`. |
-| `image` | `string` | Path to the image asset. |
+| Field   | Type     | Description                                                                         |
+| ------- | -------- | ----------------------------------------------------------------------------------- |
+| `id`    | `string` | Unique identifier.                                                                  |
+| `name`  | `string` | Display name.                                                                       |
+| `kind`  | `string` | Discriminator: `'mineral'`, `'geode'`, `'ore'`, `'bar'`, `'node'`, or `'resource'`. |
+| `image` | `string` | Path to the image asset.                                                            |
 
 ## Query Methods
 
@@ -179,31 +185,31 @@ The `minerals()` function returns a `MineralQuery` instance. All methods return 
 
 ### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Mineral[]` | Return all results as an array. |
-| `.first()` | `Mineral \| undefined` | Return the first result. |
-| `.find(id)` | `Mineral \| undefined` | Find by exact ID. |
+| Method              | Returns                | Description                      |
+| ------------------- | ---------------------- | -------------------------------- |
+| `.get()`            | `Mineral[]`            | Return all results as an array.  |
+| `.first()`          | `Mineral \| undefined` | Return the first result.         |
+| `.find(id)`         | `Mineral \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `Mineral \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`               | Return the number of results.    |
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `mineralItems` | `mineralItems()` | Filter to donatable minerals only (gems and geode minerals). |
-| `geodes` | `geodes()` | Filter to geode containers only. |
-| `ores` | `ores()` | Filter to ore items only. |
-| `bars` | `bars()` | Filter to smelted bar items only. |
-| `nodes` | `nodes()` | Filter to mining node entries only. |
-| `resources` | `resources()` | Filter to resource items (Coal, etc.). |
-| `fromGeode` | `fromGeode(geodeType: string)` | Filter to items found in a specific geode type (case-insensitive substring match). |
+| Method         | Signature                      | Description                                                                        |
+| -------------- | ------------------------------ | ---------------------------------------------------------------------------------- |
+| `mineralItems` | `mineralItems()`               | Filter to donatable minerals only (gems and geode minerals).                       |
+| `geodes`       | `geodes()`                     | Filter to geode containers only.                                                   |
+| `ores`         | `ores()`                       | Filter to ore items only.                                                          |
+| `bars`         | `bars()`                       | Filter to smelted bar items only.                                                  |
+| `nodes`        | `nodes()`                      | Filter to mining node entries only.                                                |
+| `resources`    | `resources()`                  | Filter to resource items (Coal, etc.).                                             |
+| `fromGeode`    | `fromGeode(geodeType: string)` | Filter to items found in a specific geode type (case-insensitive substring match). |
 
 ### Sort Methods
 
-| Method | Signature | Default | Description |
-| --- | --- | --- | --- |
-| `sortByName` | `sortByName(order?: 'asc' \| 'desc')` | `'asc'` | Sort alphabetically by name. |
+| Method            | Signature                                  | Default  | Description                                                                       |
+| ----------------- | ------------------------------------------ | -------- | --------------------------------------------------------------------------------- |
+| `sortByName`      | `sortByName(order?: 'asc' \| 'desc')`      | `'asc'`  | Sort alphabetically by name.                                                      |
 | `sortBySellPrice` | `sortBySellPrice(order?: 'asc' \| 'desc')` | `'desc'` | Sort by sell price (highest first). Items without a sell price (nodes) sort as 0. |
 
 ## Examples
@@ -213,14 +219,12 @@ The `minerals()` function returns a `MineralQuery` instance. All methods return 
 ```js
 import { minerals } from 'stardew-valley-data'
 
-const valuable = minerals()
-  .mineralItems()
-  .sortBySellPrice()
-  .get()
-  .slice(0, 10)
+const valuable = minerals().mineralItems().sortBySellPrice().get().slice(0, 10)
 
-valuable.forEach(m => {
-  console.log(`${m.name}: ${m.sellPrice}g (${m.gemologistPrice}g with Gemologist)`)
+valuable.forEach((m) => {
+  console.log(
+    `${m.name}: ${m.sellPrice}g (${m.gemologistPrice}g with Gemologist)`,
+  )
 })
 ```
 
@@ -229,9 +233,11 @@ valuable.forEach(m => {
 ```js
 const bars = minerals().bars().get()
 
-bars.forEach(bar => {
-  bar.smeltRecipes.forEach(recipe => {
-    console.log(`${bar.name}: ${recipe.oreQty} ${recipe.ore} + ${recipe.coalQty} Coal (${recipe.timeMinutes} min)`)
+bars.forEach((bar) => {
+  bar.smeltRecipes.forEach((recipe) => {
+    console.log(
+      `${bar.name}: ${recipe.oreQty} ${recipe.ore} + ${recipe.coalQty} Coal (${recipe.timeMinutes} min)`,
+    )
   })
 })
 ```
@@ -248,9 +254,9 @@ console.log(`${omniItems.length} items from Omni Geodes`)
 ```js
 const nodes = minerals().nodes().get()
 
-nodes.forEach(node => {
+nodes.forEach((node) => {
   console.log(`${node.name} (${node.miningXP} XP):`)
-  node.drops.forEach(d => {
+  node.drops.forEach((d) => {
     console.log(`  ${d.item} x${d.quantity}${d.chance ? ` (${d.chance})` : ''}`)
   })
 })

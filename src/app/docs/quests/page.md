@@ -30,31 +30,31 @@ const total = quests().count()
 
 Each quest record conforms to the `Quest` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the quest. |
-| `name` | `string` | Display name of the quest. |
-| `text` | `string` | The quest description or story text. |
-| `providedBy` | `string` | Who gives or triggers the quest (e.g., an NPC name or event). |
-| `requirements` | `string` | What the player must do to complete the quest. |
-| `rewards` | `string` | What the player receives upon completion. |
+| Field          | Type     | Description                                                   |
+| -------------- | -------- | ------------------------------------------------------------- |
+| `id`           | `string` | Unique identifier for the quest.                              |
+| `name`         | `string` | Display name of the quest.                                    |
+| `text`         | `string` | The quest description or story text.                          |
+| `providedBy`   | `string` | Who gives or triggers the quest (e.g., an NPC name or event). |
+| `requirements` | `string` | What the player must do to complete the quest.                |
+| `rewards`      | `string` | What the player receives upon completion.                     |
 
 ## Query Methods
 
 `QuestQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `Quest[]` | Return all results as an array. |
-| `first()` | `Quest \| undefined` | Return the first result. |
-| `find(id)` | `Quest \| undefined` | Find a quest by exact ID. |
+| Method             | Returns              | Description                              |
+| ------------------ | -------------------- | ---------------------------------------- |
+| `get()`            | `Quest[]`            | Return all results as an array.          |
+| `first()`          | `Quest \| undefined` | Return the first result.                 |
+| `find(id)`         | `Quest \| undefined` | Find a quest by exact ID.                |
 | `findByName(name)` | `Quest \| undefined` | Find a quest by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`             | Return the number of results.            |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method               | Returns      | Description                                                      |
+| -------------------- | ------------ | ---------------------------------------------------------------- |
 | `sortByName(order?)` | `QuestQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -105,6 +105,8 @@ You can pass an existing `Quest[]` array into the `quests()` function to create 
 ```js
 import { quests } from 'stardew-valley-data'
 
-const myList = quests().get().filter((q) => q.providedBy.includes('Robin'))
+const myList = quests()
+  .get()
+  .filter((q) => q.providedBy.includes('Robin'))
 const sorted = quests(myList).sortByName().get()
 ```

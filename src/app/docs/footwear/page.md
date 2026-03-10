@@ -27,15 +27,15 @@ const bestDefense = footwear().sortByDefense('desc').get()
 
 The `Footwear` type represents a single pair of boots or shoes.
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier |
-| `name` | `string` | Display name |
-| `description` | `string` | In-game description |
-| `defense` | `number` | Defense stat bonus |
-| `immunity` | `number` | Immunity stat bonus |
-| `obtain` | `string` | How to obtain this footwear |
-| `image` | `string` | Relative path to the footwear image |
+| Field         | Type     | Description                         |
+| ------------- | -------- | ----------------------------------- |
+| `id`          | `string` | Unique identifier                   |
+| `name`        | `string` | Display name                        |
+| `description` | `string` | In-game description                 |
+| `defense`     | `number` | Defense stat bonus                  |
+| `immunity`    | `number` | Immunity stat bonus                 |
+| `obtain`      | `string` | How to obtain this footwear         |
+| `image`       | `string` | Relative path to the footwear image |
 
 ## Query Methods
 
@@ -43,23 +43,23 @@ Create a query with the `footwear()` function. Every sort method returns a new `
 
 ### Sort Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `sortByName` | `sortByName(order?: 'asc' \| 'desc'): FootwearQuery` | Sort alphabetically by name. Default: `'asc'`. |
-| `sortByDefense` | `sortByDefense(order?: 'asc' \| 'desc'): FootwearQuery` | Sort by defense stat. Default: `'desc'` (highest defense first). |
+| Method           | Signature                                                | Description                                                        |
+| ---------------- | -------------------------------------------------------- | ------------------------------------------------------------------ |
+| `sortByName`     | `sortByName(order?: 'asc' \| 'desc'): FootwearQuery`     | Sort alphabetically by name. Default: `'asc'`.                     |
+| `sortByDefense`  | `sortByDefense(order?: 'asc' \| 'desc'): FootwearQuery`  | Sort by defense stat. Default: `'desc'` (highest defense first).   |
 | `sortByImmunity` | `sortByImmunity(order?: 'asc' \| 'desc'): FootwearQuery` | Sort by immunity stat. Default: `'desc'` (highest immunity first). |
 
 ### Terminal Methods
 
 These methods are inherited from the base query and return actual values instead of a new query.
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get` | `get(): Footwear[]` | Return all results as an array. |
-| `first` | `first(): Footwear \| undefined` | Return the first result, or `undefined` if empty. |
-| `find` | `find(id: string): Footwear \| undefined` | Find an item by its exact ID. |
+| Method       | Signature                                         | Description                                          |
+| ------------ | ------------------------------------------------- | ---------------------------------------------------- |
+| `get`        | `get(): Footwear[]`                               | Return all results as an array.                      |
+| `first`      | `first(): Footwear \| undefined`                  | Return the first result, or `undefined` if empty.    |
+| `find`       | `find(id: string): Footwear \| undefined`         | Find an item by its exact ID.                        |
 | `findByName` | `findByName(name: string): Footwear \| undefined` | Find an item by name (case-insensitive exact match). |
-| `count` | `count(): number` | Return the number of results. |
+| `count`      | `count(): number`                                 | Return the number of results.                        |
 
 ## Examples
 
@@ -68,13 +68,10 @@ These methods are inherited from the base query and return actual values instead
 ```js
 import { footwear } from 'stardew-valley-data'
 
-const bestDefense = footwear()
-  .sortByDefense('desc')
-  .get()
-  .slice(0, 5)
+const bestDefense = footwear().sortByDefense('desc').get().slice(0, 5)
 
 bestDefense.forEach((f) =>
-  console.log(`${f.name}: +${f.defense} Defense, +${f.immunity} Immunity`)
+  console.log(`${f.name}: +${f.defense} Defense, +${f.immunity} Immunity`),
 )
 ```
 
@@ -96,7 +93,7 @@ import { footwear } from 'stardew-valley-data'
 
 const allBoots = footwear().sortByName().get()
 allBoots.forEach((f) =>
-  console.log(`${f.name}: DEF ${f.defense} / IMM ${f.immunity} — ${f.obtain}`)
+  console.log(`${f.name}: DEF ${f.defense} / IMM ${f.immunity} — ${f.obtain}`),
 )
 ```
 

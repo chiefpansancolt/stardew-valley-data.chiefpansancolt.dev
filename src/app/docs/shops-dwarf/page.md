@@ -27,50 +27,55 @@ const item = dwarfShop().findByName('Mega Bomb')
 
 Each item conforms to the `DwarfShopItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `description` | `string` | In-game description text. |
-| `price` | `number` | Purchase price in gold. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `DwarfShopCategory` | Item category. |
+| Field         | Type                | Description               |
+| ------------- | ------------------- | ------------------------- |
+| `id`          | `string`            | Unique identifier.        |
+| `name`        | `string`            | Display name of the item. |
+| `description` | `string`            | In-game description text. |
+| `price`       | `number`            | Purchase price in gold.   |
+| `image`       | `string`            | Path to the item's image. |
+| `category`    | `DwarfShopCategory` | Item category.            |
 
 ### DwarfShopCategory
 
 ```ts
 type DwarfShopCategory =
-  | 'explosive' | 'food' | 'consumable' | 'recipe'
-  | 'decoration' | 'scarecrow' | 'book'
+  | 'explosive'
+  | 'food'
+  | 'consumable'
+  | 'recipe'
+  | 'decoration'
+  | 'scarecrow'
+  | 'book'
 ```
 
 ## Query Methods
 
 `DwarfShopQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `DwarfShopItem[]` | Return all results as an array. |
-| `first()` | `DwarfShopItem \| undefined` | Return the first result. |
-| `find(id)` | `DwarfShopItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                      | Description                              |
+| ------------------ | ---------------------------- | ---------------------------------------- |
+| `get()`            | `DwarfShopItem[]`            | Return all results as an array.          |
+| `first()`          | `DwarfShopItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `DwarfShopItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `DwarfShopItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                     | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byCategory(category)` | `DwarfShopQuery` | Filter to items in the given category. |
-| `explosives()` | `DwarfShopQuery` | Filter to explosive items (Cherry Bomb, Bomb, Mega Bomb). |
-| `consumables()` | `DwarfShopQuery` | Filter to consumable items (Life Elixir, Oil of Garlic). |
-| `recipes()` | `DwarfShopQuery` | Filter to crafting recipe items. |
+| Method                 | Returns          | Description                                               |
+| ---------------------- | ---------------- | --------------------------------------------------------- |
+| `byCategory(category)` | `DwarfShopQuery` | Filter to items in the given category.                    |
+| `explosives()`         | `DwarfShopQuery` | Filter to explosive items (Cherry Bomb, Bomb, Mega Bomb). |
+| `consumables()`        | `DwarfShopQuery` | Filter to consumable items (Life Elixir, Oil of Garlic).  |
+| `recipes()`            | `DwarfShopQuery` | Filter to crafting recipe items.                          |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `DwarfShopQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `DwarfShopQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns          | Description                                                      |
+| --------------------- | ---------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `DwarfShopQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `DwarfShopQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -79,7 +84,15 @@ type DwarfShopCategory =
 ```js
 import { dwarfShop } from 'stardew-valley-data'
 
-const categories = ['explosive', 'food', 'consumable', 'recipe', 'decoration', 'scarecrow', 'book']
+const categories = [
+  'explosive',
+  'food',
+  'consumable',
+  'recipe',
+  'decoration',
+  'scarecrow',
+  'book',
+]
 
 categories.forEach((cat) => {
   const items = dwarfShop().byCategory(cat).get()

@@ -30,34 +30,34 @@ const total = maps().count()
 
 Each farm map record conforms to the `FarmMap` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the farm map. |
-| `name` | `string` | Display name of the farm type. |
-| `description` | `string` | In-game description of the farm map. |
-| `skills` | `string[]` | Skills associated with this farm type. |
-| `tillableTiles` | `number` | Number of tiles available for planting crops. |
-| `features` | `string[]` | Notable features of this map layout. |
+| Field           | Type       | Description                                            |
+| --------------- | ---------- | ------------------------------------------------------ |
+| `id`            | `string`   | Unique identifier for the farm map.                    |
+| `name`          | `string`   | Display name of the farm type.                         |
+| `description`   | `string`   | In-game description of the farm map.                   |
+| `skills`        | `string[]` | Skills associated with this farm type.                 |
+| `tillableTiles` | `number`   | Number of tiles available for planting crops.          |
+| `features`      | `string[]` | Notable features of this map layout.                   |
 | `startingItems` | `string[]` | Items available on the map from the start of the game. |
-| `image` | `string` | Path to the farm map image. |
-| `icon` | `string` | Path to the farm map icon. |
+| `image`         | `string`   | Path to the farm map image.                            |
+| `icon`          | `string`   | Path to the farm map icon.                             |
 
 ## Query Methods
 
 `FarmMapQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `FarmMap[]` | Return all results as an array. |
-| `first()` | `FarmMap \| undefined` | Return the first result. |
-| `find(id)` | `FarmMap \| undefined` | Find a map by exact ID. |
+| Method             | Returns                | Description                            |
+| ------------------ | ---------------------- | -------------------------------------- |
+| `get()`            | `FarmMap[]`            | Return all results as an array.        |
+| `first()`          | `FarmMap \| undefined` | Return the first result.               |
+| `find(id)`         | `FarmMap \| undefined` | Find a map by exact ID.                |
 | `findByName(name)` | `FarmMap \| undefined` | Find a map by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`               | Return the number of results.          |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method           | Returns        | Description                                                        |
+| ---------------- | -------------- | ------------------------------------------------------------------ |
 | `bySkill(skill)` | `FarmMapQuery` | Filter to maps associated with the given skill (case-insensitive). |
 
 ## Examples

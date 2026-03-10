@@ -30,18 +30,18 @@ const shopLocations = locations().withShop().sortByName().get()
 
 Each location record conforms to the `GameLocation` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the location. |
-| `name` | `string` | Display name of the location. |
-| `type` | `'location' \| 'building'` | Whether this is an outdoor location or a building. |
-| `category` | `LocationCategory` | The region this location belongs to (see below). |
-| `image` | `string` | Path to the location image. |
-| `openHours` | `LocationHours \| null` | Operating hours, or `null` if always accessible. |
-| `closed` | `LocationDay[]` | Days of the week the location is closed. |
-| `address` | `string \| null` | Street address in the game world, or `null`. |
-| `occupants` | `string[]` | Names of NPCs who live or work at this location. |
-| `shop` | `string \| null` | Linked shop data ID, or `null` if no shop. |
+| Field       | Type                       | Description                                        |
+| ----------- | -------------------------- | -------------------------------------------------- |
+| `id`        | `string`                   | Unique identifier for the location.                |
+| `name`      | `string`                   | Display name of the location.                      |
+| `type`      | `'location' \| 'building'` | Whether this is an outdoor location or a building. |
+| `category`  | `LocationCategory`         | The region this location belongs to (see below).   |
+| `image`     | `string`                   | Path to the location image.                        |
+| `openHours` | `LocationHours \| null`    | Operating hours, or `null` if always accessible.   |
+| `closed`    | `LocationDay[]`            | Days of the week the location is closed.           |
+| `address`   | `string \| null`           | Street address in the game world, or `null`.       |
+| `occupants` | `string[]`                 | Names of NPCs who live or work at this location.   |
+| `shop`      | `string \| null`           | Linked shop data ID, or `null` if no shop.         |
 
 ### LocationCategory
 
@@ -49,9 +49,9 @@ Each location record conforms to the `GameLocation` interface:
 
 ### LocationHours
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `open` | `string` | Opening time (e.g., `"9:00 AM"`). |
+| Field   | Type     | Description                       |
+| ------- | -------- | --------------------------------- |
+| `open`  | `string` | Opening time (e.g., `"9:00 AM"`). |
 | `close` | `string` | Closing time (e.g., `"5:00 PM"`). |
 
 ### LocationDay
@@ -62,29 +62,29 @@ Each location record conforms to the `GameLocation` interface:
 
 `LocationQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `GameLocation[]` | Return all results as an array. |
-| `first()` | `GameLocation \| undefined` | Return the first result. |
-| `find(id)` | `GameLocation \| undefined` | Find a location by exact ID. |
+| Method             | Returns                     | Description                                 |
+| ------------------ | --------------------------- | ------------------------------------------- |
+| `get()`            | `GameLocation[]`            | Return all results as an array.             |
+| `first()`          | `GameLocation \| undefined` | Return the first result.                    |
+| `find(id)`         | `GameLocation \| undefined` | Find a location by exact ID.                |
 | `findByName(name)` | `GameLocation \| undefined` | Find a location by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                    | Return the number of results.               |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byType(type)` | `LocationQuery` | Filter by type. Accepts `'location'` or `'building'`. |
-| `byCategory(category)` | `LocationQuery` | Filter to locations in the given category. |
-| `withShop()` | `LocationQuery` | Filter to locations that have a linked shop. |
-| `alwaysOpen()` | `LocationQuery` | Filter to locations that are always accessible (no operating hours). |
-| `closedOn(day)` | `LocationQuery` | Filter to locations closed on the given day. |
-| `byOccupant(name)` | `LocationQuery` | Filter to locations where the named NPC lives or works (case-insensitive). |
+| Method                 | Returns         | Description                                                                |
+| ---------------------- | --------------- | -------------------------------------------------------------------------- |
+| `byType(type)`         | `LocationQuery` | Filter by type. Accepts `'location'` or `'building'`.                      |
+| `byCategory(category)` | `LocationQuery` | Filter to locations in the given category.                                 |
+| `withShop()`           | `LocationQuery` | Filter to locations that have a linked shop.                               |
+| `alwaysOpen()`         | `LocationQuery` | Filter to locations that are always accessible (no operating hours).       |
+| `closedOn(day)`        | `LocationQuery` | Filter to locations closed on the given day.                               |
+| `byOccupant(name)`     | `LocationQuery` | Filter to locations where the named NPC lives or works (case-insensitive). |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method               | Returns         | Description                                                      |
+| -------------------- | --------------- | ---------------------------------------------------------------- |
 | `sortByName(order?)` | `LocationQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples

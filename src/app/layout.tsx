@@ -26,8 +26,7 @@ export const metadata: Metadata = {
     template: '%s - Stardew Valley Data Docs',
     default: 'Stardew Valley Data - NPM package documentation',
   },
-  description:
-    'Documentation for the stardew-valley-data NPM package.',
+  description: 'Documentation for the stardew-valley-data NPM package.',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },

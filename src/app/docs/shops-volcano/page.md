@@ -30,16 +30,16 @@ const goldItems = volcanoShop().goldItems().get()
 
 Each item conforms to the `VolcanoShopItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Purchase price in the specified currency. |
-| `currency` | `VolcanoShopCurrency` | Currency used for purchase. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `VolcanoShopCategory` | Item category. |
-| `availability` | `string \| undefined` | Special availability condition, if any. |
+| Field          | Type                  | Description                               |
+| -------------- | --------------------- | ----------------------------------------- |
+| `id`           | `string`              | Unique identifier.                        |
+| `name`         | `string`              | Display name of the item.                 |
+| `price`        | `number`              | Purchase price in the specified currency. |
+| `currency`     | `VolcanoShopCurrency` | Currency used for purchase.               |
+| `description`  | `string`              | In-game description text.                 |
+| `image`        | `string`              | Path to the item's image.                 |
+| `category`     | `VolcanoShopCategory` | Item category.                            |
+| `availability` | `string \| undefined` | Special availability condition, if any.   |
 
 ### VolcanoShopCurrency
 
@@ -57,33 +57,33 @@ type VolcanoShopCategory = 'footwear' | 'book' | 'consumable' | 'hat' | 'food'
 
 `VolcanoShopQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `VolcanoShopItem[]` | Return all results as an array. |
-| `first()` | `VolcanoShopItem \| undefined` | Return the first result. |
-| `find(id)` | `VolcanoShopItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                        | Description                              |
+| ------------------ | ------------------------------ | ---------------------------------------- |
+| `get()`            | `VolcanoShopItem[]`            | Return all results as an array.          |
+| `first()`          | `VolcanoShopItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `VolcanoShopItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `VolcanoShopItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                       | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byCurrency(currency)` | `VolcanoShopQuery` | Filter to items purchased with the specified currency. |
-| `goldItems()` | `VolcanoShopQuery` | Filter to items purchased with gold. |
-| `cinderShardItems()` | `VolcanoShopQuery` | Filter to items purchased with Cinder Shards. |
-| `diamondItems()` | `VolcanoShopQuery` | Filter to items purchased with Diamonds. |
-| `byCategory(category)` | `VolcanoShopQuery` | Filter by item category. |
-| `consumables()` | `VolcanoShopQuery` | Filter to consumable items only. |
-| `food()` | `VolcanoShopQuery` | Filter to food items only. |
-| `alwaysAvailable()` | `VolcanoShopQuery` | Filter to items with no special availability condition. |
+| Method                 | Returns            | Description                                             |
+| ---------------------- | ------------------ | ------------------------------------------------------- |
+| `byCurrency(currency)` | `VolcanoShopQuery` | Filter to items purchased with the specified currency.  |
+| `goldItems()`          | `VolcanoShopQuery` | Filter to items purchased with gold.                    |
+| `cinderShardItems()`   | `VolcanoShopQuery` | Filter to items purchased with Cinder Shards.           |
+| `diamondItems()`       | `VolcanoShopQuery` | Filter to items purchased with Diamonds.                |
+| `byCategory(category)` | `VolcanoShopQuery` | Filter by item category.                                |
+| `consumables()`        | `VolcanoShopQuery` | Filter to consumable items only.                        |
+| `food()`               | `VolcanoShopQuery` | Filter to food items only.                              |
+| `alwaysAvailable()`    | `VolcanoShopQuery` | Filter to items with no special availability condition. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `VolcanoShopQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `VolcanoShopQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns            | Description                                                      |
+| --------------------- | ------------------ | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `VolcanoShopQuery` | Sort by price. Pass `'asc'` (default) or `'desc'`.               |
+| `sortByName(order?)`  | `VolcanoShopQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 

@@ -45,13 +45,13 @@ interface Pet {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `type` | `'pet'` | Discriminator for pets. |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Pet breed name (e.g. `"Cat"`, `"Dog"`). |
+| Field     | Type                  | Description                                      |
+| --------- | --------------------- | ------------------------------------------------ |
+| `type`    | `'pet'`               | Discriminator for pets.                          |
+| `id`      | `string`              | Unique identifier.                               |
+| `name`    | `string`              | Pet breed name (e.g. `"Cat"`, `"Dog"`).          |
 | `variant` | `number \| undefined` | Variant number for the pet breed, if applicable. |
-| `image` | `string` | Path to the image asset. |
+| `image`   | `string`              | Path to the image asset.                         |
 
 ### FarmAnimal
 
@@ -81,22 +81,22 @@ interface AnimalProduce {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `type` | `'farm-animal'` | Discriminator for farm animals. |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Animal name (e.g. `"Chicken"`, `"Cow"`). |
-| `description` | `string` | In-game description. |
-| `building` | `string` | Required building (e.g. `"Coop"`, `"Barn"`). |
-| `purchasePrice` | `number \| null` | Purchase price in gold, or `null` if not purchasable. |
-| `sellPrice` | `number` | Sell price when sold. |
-| `daysToMature` | `number` | Days until the animal starts producing. |
-| `daysToProduce` | `number` | Days between each product. |
-| `harvestMethod` | `'drop' \| 'tool' \| 'dig'` | How the product is collected. |
-| `harvestTool` | `string \| null` | Tool required for harvesting, if any (e.g. `"Milk Pail"`). |
-| `produce` | `AnimalProduce` | Standard produce item with id, name, sell price, and image. |
-| `deluxeProduce` | `AnimalProduce \| null` | Deluxe produce item when friendship is high enough, or `null`. |
-| `image` | `string` | Path to the image asset. |
+| Field           | Type                        | Description                                                    |
+| --------------- | --------------------------- | -------------------------------------------------------------- |
+| `type`          | `'farm-animal'`             | Discriminator for farm animals.                                |
+| `id`            | `string`                    | Unique identifier.                                             |
+| `name`          | `string`                    | Animal name (e.g. `"Chicken"`, `"Cow"`).                       |
+| `description`   | `string`                    | In-game description.                                           |
+| `building`      | `string`                    | Required building (e.g. `"Coop"`, `"Barn"`).                   |
+| `purchasePrice` | `number \| null`            | Purchase price in gold, or `null` if not purchasable.          |
+| `sellPrice`     | `number`                    | Sell price when sold.                                          |
+| `daysToMature`  | `number`                    | Days until the animal starts producing.                        |
+| `daysToProduce` | `number`                    | Days between each product.                                     |
+| `harvestMethod` | `'drop' \| 'tool' \| 'dig'` | How the product is collected.                                  |
+| `harvestTool`   | `string \| null`            | Tool required for harvesting, if any (e.g. `"Milk Pail"`).     |
+| `produce`       | `AnimalProduce`             | Standard produce item with id, name, sell price, and image.    |
+| `deluxeProduce` | `AnimalProduce \| null`     | Deluxe produce item when friendship is high enough, or `null`. |
+| `image`         | `string`                    | Path to the image asset.                                       |
 
 ## Type Guards
 
@@ -129,24 +129,24 @@ The `animals()` function returns an `AnimalQuery` instance. All methods return a
 
 ### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Animal[]` | Return all results as an array. |
-| `.first()` | `Animal \| undefined` | Return the first result. |
-| `.find(id)` | `Animal \| undefined` | Find by exact ID. |
+| Method              | Returns               | Description                      |
+| ------------------- | --------------------- | -------------------------------- |
+| `.get()`            | `Animal[]`            | Return all results as an array.  |
+| `.first()`          | `Animal \| undefined` | Return the first result.         |
+| `.find(id)`         | `Animal \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `Animal \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`              | Return the number of results.    |
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `pets` | `pets()` | Filter to pets only. |
-| `byPetName` | `byPetName(name: string)` | Filter to a specific pet breed by name (case-insensitive). |
-| `farmAnimals` | `farmAnimals()` | Filter to farm animals only. |
-| `byBuilding` | `byBuilding(building: string)` | Filter farm animals by required building (case-insensitive, e.g. `'Coop'`, `'Barn'`). |
-| `byHarvestMethod` | `byHarvestMethod(method: 'drop' \| 'tool' \| 'dig')` | Filter farm animals by how their product is harvested. |
-| `purchasable` | `purchasable()` | Filter to farm animals that have a purchase price. |
+| Method            | Signature                                            | Description                                                                           |
+| ----------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `pets`            | `pets()`                                             | Filter to pets only.                                                                  |
+| `byPetName`       | `byPetName(name: string)`                            | Filter to a specific pet breed by name (case-insensitive).                            |
+| `farmAnimals`     | `farmAnimals()`                                      | Filter to farm animals only.                                                          |
+| `byBuilding`      | `byBuilding(building: string)`                       | Filter farm animals by required building (case-insensitive, e.g. `'Coop'`, `'Barn'`). |
+| `byHarvestMethod` | `byHarvestMethod(method: 'drop' \| 'tool' \| 'dig')` | Filter farm animals by how their product is harvested.                                |
+| `purchasable`     | `purchasable()`                                      | Filter to farm animals that have a purchase price.                                    |
 
 ## Examples
 
@@ -157,11 +157,15 @@ import { animals, isFarmAnimal } from 'stardew-valley-data'
 
 const barnAnimals = animals().byBuilding('Barn').get()
 
-barnAnimals.forEach(a => {
+barnAnimals.forEach((a) => {
   if (isFarmAnimal(a)) {
-    console.log(`${a.name}: produces ${a.produce.name} (${a.produce.sellPrice}g)`)
+    console.log(
+      `${a.name}: produces ${a.produce.name} (${a.produce.sellPrice}g)`,
+    )
     if (a.deluxeProduce) {
-      console.log(`  Deluxe: ${a.deluxeProduce.name} (${a.deluxeProduce.sellPrice}g)`)
+      console.log(
+        `  Deluxe: ${a.deluxeProduce.name} (${a.deluxeProduce.sellPrice}g)`,
+      )
     }
   }
 })
@@ -178,7 +182,7 @@ const toolHarvest = animals().byHarvestMethod('tool').get()
 ```js
 const buyable = animals().purchasable().get()
 
-buyable.forEach(a => {
+buyable.forEach((a) => {
   if (isFarmAnimal(a)) {
     console.log(`${a.name}: ${a.purchasePrice}g`)
   }
@@ -189,5 +193,5 @@ buyable.forEach(a => {
 
 ```js
 const allPets = animals().pets().get()
-allPets.forEach(p => console.log(p.name))
+allPets.forEach((p) => console.log(p.name))
 ```

@@ -56,22 +56,22 @@ interface FruitTreeProduce {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `type` | `'fruit-tree'` | Discriminator for fruit trees. |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Tree name (e.g. `"Peach Tree"`). |
-| `saplingId` | `string` | ID of the sapling item. |
-| `saplingName` | `string` | Display name of the sapling. |
-| `saplingBuyPrices` | `SeedBuyPrice[]` | Array of `{ place, price }` for sapling purchase locations. |
-| `saplingSellPrice` | `number` | Sell price of the sapling. |
-| `seasons` | `Season[]` | Seasons the tree produces fruit. |
-| `daysToMature` | `number` | Days for the sapling to become a mature tree. |
-| `description` | `string` | In-game description. |
-| `image` | `string` | Path to tree image asset. |
-| `saplingImage` | `string` | Path to sapling image asset. |
-| `stages` | `Stage[]` | Growth stage images. |
-| `produce` | `FruitTreeProduce` | The fruit this tree produces, with sell price and optional energy/health data. |
+| Field              | Type               | Description                                                                    |
+| ------------------ | ------------------ | ------------------------------------------------------------------------------ |
+| `type`             | `'fruit-tree'`     | Discriminator for fruit trees.                                                 |
+| `id`               | `string`           | Unique identifier.                                                             |
+| `name`             | `string`           | Tree name (e.g. `"Peach Tree"`).                                               |
+| `saplingId`        | `string`           | ID of the sapling item.                                                        |
+| `saplingName`      | `string`           | Display name of the sapling.                                                   |
+| `saplingBuyPrices` | `SeedBuyPrice[]`   | Array of `{ place, price }` for sapling purchase locations.                    |
+| `saplingSellPrice` | `number`           | Sell price of the sapling.                                                     |
+| `seasons`          | `Season[]`         | Seasons the tree produces fruit.                                               |
+| `daysToMature`     | `number`           | Days for the sapling to become a mature tree.                                  |
+| `description`      | `string`           | In-game description.                                                           |
+| `image`            | `string`           | Path to tree image asset.                                                      |
+| `saplingImage`     | `string`           | Path to sapling image asset.                                                   |
+| `stages`           | `Stage[]`          | Growth stage images.                                                           |
+| `produce`          | `FruitTreeProduce` | The fruit this tree produces, with sell price and optional energy/health data. |
 
 ### WildTree
 
@@ -98,18 +98,18 @@ interface WildTreeTapper {
 }
 ```
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `type` | `'wild-tree'` | Discriminator for wild trees. |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Tree name (e.g. `"Oak Tree"`). |
-| `seedId` | `string` | ID of the seed dropped by this tree. |
-| `seedName` | `string` | Display name of the seed. |
-| `description` | `string` | In-game description. |
-| `image` | `string` | Path to tree image asset. |
-| `seedImage` | `string` | Path to seed image asset. |
-| `stages` | `Stage[]` | Growth stage images. |
-| `tapper` | `WildTreeTapper \| undefined` | Product obtained when a tapper is placed on this tree. |
+| Field         | Type                          | Description                                            |
+| ------------- | ----------------------------- | ------------------------------------------------------ |
+| `type`        | `'wild-tree'`                 | Discriminator for wild trees.                          |
+| `id`          | `string`                      | Unique identifier.                                     |
+| `name`        | `string`                      | Tree name (e.g. `"Oak Tree"`).                         |
+| `seedId`      | `string`                      | ID of the seed dropped by this tree.                   |
+| `seedName`    | `string`                      | Display name of the seed.                              |
+| `description` | `string`                      | In-game description.                                   |
+| `image`       | `string`                      | Path to tree image asset.                              |
+| `seedImage`   | `string`                      | Path to seed image asset.                              |
+| `stages`      | `Stage[]`                     | Growth stage images.                                   |
+| `tapper`      | `WildTreeTapper \| undefined` | Product obtained when a tapper is placed on this tree. |
 
 ## Query Methods
 
@@ -117,27 +117,27 @@ The `trees()` function returns a `TreeQuery` instance. All methods return a new 
 
 ### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Tree[]` | Return all results as an array. |
-| `.first()` | `Tree \| undefined` | Return the first result. |
-| `.find(id)` | `Tree \| undefined` | Find a tree by exact ID. |
+| Method              | Returns             | Description                             |
+| ------------------- | ------------------- | --------------------------------------- |
+| `.get()`            | `Tree[]`            | Return all results as an array.         |
+| `.first()`          | `Tree \| undefined` | Return the first result.                |
+| `.find(id)`         | `Tree \| undefined` | Find a tree by exact ID.                |
 | `.findByName(name)` | `Tree \| undefined` | Find a tree by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`            | Return the number of results.           |
 
 ### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `fruitTrees` | `fruitTrees()` | Filter to fruit trees only. |
-| `wildTrees` | `wildTrees()` | Filter to wild trees only. |
-| `bySeason` | `bySeason(season: Season)` | Filter fruit trees by producing season. Wild trees are excluded. |
-| `tappable` | `tappable()` | Filter to wild trees that can be tapped. |
+| Method       | Signature                  | Description                                                      |
+| ------------ | -------------------------- | ---------------------------------------------------------------- |
+| `fruitTrees` | `fruitTrees()`             | Filter to fruit trees only.                                      |
+| `wildTrees`  | `wildTrees()`              | Filter to wild trees only.                                       |
+| `bySeason`   | `bySeason(season: Season)` | Filter fruit trees by producing season. Wild trees are excluded. |
+| `tappable`   | `tappable()`               | Filter to wild trees that can be tapped.                         |
 
 ### Sort Methods
 
-| Method | Signature | Default | Description |
-| --- | --- | --- | --- |
+| Method                   | Signature                                         | Default  | Description                                                                                                                   |
+| ------------------------ | ------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `sortByProduceSellPrice` | `sortByProduceSellPrice(order?: 'asc' \| 'desc')` | `'desc'` | Sort by produce sell price. Uses `produce.sellPrice` for fruit trees and `tapper.sellPrice` for wild trees (0 if untappable). |
 
 ## Examples
@@ -147,12 +147,9 @@ The `trees()` function returns a `TreeQuery` instance. All methods return a new 
 ```js
 import { trees } from 'stardew-valley-data'
 
-const valuable = trees()
-  .fruitTrees()
-  .sortByProduceSellPrice()
-  .get()
+const valuable = trees().fruitTrees().sortByProduceSellPrice().get()
 
-valuable.forEach(t => {
+valuable.forEach((t) => {
   console.log(`${t.name}: ${t.produce.sellPrice}g per fruit`)
 })
 ```
@@ -168,7 +165,7 @@ const summerFruit = trees().bySeason('summer').get()
 ```js
 const tapped = trees().tappable().get()
 
-tapped.forEach(t => {
+tapped.forEach((t) => {
   if (t.type === 'wild-tree' && t.tapper) {
     console.log(`${t.name} produces ${t.tapper.name} (${t.tapper.sellPrice}g)`)
   }

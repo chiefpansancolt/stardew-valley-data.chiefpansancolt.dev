@@ -52,23 +52,23 @@ interface Festival {
 
 #### SeasonData Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `'spring' \| 'summer' \| 'fall' \| 'winter'` | Season identifier. |
-| `name` | `string` | Display name. |
-| `totalDays` | `number` | Number of days in the season. |
-| `image` | `string` | Path to season image asset. |
-| `festivals` | `Festival[]` | Festivals that occur during this season. |
+| Field       | Type                                         | Description                              |
+| ----------- | -------------------------------------------- | ---------------------------------------- |
+| `id`        | `'spring' \| 'summer' \| 'fall' \| 'winter'` | Season identifier.                       |
+| `name`      | `string`                                     | Display name.                            |
+| `totalDays` | `number`                                     | Number of days in the season.            |
+| `image`     | `string`                                     | Path to season image asset.              |
+| `festivals` | `Festival[]`                                 | Festivals that occur during this season. |
 
 #### Festival Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `name` | `string` | Festival name (e.g. `"Egg Festival"`). |
-| `startDay` | `number` | Day the festival begins. |
-| `endDay` | `number` | Day the festival ends. |
-| `image` | `string` | Path to festival image asset. |
-| `calendarIcon` | `string` | Path to the calendar icon asset. |
+| Field          | Type     | Description                            |
+| -------------- | -------- | -------------------------------------- |
+| `name`         | `string` | Festival name (e.g. `"Egg Festival"`). |
+| `startDay`     | `number` | Day the festival begins.               |
+| `endDay`       | `number` | Day the festival ends.                 |
+| `image`        | `string` | Path to festival image asset.          |
+| `calendarIcon` | `string` | Path to the calendar icon asset.       |
 
 ### Season Query Methods
 
@@ -76,24 +76,26 @@ The `seasons()` function returns a `SeasonQuery` instance.
 
 #### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `SeasonData[]` | Return all results as an array. |
-| `.first()` | `SeasonData \| undefined` | Return the first result. |
-| `.find(id)` | `SeasonData \| undefined` | Find a season by exact ID. |
+| Method              | Returns                   | Description                               |
+| ------------------- | ------------------------- | ----------------------------------------- |
+| `.get()`            | `SeasonData[]`            | Return all results as an array.           |
+| `.first()`          | `SeasonData \| undefined` | Return the first result.                  |
+| `.find(id)`         | `SeasonData \| undefined` | Find a season by exact ID.                |
 | `.findByName(name)` | `SeasonData \| undefined` | Find a season by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`                  | Return the number of results.             |
 
 #### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
+| Method          | Signature         | Description                                        |
+| --------------- | ----------------- | -------------------------------------------------- |
 | `withFestivals` | `withFestivals()` | Filter to seasons that have at least one festival. |
 
 ### findFestival Helper
 
 ```ts
-function findFestival(name: string): { season: SeasonData; festival: Festival }[]
+function findFestival(
+  name: string,
+): { season: SeasonData; festival: Festival }[]
 ```
 
 Search for a festival by name across all seasons. Uses a case-insensitive substring match. Returns an array of matches, each with the parent season and the festival object.
@@ -127,15 +129,15 @@ interface Weather {
 
 #### Field Reference
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Weather name (e.g. `"Rain"`, `"Storm"`). |
-| `description` | `string` | In-game description of the weather. |
-| `seasons` | `Season[]` | Seasons this weather can occur in. |
-| `image` | `string` | Path to weather image asset. |
-| `watersCrops` | `boolean` | Whether this weather waters crops automatically. |
-| `special` | `boolean` | Whether this is a special/rare weather type. |
+| Field         | Type       | Description                                      |
+| ------------- | ---------- | ------------------------------------------------ |
+| `id`          | `string`   | Unique identifier.                               |
+| `name`        | `string`   | Weather name (e.g. `"Rain"`, `"Storm"`).         |
+| `description` | `string`   | In-game description of the weather.              |
+| `seasons`     | `Season[]` | Seasons this weather can occur in.               |
+| `image`       | `string`   | Path to weather image asset.                     |
+| `watersCrops` | `boolean`  | Whether this weather waters crops automatically. |
+| `special`     | `boolean`  | Whether this is a special/rare weather type.     |
 
 ### Weather Query Methods
 
@@ -143,21 +145,21 @@ The `weather()` function returns a `WeatherQuery` instance.
 
 #### Inherited Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `.get()` | `Weather[]` | Return all results as an array. |
-| `.first()` | `Weather \| undefined` | Return the first result. |
-| `.find(id)` | `Weather \| undefined` | Find by exact ID. |
+| Method              | Returns                | Description                      |
+| ------------------- | ---------------------- | -------------------------------- |
+| `.get()`            | `Weather[]`            | Return all results as an array.  |
+| `.first()`          | `Weather \| undefined` | Return the first result.         |
+| `.find(id)`         | `Weather \| undefined` | Find by exact ID.                |
 | `.findByName(name)` | `Weather \| undefined` | Find by name (case-insensitive). |
-| `.count()` | `number` | Return the number of results. |
+| `.count()`          | `number`               | Return the number of results.    |
 
 #### Filter Methods
 
-| Method | Signature | Description |
-| --- | --- | --- |
-| `bySeason` | `bySeason(season: Season)` | Filter to weather types that occur in the given season. |
-| `watersCrops` | `watersCrops()` | Filter to weather types that water crops automatically. |
-| `special` | `special()` | Filter to special or rare weather types. |
+| Method        | Signature                  | Description                                             |
+| ------------- | -------------------------- | ------------------------------------------------------- |
+| `bySeason`    | `bySeason(season: Season)` | Filter to weather types that occur in the given season. |
+| `watersCrops` | `watersCrops()`            | Filter to weather types that water crops automatically. |
+| `special`     | `special()`                | Filter to special or rare weather types.                |
 
 ## Examples
 
@@ -166,11 +168,13 @@ The `weather()` function returns a `WeatherQuery` instance.
 ```js
 import { seasons } from 'stardew-valley-data'
 
-seasons().get().forEach(s => {
-  s.festivals.forEach(f => {
-    console.log(`${s.name} ${f.startDay}-${f.endDay}: ${f.name}`)
+seasons()
+  .get()
+  .forEach((s) => {
+    s.festivals.forEach((f) => {
+      console.log(`${s.name} ${f.startDay}-${f.endDay}: ${f.name}`)
+    })
   })
-})
 ```
 
 ### Weather that waters crops in spring
@@ -178,17 +182,14 @@ seasons().get().forEach(s => {
 ```js
 import { weather } from 'stardew-valley-data'
 
-const springRain = weather()
-  .bySeason('spring')
-  .watersCrops()
-  .get()
+const springRain = weather().bySeason('spring').watersCrops().get()
 
-springRain.forEach(w => console.log(w.name))
+springRain.forEach((w) => console.log(w.name))
 ```
 
 ### Special weather types
 
 ```js
 const special = weather().special().get()
-special.forEach(w => console.log(`${w.name}: ${w.description}`))
+special.forEach((w) => console.log(`${w.name}: ${w.description}`))
 ```

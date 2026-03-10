@@ -205,11 +205,11 @@ The `QueryBase<T>` class is generic over any type `T` that has `id: string` and 
 import { crops } from 'stardew-valley-data'
 
 // crops() returns CropQuery which extends QueryBase<Crop>
-const result = crops().bySeason('summer').get()   // Crop[]
-const first = crops().first()                      // Crop | undefined
-const found = crops().find('248')                  // Crop | undefined
-const byName = crops().findByName('Melon')         // Crop | undefined
-const count = crops().count()                      // number
+const result = crops().bySeason('summer').get() // Crop[]
+const first = crops().first() // Crop | undefined
+const found = crops().find('248') // Crop | undefined
+const byName = crops().findByName('Melon') // Crop | undefined
+const count = crops().count() // number
 ```
 
 When you pass custom source data to a factory function, the types flow through automatically:
@@ -217,9 +217,11 @@ When you pass custom source data to a factory function, the types flow through a
 ```ts
 import { crops, type Crop } from 'stardew-valley-data'
 
-const customData: Crop[] = [/* your data */]
-const query = crops(customData)      // CropQuery (extends QueryBase<Crop>)
-const results = query.get()          // Crop[]
+const customData: Crop[] = [
+  /* your data */
+]
+const query = crops(customData) // CropQuery (extends QueryBase<Crop>)
+const results = query.get() // Crop[]
 ```
 
 ---
@@ -232,10 +234,7 @@ Use the exported types to write strongly-typed functions:
 import { crops, type Crop, type Season } from 'stardew-valley-data'
 
 function getMostValuableCrop(season: Season): Crop | undefined {
-  return crops()
-    .bySeason(season)
-    .sortBySellPrice('desc')
-    .first()
+  return crops().bySeason(season).sortBySellPrice('desc').first()
 }
 
 function formatCrop(crop: Crop): string {
@@ -248,14 +247,18 @@ function formatCrop(crop: Crop): string {
 ### Working with search results
 
 ```ts
-import { search, type SearchResult, type SearchResultKind } from 'stardew-valley-data'
+import {
+  search,
+  type SearchResult,
+  type SearchResultKind,
+} from 'stardew-valley-data'
 
 function findItems(query: string, kind?: SearchResultKind): SearchResult[] {
   return kind ? search(query, [kind]) : search(query)
 }
 
 const results = findItems('Melon', 'crop')
-results.forEach(r => {
+results.forEach((r) => {
   console.log(`[${r.kind}] ${r.name} - ${r.sellPrice ?? 'N/A'}g`)
 })
 ```
@@ -263,7 +266,11 @@ results.forEach(r => {
 ### Working with calculator results
 
 ```ts
-import { qualityCalculator, type QualityPrice, type QualityEnergyHealth } from 'stardew-valley-data'
+import {
+  qualityCalculator,
+  type QualityPrice,
+  type QualityEnergyHealth,
+} from 'stardew-valley-data'
 
 const calc = qualityCalculator()
 const prices: QualityPrice[] = calc.sellPrices(250)
@@ -276,18 +283,18 @@ const stats: QualityEnergyHealth[] = calc.energyHealth(113, 50)
 
 Each module exports its own types. Here are some commonly used ones:
 
-| Module | Key types |
-| --- | --- |
-| Crops | `Crop`, `HarvestQuantity` |
-| Fish | `Fish`, `FishCatchType`, `FishWeather` |
-| Villagers | `Villager` |
-| Animals | `Animal`, `Pet`, `FarmAnimal`, `AnimalProduce` |
-| Trees | `Tree`, `FruitTree`, `WildTree`, `FruitTreeProduce`, `WildTreeTapper` |
-| Search | `SearchResult`, `SearchResultKind` |
-| Calculator | `QualityPrice`, `QualityEnergyHealth` |
-| Save file | `SaveData`, `SavePlayer`, `SaveFarm`, `SaveDate`, and 30+ more |
-| Seasons | `SeasonData`, `Festival` |
-| Common | `Season`, `Quality`, `EnergyHealth`, `SeedBuyPrice`, `Ingredient`, `Stage`, `GiftPreferences` |
+| Module     | Key types                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------- |
+| Crops      | `Crop`, `HarvestQuantity`                                                                     |
+| Fish       | `Fish`, `FishCatchType`, `FishWeather`                                                        |
+| Villagers  | `Villager`                                                                                    |
+| Animals    | `Animal`, `Pet`, `FarmAnimal`, `AnimalProduce`                                                |
+| Trees      | `Tree`, `FruitTree`, `WildTree`, `FruitTreeProduce`, `WildTreeTapper`                         |
+| Search     | `SearchResult`, `SearchResultKind`                                                            |
+| Calculator | `QualityPrice`, `QualityEnergyHealth`                                                         |
+| Save file  | `SaveData`, `SavePlayer`, `SaveFarm`, `SaveDate`, and 30+ more                                |
+| Seasons    | `SeasonData`, `Festival`                                                                      |
+| Common     | `Season`, `Quality`, `EnergyHealth`, `SeedBuyPrice`, `Ingredient`, `Stage`, `GiftPreferences` |
 
 All types are importable from the main `'stardew-valley-data'` entry point.
 

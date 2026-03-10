@@ -32,12 +32,12 @@ const snakeBones = fieldOfficeDonations().byCollection('snake').get()
 
 Each collection conforms to the `FieldOfficeCollectionData` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `FieldOfficeCollection` | Collection identifier (see below). |
-| `name` | `string` | Display name of the collection. |
-| `reward` | `FieldOfficeReward` | Reward for completing the collection (see below). |
-| `donations` | `FieldOfficeDonation[]` | Array of donation items in this collection. |
+| Field       | Type                    | Description                                       |
+| ----------- | ----------------------- | ------------------------------------------------- |
+| `id`        | `FieldOfficeCollection` | Collection identifier (see below).                |
+| `name`      | `string`                | Display name of the collection.                   |
+| `reward`    | `FieldOfficeReward`     | Reward for completing the collection (see below). |
+| `donations` | `FieldOfficeDonation[]` | Array of donation items in this collection.       |
 
 ### FieldOfficeCollection
 
@@ -45,23 +45,23 @@ Each collection conforms to the `FieldOfficeCollectionData` interface:
 
 ### FieldOfficeReward
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `goldenWalnuts` | `number` | Number of Golden Walnuts awarded. |
-| `item` | `{ id: string; name: string; image: string } \| undefined` | Optional bonus item reward. |
+| Field           | Type                                                       | Description                       |
+| --------------- | ---------------------------------------------------------- | --------------------------------- |
+| `goldenWalnuts` | `number`                                                   | Number of Golden Walnuts awarded. |
+| `item`          | `{ id: string; name: string; image: string } \| undefined` | Optional bonus item reward.       |
 
 ### FieldOfficeDonation
 
 Each individual donation item conforms to the `FieldOfficeDonation` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier for the donation item. |
-| `name` | `string` | Display name of the fossil. |
-| `description` | `string` | In-game description of the fossil. |
-| `image` | `string` | Path to the fossil image. |
-| `collection` | `FieldOfficeCollection` | Which collection this fossil belongs to. |
-| `quantity` | `number` | Number of this item needed for the donation. |
+| Field         | Type                    | Description                                  |
+| ------------- | ----------------------- | -------------------------------------------- |
+| `id`          | `string`                | Unique identifier for the donation item.     |
+| `name`        | `string`                | Display name of the fossil.                  |
+| `description` | `string`                | In-game description of the fossil.           |
+| `image`       | `string`                | Path to the fossil image.                    |
+| `collection`  | `FieldOfficeCollection` | Which collection this fossil belongs to.     |
+| `quantity`    | `number`                | Number of this item needed for the donation. |
 
 ## Query Methods
 
@@ -69,48 +69,48 @@ Each individual donation item conforms to the `FieldOfficeDonation` interface:
 
 `FieldOfficeQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `FieldOfficeCollectionData[]` | Return all results as an array. |
-| `first()` | `FieldOfficeCollectionData \| undefined` | Return the first result. |
-| `find(id)` | `FieldOfficeCollectionData \| undefined` | Find a collection by exact ID. |
+| Method             | Returns                                  | Description                                   |
+| ------------------ | ---------------------------------------- | --------------------------------------------- |
+| `get()`            | `FieldOfficeCollectionData[]`            | Return all results as an array.               |
+| `first()`          | `FieldOfficeCollectionData \| undefined` | Return the first result.                      |
+| `find(id)`         | `FieldOfficeCollectionData \| undefined` | Find a collection by exact ID.                |
 | `findByName(name)` | `FieldOfficeCollectionData \| undefined` | Find a collection by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                                 | Return the number of results.                 |
 
 #### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method             | Returns            | Description                            |
+| ------------------ | ------------------ | -------------------------------------- |
 | `byCollection(id)` | `FieldOfficeQuery` | Filter to a specific collection by ID. |
 
 #### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method               | Returns            | Description                                                      |
+| -------------------- | ------------------ | ---------------------------------------------------------------- |
 | `sortByName(order?)` | `FieldOfficeQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ### FieldOfficeDonationQuery
 
 `FieldOfficeDonationQuery` extends `QueryBase` and inherits the same five terminal methods.
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `FieldOfficeDonation[]` | Return all results as an array. |
-| `first()` | `FieldOfficeDonation \| undefined` | Return the first result. |
-| `find(id)` | `FieldOfficeDonation \| undefined` | Find a donation by exact ID. |
+| Method             | Returns                            | Description                                 |
+| ------------------ | ---------------------------------- | ------------------------------------------- |
+| `get()`            | `FieldOfficeDonation[]`            | Return all results as an array.             |
+| `first()`          | `FieldOfficeDonation \| undefined` | Return the first result.                    |
+| `find(id)`         | `FieldOfficeDonation \| undefined` | Find a donation by exact ID.                |
 | `findByName(name)` | `FieldOfficeDonation \| undefined` | Find a donation by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                           | Return the number of results.               |
 
 #### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method             | Returns                    | Description                                                |
+| ------------------ | -------------------------- | ---------------------------------------------------------- |
 | `byCollection(id)` | `FieldOfficeDonationQuery` | Filter to donations belonging to the specified collection. |
 
 #### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method               | Returns                    | Description                                                      |
+| -------------------- | -------------------------- | ---------------------------------------------------------------- |
 | `sortByName(order?)` | `FieldOfficeDonationQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples

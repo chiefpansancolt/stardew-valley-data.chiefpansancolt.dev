@@ -27,47 +27,52 @@ const item = casino().findByName('Statue Of Endless Fortune')
 
 Each item conforms to the `CasinoItem` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the item. |
-| `price` | `number` | Price in Qi Coins. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the item's image. |
-| `category` | `CasinoCategory` | Item category. |
+| Field         | Type             | Description               |
+| ------------- | ---------------- | ------------------------- |
+| `id`          | `string`         | Unique identifier.        |
+| `name`        | `string`         | Display name of the item. |
+| `price`       | `number`         | Price in Qi Coins.        |
+| `description` | `string`         | In-game description text. |
+| `image`       | `string`         | Path to the item's image. |
+| `category`    | `CasinoCategory` | Item category.            |
 
 ### CasinoCategory
 
 ```ts
-type CasinoCategory = 'furniture' | 'hat' | 'scarecrow' | 'consumable' | 'decoration'
+type CasinoCategory =
+  | 'furniture'
+  | 'hat'
+  | 'scarecrow'
+  | 'consumable'
+  | 'decoration'
 ```
 
 ## Query Methods
 
 `CasinoQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `CasinoItem[]` | Return all results as an array. |
-| `first()` | `CasinoItem \| undefined` | Return the first result. |
-| `find(id)` | `CasinoItem \| undefined` | Find an item by exact ID. |
+| Method             | Returns                   | Description                              |
+| ------------------ | ------------------------- | ---------------------------------------- |
+| `get()`            | `CasinoItem[]`            | Return all results as an array.          |
+| `first()`          | `CasinoItem \| undefined` | Return the first result.                 |
+| `find(id)`         | `CasinoItem \| undefined` | Find an item by exact ID.                |
 | `findByName(name)` | `CasinoItem \| undefined` | Find an item by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                  | Return the number of results.            |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `byCategory(category)` | `CasinoQuery` | Filter to items in the given category. |
-| `furniture()` | `CasinoQuery` | Filter to furniture and decoration items. |
-| `consumables()` | `CasinoQuery` | Filter to consumable items (fireworks, magnet, warp totem, hardwood fence). |
+| Method                 | Returns       | Description                                                                 |
+| ---------------------- | ------------- | --------------------------------------------------------------------------- |
+| `byCategory(category)` | `CasinoQuery` | Filter to items in the given category.                                      |
+| `furniture()`          | `CasinoQuery` | Filter to furniture and decoration items.                                   |
+| `consumables()`        | `CasinoQuery` | Filter to consumable items (fireworks, magnet, warp totem, hardwood fence). |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByPrice(order?)` | `CasinoQuery` | Sort by Qi Coin price. Pass `'asc'` (default) or `'desc'`. |
-| `sortByName(order?)` | `CasinoQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
+| Method                | Returns       | Description                                                      |
+| --------------------- | ------------- | ---------------------------------------------------------------- |
+| `sortByPrice(order?)` | `CasinoQuery` | Sort by Qi Coin price. Pass `'asc'` (default) or `'desc'`.       |
+| `sortByName(order?)`  | `CasinoQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
 
@@ -81,7 +86,9 @@ const categories = ['furniture', 'hat', 'scarecrow', 'consumable', 'decoration']
 categories.forEach((cat) => {
   const items = casino().byCategory(cat).get()
   console.log(`\n${cat.toUpperCase()} (${items.length}):`)
-  items.forEach((item) => console.log(`  ${item.name} - ${item.price} Qi Coins`))
+  items.forEach((item) =>
+    console.log(`  ${item.name} - ${item.price} Qi Coins`),
+  )
 })
 ```
 

@@ -29,50 +29,50 @@ const building = wizard().findByName('Junimo Hut')
 
 Each building conforms to the `WizardBuilding` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Unique identifier. |
-| `name` | `string` | Display name of the building. |
-| `buildCost` | `number` | Gold cost to build. |
-| `materials` | `WizardBuildingMaterial[]` | Array of materials required for construction. |
-| `description` | `string` | In-game description text. |
-| `image` | `string` | Path to the building's image. |
-| `availability` | `string \| undefined` | Special availability condition, if any. |
+| Field          | Type                       | Description                                   |
+| -------------- | -------------------------- | --------------------------------------------- |
+| `id`           | `string`                   | Unique identifier.                            |
+| `name`         | `string`                   | Display name of the building.                 |
+| `buildCost`    | `number`                   | Gold cost to build.                           |
+| `materials`    | `WizardBuildingMaterial[]` | Array of materials required for construction. |
+| `description`  | `string`                   | In-game description text.                     |
+| `image`        | `string`                   | Path to the building's image.                 |
+| `availability` | `string \| undefined`      | Special availability condition, if any.       |
 
 ### WizardBuildingMaterial
 
 Each material requirement conforms to the `WizardBuildingMaterial` interface:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `itemId` | `string` | ID of the required material item. |
-| `itemName` | `string` | Display name of the material. |
-| `amount` | `number` | Quantity of the material required. |
-| `image` | `string` | Path to the material's image. |
+| Field      | Type     | Description                        |
+| ---------- | -------- | ---------------------------------- |
+| `itemId`   | `string` | ID of the required material item.  |
+| `itemName` | `string` | Display name of the material.      |
+| `amount`   | `number` | Quantity of the material required. |
+| `image`    | `string` | Path to the material's image.      |
 
 ## Query Methods
 
 `WizardQuery` extends `QueryBase` and inherits five terminal methods:
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `get()` | `WizardBuilding[]` | Return all results as an array. |
-| `first()` | `WizardBuilding \| undefined` | Return the first result. |
-| `find(id)` | `WizardBuilding \| undefined` | Find a building by exact ID. |
+| Method             | Returns                       | Description                                 |
+| ------------------ | ----------------------------- | ------------------------------------------- |
+| `get()`            | `WizardBuilding[]`            | Return all results as an array.             |
+| `first()`          | `WizardBuilding \| undefined` | Return the first result.                    |
+| `find(id)`         | `WizardBuilding \| undefined` | Find a building by exact ID.                |
 | `findByName(name)` | `WizardBuilding \| undefined` | Find a building by name (case-insensitive). |
-| `count()` | `number` | Return the number of results. |
+| `count()`          | `number`                      | Return the number of results.               |
 
 ### Filter Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
+| Method              | Returns       | Description                                                 |
+| ------------------- | ------------- | ----------------------------------------------------------- |
 | `alwaysAvailable()` | `WizardQuery` | Filter to buildings with no special availability condition. |
 
 ### Sort Methods
 
-| Method | Returns | Description |
-| --- | --- | --- |
-| `sortByCost(order?)` | `WizardQuery` | Sort by build cost. Pass `'asc'` (default) or `'desc'`. |
+| Method               | Returns       | Description                                                      |
+| -------------------- | ------------- | ---------------------------------------------------------------- |
+| `sortByCost(order?)` | `WizardQuery` | Sort by build cost. Pass `'asc'` (default) or `'desc'`.          |
 | `sortByName(order?)` | `WizardQuery` | Sort alphabetically by name. Pass `'asc'` (default) or `'desc'`. |
 
 ## Examples
@@ -82,12 +82,15 @@ Each material requirement conforms to the `WizardBuildingMaterial` interface:
 ```js
 import { wizard } from 'stardew-valley-data'
 
-wizard().sortByCost().get().forEach((building) => {
-  console.log(`${building.name} - ${building.buildCost}g`)
-  building.materials.forEach((mat) => {
-    console.log(`  ${mat.amount}x ${mat.itemName}`)
+wizard()
+  .sortByCost()
+  .get()
+  .forEach((building) => {
+    console.log(`${building.name} - ${building.buildCost}g`)
+    building.materials.forEach((mat) => {
+      console.log(`  ${mat.amount}x ${mat.itemName}`)
+    })
   })
-})
 ```
 
 ### Find the cheapest building
@@ -111,10 +114,12 @@ if (cheapest) {
 ```js
 import { wizard } from 'stardew-valley-data'
 
-wizard().get().forEach((building) => {
-  const materialList = building.materials
-    .map((m) => `${m.amount}x ${m.itemName}`)
-    .join(', ')
-  console.log(`${building.name}: ${building.buildCost}g + ${materialList}`)
-})
+wizard()
+  .get()
+  .forEach((building) => {
+    const materialList = building.materials
+      .map((m) => `${m.amount}x ${m.itemName}`)
+      .join(', ')
+    console.log(`${building.name}: ${building.buildCost}g + ${materialList}`)
+  })
 ```
