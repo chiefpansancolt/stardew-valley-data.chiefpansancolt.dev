@@ -74,6 +74,12 @@ The package provides access to 68 data modules covering every aspect of Stardew 
 
 ---
 
+## Data sources
+
+All game data in this package was sourced from the [Stardew Valley Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki), the community-maintained encyclopedia for Stardew Valley.
+
+---
+
 ## Getting help
 
 ### Submit an issue
