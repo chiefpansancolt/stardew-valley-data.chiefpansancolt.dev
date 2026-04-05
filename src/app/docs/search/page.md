@@ -104,6 +104,7 @@ type SearchResultKind =
   | 'mining-node'
   | 'mineral-resource'
   | 'crafting-recipe'
+  | 'rarecrow'
 ```
 
 ---

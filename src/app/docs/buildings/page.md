@@ -30,18 +30,18 @@ const baseBuildings = buildings().base().sortByName().get()
 
 Each building record conforms to the `Building` interface:
 
-| Field         | Type                  | Description                                                               |
-| ------------- | --------------------- | ------------------------------------------------------------------------- |
-| `id`          | `string`              | Unique identifier for the building.                                       |
-| `name`        | `string`              | Display name of the building.                                             |
-| `description` | `string`              | In-game description of the building.                                      |
-| `builder`     | `'Robin' \| 'Wizard'` | The NPC who constructs this building.                                     |
-| `buildCost`   | `number`              | Gold cost to construct the building.                                      |
-| `buildDays`   | `number`              | Number of days required to complete construction.                         |
-| `materials`   | `BuildingMaterial[]`  | Array of materials required (see below).                                  |
-| `upgradeFrom` | `string \| null`      | ID of the building this upgrades from, or `null` for base buildings.      |
-| `magical`     | `boolean`             | Whether this is a magical building (constructed instantly by the Wizard). |
-| `image`       | `string`              | Path to the building image.                                               |
+| Field         | Type                 | Description                                                               |
+| ------------- | -------------------- | ------------------------------------------------------------------------- |
+| `id`          | `string`             | Unique identifier for the building.                                       |
+| `name`        | `string`             | Display name of the building.                                             |
+| `description` | `string`             | In-game description of the building.                                      |
+| `builder`     | `BuildingBuilder`    | The NPC who constructs this building (`'Robin'` or `'Wizard'`).           |
+| `buildCost`   | `number`             | Gold cost to construct the building.                                      |
+| `buildDays`   | `number`             | Number of days required to complete construction.                         |
+| `materials`   | `BuildingMaterial[]` | Array of materials required (see below).                                  |
+| `upgradeFrom` | `string \| null`     | ID of the building this upgrades from, or `null` for base buildings.      |
+| `magical`     | `boolean`            | Whether this is a magical building (constructed instantly by the Wizard). |
+| `image`       | `string`             | Path to the building image.                                               |
 
 ### BuildingMaterial
 

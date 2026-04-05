@@ -72,6 +72,7 @@ interface FruitTreeProduce {
 | `saplingImage`     | `string`           | Path to sapling image asset.                                                   |
 | `stages`           | `Stage[]`          | Growth stage images.                                                           |
 | `produce`          | `FruitTreeProduce` | The fruit this tree produces, with sell price and optional energy/health data. |
+| `artisanUses`      | `ArtisanUses`      | Which artisan goods this tree's fruit can be used to produce.                  |
 
 ### WildTree
 
@@ -127,12 +128,13 @@ The `trees()` function returns a `TreeQuery` instance. All methods return a new 
 
 ### Filter Methods
 
-| Method       | Signature                  | Description                                                      |
-| ------------ | -------------------------- | ---------------------------------------------------------------- |
-| `fruitTrees` | `fruitTrees()`             | Filter to fruit trees only.                                      |
-| `wildTrees`  | `wildTrees()`              | Filter to wild trees only.                                       |
-| `bySeason`   | `bySeason(season: Season)` | Filter fruit trees by producing season. Wild trees are excluded. |
-| `tappable`   | `tappable()`               | Filter to wild trees that can be tapped.                         |
+| Method         | Signature                                         | Description                                                          |
+| -------------- | ------------------------------------------------- | -------------------------------------------------------------------- |
+| `fruitTrees`   | `fruitTrees()`                                    | Filter to fruit trees only.                                          |
+| `wildTrees`    | `wildTrees()`                                     | Filter to wild trees only.                                           |
+| `bySeason`     | `bySeason(season: Season)`                        | Filter fruit trees by producing season. Wild trees are excluded.     |
+| `tappable`     | `tappable()`                                      | Filter to wild trees that can be tapped.                             |
+| `byArtisanUse` | `byArtisanUse(use: keyof ArtisanUses): TreeQuery` | Filter to fruit trees whose produce can make the given artisan good. |
 
 ### Sort Methods
 

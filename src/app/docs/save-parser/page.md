@@ -124,6 +124,7 @@ interface SaveData {
   stardrops: SaveStardropEntry[]
   stats: SaveStats
   animals: SaveAnimal[]
+  fishPonds: SaveFishPond[]
   buildings: SaveBuilding[]
   cookingRecipes: SaveRecipeEntry[]
   craftingRecipes: SaveRecipeEntry[]
@@ -138,11 +139,15 @@ interface SaveData {
   walnuts: SaveWalnuts
   islandUpgrades: SaveIslandUpgrades
   children: SaveChild[]
-  pet: SavePet | null
+  pets: SavePet[]
+  horse: SaveHorse | null
   powers: SavePowers
   raccoons: SaveRaccoons
+  rarecrows: SaveRarecrows
   perfection: SavePerfection
   mineProgress: SaveMineProgress
+  communityCenter: SaveCommunityCenter
+  joja: SaveJoja
 }
 ```
 
@@ -164,11 +169,18 @@ interface SavePlayer {
   totalMoneyEarned: number
   spouse: string | null
   houseUpgradeLevel: number
+  luckLevel: number
+  maxItems: number
   maxHealth: number
   maxStamina: number
   skills: SaveSkills
   mastery: SaveMastery
+  toolLevels: SaveToolLevels
+  willyBackRoomInvitation: boolean
+  lostBooksFound: number
+  helpWantedQuests: number
   gameVersion: string
+  millisecondsPlayed: number
 }
 ```
 
@@ -228,7 +240,6 @@ interface SaveFriendship {
 
 ```ts
 interface SaveBundleData {
-  bundles: SaveBundleStatus[]
   rooms: SaveBundleRoom[]
   isJojaRoute: boolean
   isCCComplete: boolean
@@ -278,6 +289,89 @@ interface SaveMineProgress {
   deepestSkullCavernLevel: number
   hasRustyKey: boolean
   hasSkullKey: boolean
+}
+```
+
+### SaveFishPond
+
+```ts
+interface SaveFishPond {
+  buildingId: string
+  fishType: number
+  currentOccupants: number
+  maxOccupants: number
+}
+```
+
+### SaveHorse
+
+```ts
+interface SaveHorse {
+  name: string
+  type: 'horse'
+  id: string
+}
+```
+
+### SaveToolLevels
+
+```ts
+interface SaveToolLevels {
+  wateringCan: SaveToolLevel
+  pan: SaveToolLevel
+  pickaxe: SaveToolLevel
+  axe: SaveToolLevel
+  hoe: SaveToolLevel
+  trashCan: SaveToolLevel
+  fishingRod: SaveToolLevel
+  currentlyUpgrading: SaveUpgradingTool | null
+}
+
+interface SaveToolLevel {
+  level: number
+  enchantment: string | null
+}
+
+interface SaveUpgradingTool {
+  tool: 'wateringCan' | 'pan' | 'pickaxe' | 'axe' | 'hoe'
+  name: string
+}
+```
+
+### SaveCommunityCenter
+
+```ts
+interface SaveCommunityCenter {
+  unlocked: boolean
+  bundlesActive: boolean
+  completed: boolean
+  ceremonyAttended: boolean
+  jojaAbandoned: boolean
+  rooms: SaveCommunityCenterRooms
+}
+
+interface SaveCommunityCenterRooms {
+  boilerRoom: boolean
+  craftsRoom: boolean
+  pantry: boolean
+  fishTank: boolean
+  vault: boolean
+  bulletin: boolean
+}
+```
+
+### SaveJoja
+
+```ts
+interface SaveJoja {
+  isMember: boolean
+  completed: boolean
+  developments: SaveJojaDevelopment[]
+}
+
+interface SaveJojaDevelopment {
+  id: string
+  purchased: boolean
 }
 ```
 
@@ -349,8 +443,9 @@ function displayProgress(xml: string) {
   console.log(`Items shipped: ${save.itemsShipped.length} types`)
 
   // Bundles
-  const completedBundles = save.bundles.bundles.filter((b) => b.complete).length
-  const totalBundles = save.bundles.bundles.length
+  const allBundles = save.bundles.rooms.flatMap((r) => r.bundles)
+  const completedBundles = allBundles.filter((b) => b.complete).length
+  const totalBundles = allBundles.length
   console.log(`\nBundles: ${completedBundles}/${totalBundles}`)
   console.log(`Community Center complete: ${save.bundles.isCCComplete}`)
   console.log(`Joja route: ${save.bundles.isJojaRoute}`)
@@ -374,6 +469,12 @@ function checkPerfection(xml: string) {
   console.log(`  Deepest mine level: ${mineProgress.deepestMineLevel}`)
   console.log(`  Deepest skull cavern: ${mineProgress.deepestSkullCavernLevel}`)
   console.log(`  Golden walnuts: ${walnuts.found}`)
+  if (save.pets.length > 0) {
+    console.log(`  Pet: ${save.pets[0].name} (${save.pets[0].type})`)
+  }
+  if (save.horse) {
+    console.log(`  Horse: ${save.horse.name}`)
+  }
 }
 ```
 
@@ -397,6 +498,7 @@ The following types are all importable from `'stardew-valley-data'`:
 | `SaveMuseum` / `SaveCollectionEntry`                                                             | Museum donations and collections       |
 | `SaveFriendship`                                                                                 | NPC friendship data                    |
 | `SaveAnimal`                                                                                     | Farm animal                            |
+| `SaveFishPond`                                                                                   | Fish pond building with occupant count |
 | `SaveBuilding`                                                                                   | Farm building                          |
 | `SaveQuest`                                                                                      | Active quest                           |
 | `SaveStardropEntry`                                                                              | Stardrop collection status             |
@@ -410,10 +512,15 @@ The following types are all importable from `'stardew-valley-data'`:
 | `SaveIslandUpgrades`                                                                             | Ginger Island unlocks                  |
 | `SaveChild`                                                                                      | Player's child                         |
 | `SavePet`                                                                                        | Player's pet                           |
+| `SaveHorse`                                                                                      | Player's horse                         |
+| `SaveToolLevels` / `SaveToolLevel` / `SaveUpgradingTool`                                         | Tool upgrade levels and enchantments   |
 | `SavePowers` / `SavePowerEntry`                                                                  | Powers and special items               |
 | `SaveRaccoons`                                                                                   | Raccoon quest progress                 |
+| `SaveRarecrows`                                                                                  | Placed rarecrow IDs                    |
 | `SavePerfection`                                                                                 | Perfection tracker                     |
 | `SaveMineProgress`                                                                               | Mine and Skull Cavern progress         |
+| `SaveCommunityCenter` / `SaveCommunityCenterRooms`                                               | Community Center completion status     |
+| `SaveJoja` / `SaveJojaDevelopment`                                                               | Joja membership and development status |
 | `SaveStats`                                                                                      | Lifetime gameplay statistics           |
 | `VersionRange`                                                                                   | Game version to API version mapping    |
 

@@ -78,6 +78,7 @@ export const navigation = [
       { title: 'Tools', href: '/docs/tools' },
       { title: 'Footwear', href: '/docs/footwear' },
       { title: 'Hats', href: '/docs/hats' },
+      { title: 'Rarecrows', href: '/docs/rarecrows' },
       { title: 'Special items', href: '/docs/special-items' },
     ],
   },

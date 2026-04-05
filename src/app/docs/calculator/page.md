@@ -246,6 +246,176 @@ melonStats.forEach((s) => {
 
 ---
 
+## `artisanCalculator()`
+
+```ts
+function artisanCalculator(): ArtisanCalculator
+```
+
+Calculates sell prices and energy/health values for artisan goods. Each method takes the base values of the source ingredient.
+
+### Methods
+
+| Method           | Signature                                                                        | Formula                                                             |
+| ---------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `roe`            | `roe(baseFishPrice: number): ArtisanResult`                                      | `30 + Math.floor(baseFishPrice / 2)`                                |
+| `agedRoe`        | `agedRoe(baseFishPrice: number): ArtisanResult`                                  | `60 + baseFishPrice`                                                |
+| `honey`          | `honey(baseFlowerPrice: number): ArtisanResult`                                  | `100 + (baseFlowerPrice * 2)` — pass `0` for wild honey             |
+| `wine`           | `wine(baseFruitPrice, baseEnergy, baseHealth): ArtisanEnergyResult`              | sell `Math.floor(baseFruitPrice * 3)`, energy/health `×1.75`        |
+| `juice`          | `juice(basePrice, baseEnergy, baseHealth): ArtisanEnergyResult`                  | sell `Math.floor(basePrice * 2.25)`, energy/health `×2`             |
+| `pickles`        | `pickles(basePrice, baseEnergy, baseHealth): ArtisanEnergyResult`                | sell `Math.floor(basePrice * 2) + 50`, energy/health `×1.75`        |
+| `jelly`          | `jelly(baseFruitPrice, baseEnergy, baseHealth): ArtisanEnergyResult`             | sell `Math.floor(baseFruitPrice * 2) + 50`, energy/health `×2`      |
+| `driedMushrooms` | `driedMushrooms(baseMushroomPrice, baseEnergy, baseHealth): ArtisanEnergyResult` | sell `Math.floor(baseMushroomPrice * 7.5) + 25`, energy/health `×3` |
+| `driedFruit`     | `driedFruit(baseFruitPrice, baseEnergy, baseHealth): ArtisanEnergyResult`        | sell `Math.floor(baseFruitPrice * 7.5)`, energy/health `×3`         |
+| `smokedFish`     | `smokedFish(baseFishPrice, baseEnergy, baseHealth): ArtisanEnergyResult`         | sell `Math.floor(baseFishPrice * 2)`, energy/health `×1.5`          |
+
+### Return types
+
+```ts
+interface ArtisanResult {
+  sellPrice: number
+}
+
+interface ArtisanEnergyResult {
+  sellPrice: number
+  energy: number
+  health: number
+}
+```
+
+### Example
+
+```ts
+import { artisanCalculator, crops } from 'stardew-valley-data'
+
+const calc = artisanCalculator()
+const melon = crops().findByName('Melon')
+
+if (melon) {
+  const wine = calc.wine(
+    melon.cropSellPrice,
+    melon.energyHealth!.energy,
+    melon.energyHealth!.health,
+  )
+  console.log(`Melon Wine: ${wine.sellPrice}g, ${wine.energy} energy`)
+
+  const jelly = calc.jelly(
+    melon.cropSellPrice,
+    melon.energyHealth!.energy,
+    melon.energyHealth!.health,
+  )
+  console.log(`Melon Jelly: ${jelly.sellPrice}g`)
+}
+```
+
+---
+
+## `professionCalculator()`
+
+```ts
+function professionCalculator(): ProfessionCalculator
+```
+
+Calculates sell prices with profession bonuses applied. Each method takes a base sell price and returns the adjusted value.
+
+### Methods
+
+| Method       | Signature                           | Multiplier |
+| ------------ | ----------------------------------- | ---------- |
+| `artisan`    | `artisan(price: number): number`    | `×1.4`     |
+| `rancher`    | `rancher(price: number): number`    | `×1.2`     |
+| `tiller`     | `tiller(price: number): number`     | `×1.1`     |
+| `blacksmith` | `blacksmith(price: number): number` | `×1.5`     |
+| `gemologist` | `gemologist(price: number): number` | `×1.3`     |
+| `tapper`     | `tapper(price: number): number`     | `×1.25`    |
+| `fisher`     | `fisher(price: number): number`     | `×1.25`    |
+| `angler`     | `angler(price: number): number`     | `×1.5`     |
+
+All results are `Math.floor`ed.
+
+### Example
+
+```ts
+import { professionCalculator, crops } from 'stardew-valley-data'
+
+const calc = professionCalculator()
+const parsnip = crops().findByName('Parsnip')
+
+if (parsnip) {
+  const base = parsnip.cropSellPrice
+  console.log(`Base: ${base}g`)
+  console.log(`Tiller: ${calc.tiller(base)}g`)
+  console.log(`Artisan (pickles): ${calc.artisan(calc.tiller(base))}g`)
+}
+```
+
+---
+
+## `knowledgeCalculator()`
+
+```ts
+function knowledgeCalculator(): KnowledgeCalculator
+```
+
+Calculates sell prices with special knowledge bonuses (Bear's Knowledge, Spring Onion Mastery).
+
+### Methods
+
+| Method               | Signature                                   | Formula                 |
+| -------------------- | ------------------------------------------- | ----------------------- |
+| `springOnionMastery` | `springOnionMastery(price: number): number` | `Math.floor(price * 5)` |
+| `bearsKnowledge`     | `bearsKnowledge(price: number): number`     | `Math.floor(price * 3)` |
+
+### Example
+
+```ts
+import { knowledgeCalculator, forageables } from 'stardew-valley-data'
+
+const calc = knowledgeCalculator()
+const springOnion = forageables().findByName('Spring Onion')
+
+if (springOnion) {
+  console.log(`Base: ${springOnion.sellPrice}g`)
+  console.log(
+    `With mastery: ${calc.springOnionMastery(springOnion.sellPrice)}g`,
+  )
+}
+```
+
+---
+
+## `jojaParrotCalculator()`
+
+```ts
+function jojaParrotCalculator(): JojaParrotCalculator
+```
+
+Calculates the gold cost to purchase remaining Golden Walnuts from the Joja Parrot. Each unfound walnut costs 10,000g, and all remaining walnuts are delivered after sleeping.
+
+### Methods & getters
+
+| Member                    | Type                               | Description                            |
+| ------------------------- | ---------------------------------- | -------------------------------------- |
+| `cost(walnutsFound)`      | `(walnutsFound: number) => number` | Gold cost to buy all remaining walnuts |
+| `remaining(walnutsFound)` | `(walnutsFound: number) => number` | Number of walnuts still unfound        |
+| `total`                   | `number` (getter)                  | Total Golden Walnuts in the game (130) |
+| `costPerWalnut`           | `number` (getter)                  | Cost per individual walnut (10,000g)   |
+
+### Example
+
+```ts
+import { jojaParrotCalculator } from 'stardew-valley-data'
+
+const calc = jojaParrotCalculator()
+const found = 87
+
+console.log(`Total walnuts: ${calc.total}`)
+console.log(`Walnuts remaining: ${calc.remaining(found)}`)
+console.log(`Cost to buy all remaining: ${calc.cost(found).toLocaleString()}g`)
+```
+
+---
+
 ## Next steps
 
 - Learn about the [search utility](/docs/search) for finding items across all modules

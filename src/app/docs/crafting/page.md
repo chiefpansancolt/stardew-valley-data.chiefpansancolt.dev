@@ -65,21 +65,21 @@ Each crafting recipe conforms to the `CraftingRecipe` interface:
 
 `CraftingQuery` extends `QueryBase` and inherits five terminal methods shared by all query builders:
 
-| Method             | Returns                       | Description                               |
-| ------------------ | ----------------------------- | ----------------------------------------- |
-| `get()`            | `CraftingRecipe[]`            | Return all results as an array.           |
-| `first()`          | `CraftingRecipe \| undefined` | Return the first result.                  |
-| `find(id)`         | `CraftingRecipe \| undefined` | Find a recipe by exact ID.                |
-| `findByName(name)` | `CraftingRecipe \| undefined` | Find a recipe by name (case-insensitive). |
-| `count()`          | `number`                      | Return the number of results.             |
+| Method               | Returns                       | Description                                                                   |
+| -------------------- | ----------------------------- | ----------------------------------------------------------------------------- |
+| `get()`              | `CraftingRecipe[]`            | Return all results as an array.                                               |
+| `first()`            | `CraftingRecipe \| undefined` | Return the first result.                                                      |
+| `find(id)`           | `CraftingRecipe \| undefined` | Find a recipe by exact ID.                                                    |
+| `findByName(name)`   | `CraftingRecipe \| undefined` | Find a recipe by name (case-insensitive).                                     |
+| `count()`            | `number`                      | Return the number of results.                                                 |
+| `findByOutputId(id)` | `CraftingRecipe \| undefined` | Find a single recipe by its output item ID. Returns `undefined` if not found. |
 
 ### Filter Methods
 
-| Method                 | Returns                       | Description                                                                   |
-| ---------------------- | ----------------------------- | ----------------------------------------------------------------------------- |
-| `byCategory(category)` | `CraftingQuery`               | Filter recipes by category (case-insensitive exact match).                    |
-| `bySource(source)`     | `CraftingQuery`               | Filter recipes by source string (case-insensitive partial match).             |
-| `findByOutputId(id)`   | `CraftingRecipe \| undefined` | Find a single recipe by its output item ID. Returns `undefined` if not found. |
+| Method                 | Returns         | Description                                                       |
+| ---------------------- | --------------- | ----------------------------------------------------------------- |
+| `byCategory(category)` | `CraftingQuery` | Filter recipes by category (case-insensitive exact match).        |
+| `bySource(source)`     | `CraftingQuery` | Filter recipes by source string (case-insensitive partial match). |
 
 ### Sort Methods
 

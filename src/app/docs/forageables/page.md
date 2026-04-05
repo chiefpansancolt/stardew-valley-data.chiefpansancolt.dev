@@ -36,15 +36,16 @@ interface Forageable {
 
 ### Field Reference
 
-| Field         | Type       | Description                                                                                        |
-| ------------- | ---------- | -------------------------------------------------------------------------------------------------- |
-| `id`          | `string`   | Unique identifier.                                                                                 |
-| `name`        | `string`   | Display name (e.g. `"Leek"`).                                                                      |
-| `description` | `string`   | In-game description text.                                                                          |
-| `seasons`     | `Season[]` | Seasons the item can be foraged (`'spring'`, `'summer'`, `'fall'`, `'winter'`, `'ginger island'`). |
-| `locations`   | `string`   | Description of where the item can be found.                                                        |
-| `sellPrice`   | `number`   | Base sell price in gold.                                                                           |
-| `image`       | `string`   | Path to the image asset.                                                                           |
+| Field         | Type          | Description                                                                                        |
+| ------------- | ------------- | -------------------------------------------------------------------------------------------------- |
+| `id`          | `string`      | Unique identifier.                                                                                 |
+| `name`        | `string`      | Display name (e.g. `"Leek"`).                                                                      |
+| `description` | `string`      | In-game description text.                                                                          |
+| `seasons`     | `Season[]`    | Seasons the item can be foraged (`'spring'`, `'summer'`, `'fall'`, `'winter'`, `'ginger island'`). |
+| `locations`   | `string`      | Description of where the item can be found.                                                        |
+| `sellPrice`   | `number`      | Base sell price in gold.                                                                           |
+| `image`       | `string`      | Path to the image asset.                                                                           |
+| `artisanUses` | `ArtisanUses` | Which artisan goods this forageable can be used to produce.                                        |
 
 ## Query Methods
 
@@ -62,9 +63,10 @@ The `forageables()` function returns a `ForageableQuery` instance. All methods r
 
 ### Filter Methods
 
-| Method     | Signature                  | Description                                          |
-| ---------- | -------------------------- | ---------------------------------------------------- |
-| `bySeason` | `bySeason(season: Season)` | Filter to forageables available in the given season. |
+| Method         | Signature                                               | Description                                                               |
+| -------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `bySeason`     | `bySeason(season: Season)`                              | Filter to forageables available in the given season.                      |
+| `byArtisanUse` | `byArtisanUse(use: keyof ArtisanUses): ForageableQuery` | Filter to forageables that can be used to produce the given artisan good. |
 
 ### Sort Methods
 

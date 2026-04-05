@@ -24,6 +24,12 @@ const catfish = fish().findByName('Catfish')
 
 // Rod fish only, sorted by difficulty
 const hardest = fish().byCatchType('rod').sortByDifficulty().get()
+
+// Legendary fish only
+const legendary = fish().byCategory('legendary').get()
+
+// Fish that can be smoked
+const smokeable = fish().smokeable().sortBySellPrice().get()
 ```
 
 ## Type Definition
@@ -33,6 +39,7 @@ interface Fish {
   id: string
   name: string
   description: string
+  category: FishCategory
   catchType: FishCatchType
   seasons: Season[]
   location: string
@@ -41,31 +48,46 @@ interface Fish {
   difficulty?: number
   sellPrice: number
   fishTank: boolean
+  canSmoke: boolean
+  roe: FishRoe | null
+  fishPond: FishPond | null
   usedIn: string[]
   image: string
 }
 
 type FishCatchType = 'rod' | 'crab-pot'
 type FishWeather = 'sunny' | 'rainy' | 'both'
+type FishCategory =
+  | 'regular'
+  | 'crab-pot'
+  | 'night-market'
+  | 'legendary'
+  | 'legendary-2'
+  | 'other'
+type FishRoe = 'roe' | 'caviar'
 ```
 
 ### Field Reference
 
-| Field         | Type                       | Description                                                                       |
-| ------------- | -------------------------- | --------------------------------------------------------------------------------- |
-| `id`          | `string`                   | Unique identifier.                                                                |
-| `name`        | `string`                   | Display name (e.g. `"Catfish"`).                                                  |
-| `description` | `string`                   | In-game description text.                                                         |
-| `catchType`   | `FishCatchType`            | How the fish is caught: `'rod'` or `'crab-pot'`.                                  |
-| `seasons`     | `Season[]`                 | Seasons the fish is available.                                                    |
-| `location`    | `string`                   | Where the fish can be found.                                                      |
-| `weather`     | `FishWeather \| undefined` | Required weather: `'sunny'`, `'rainy'`, or `'both'`. Undefined for crab-pot fish. |
-| `time`        | `string \| undefined`      | Time range when the fish is available (e.g. `"6am - 7pm"`).                       |
-| `difficulty`  | `number \| undefined`      | Fishing difficulty rating (0-100). Undefined for crab-pot fish.                   |
-| `sellPrice`   | `number`                   | Base sell price in gold.                                                          |
-| `fishTank`    | `boolean`                  | Whether the fish can be placed in a fish tank.                                    |
-| `usedIn`      | `string[]`                 | List of recipes or bundles that use this fish.                                    |
-| `image`       | `string`                   | Path to the image asset.                                                          |
+| Field         | Type                       | Description                                                                                          |
+| ------------- | -------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `id`          | `string`                   | Unique identifier.                                                                                   |
+| `name`        | `string`                   | Display name (e.g. `"Catfish"`).                                                                     |
+| `description` | `string`                   | In-game description text.                                                                            |
+| `category`    | `FishCategory`             | Category: `'regular'`, `'crab-pot'`, `'night-market'`, `'legendary'`, `'legendary-2'`, or `'other'`. |
+| `catchType`   | `FishCatchType`            | How the fish is caught: `'rod'` or `'crab-pot'`.                                                     |
+| `seasons`     | `Season[]`                 | Seasons the fish is available.                                                                       |
+| `location`    | `string`                   | Where the fish can be found.                                                                         |
+| `weather`     | `FishWeather \| undefined` | Required weather: `'sunny'`, `'rainy'`, or `'both'`. Undefined for crab-pot fish.                    |
+| `time`        | `string \| undefined`      | Time range when the fish is available (e.g. `"6am - 7pm"`).                                          |
+| `difficulty`  | `number \| undefined`      | Fishing difficulty rating (0–100). Undefined for crab-pot fish.                                      |
+| `sellPrice`   | `number`                   | Base sell price in gold.                                                                             |
+| `fishTank`    | `boolean`                  | Whether the fish can be placed in a fish tank.                                                       |
+| `canSmoke`    | `boolean`                  | Whether the fish can be smoked in a Fish Smoker.                                                     |
+| `roe`         | `FishRoe \| null`          | Roe type produced: `'roe'` for standard fish, `'caviar'` for Sturgeon, or `null`.                    |
+| `fishPond`    | `FishPond \| null`         | Fish Pond data if the fish can be placed in a pond, otherwise `null`.                                |
+| `usedIn`      | `string[]`                 | List of recipes or bundles that use this fish.                                                       |
+| `image`       | `string`                   | Path to the image asset.                                                                             |
 
 ## Query Methods
 
@@ -83,12 +105,16 @@ The `fish()` function returns a `FishQuery` instance. All methods return a new `
 
 ### Filter Methods
 
-| Method        | Signature                                          | Description                                            |
-| ------------- | -------------------------------------------------- | ------------------------------------------------------ |
-| `bySeason`    | `bySeason(season: Season)`                         | Filter to fish available in the given season.          |
-| `byCatchType` | `byCatchType(type: FishCatchType)`                 | Filter by catch method (`'rod'` or `'crab-pot'`).      |
-| `byWeather`   | `byWeather(weather: 'sunny' \| 'rainy' \| 'both')` | Filter by required weather condition.                  |
-| `byLocation`  | `byLocation(location: string)`                     | Filter by location (case-insensitive substring match). |
+| Method         | Signature                                          | Description                                                                  |
+| -------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `bySeason`     | `bySeason(season: Season)`                         | Filter to fish available in the given season.                                |
+| `byCategory`   | `byCategory(category: FishCategory)`               | Filter by category (e.g. `'legendary'`, `'night-market'`).                   |
+| `byCatchType`  | `byCatchType(type: FishCatchType)`                 | Filter by catch method (`'rod'` or `'crab-pot'`).                            |
+| `byWeather`    | `byWeather(weather: 'sunny' \| 'rainy' \| 'both')` | Filter by required weather condition.                                        |
+| `byLocation`   | `byLocation(location: string)`                     | Filter by location (case-insensitive substring match).                       |
+| `smokeable`    | `smokeable()`                                      | Filter to fish that can be smoked in a Fish Smoker.                          |
+| `byRoe`        | `byRoe(type: FishRoe)`                             | Filter by roe type: `'roe'` for standard producers, `'caviar'` for Sturgeon. |
+| `pondEligible` | `pondEligible()`                                   | Filter to fish that can be placed in a Fish Pond.                            |
 
 ### Sort Methods
 

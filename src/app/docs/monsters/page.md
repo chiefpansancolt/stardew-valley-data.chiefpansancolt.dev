@@ -27,32 +27,17 @@ const dangerousCavern = monsters().dangerous().byLocation('skull cavern').get()
 
 The `Monster` type represents a single monster entry.
 
-| Field       | Type                            | Description                          |
-| ----------- | ------------------------------- | ------------------------------------ |
-| `id`        | `string`                        | Unique identifier                    |
-| `name`      | `string`                        | Display name                         |
-| `hp`        | `number`                        | Hit points                           |
-| `damage`    | `number`                        | Base damage dealt                    |
-| `speed`     | `number`                        | Movement speed                       |
-| `xp`        | `number`                        | Experience rewarded on kill          |
-| `image`     | `string`                        | Relative path to the monster image   |
-| `locations` | `string[]`                      | Locations where the monster spawns   |
-| `lootIds`   | `string[]`                      | IDs of loot items this monster drops |
-| `dangerous` | `boolean`                       | Whether this is a Dangerous variant  |
-| `variants`  | `MonsterVariant[]` _(optional)_ | Named sub-variants of this monster   |
-
-### MonsterVariant
-
 | Field       | Type       | Description                          |
 | ----------- | ---------- | ------------------------------------ |
-| `name`      | `string`   | Variant name                         |
+| `id`        | `string`   | Unique identifier                    |
+| `name`      | `string`   | Display name                         |
 | `hp`        | `number`   | Hit points                           |
 | `damage`    | `number`   | Base damage dealt                    |
 | `speed`     | `number`   | Movement speed                       |
 | `xp`        | `number`   | Experience rewarded on kill          |
-| `image`     | `string`   | Relative path to the variant image   |
-| `locations` | `string[]` | Locations where this variant spawns  |
-| `lootIds`   | `string[]` | IDs of loot items this variant drops |
+| `image`     | `string`   | Relative path to the monster image   |
+| `locations` | `string[]` | Locations where the monster spawns   |
+| `lootIds`   | `string[]` | IDs of loot items this monster drops |
 | `dangerous` | `boolean`  | Whether this is a Dangerous variant  |
 
 ## Query Methods

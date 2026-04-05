@@ -38,15 +38,31 @@ const options = getProfessionOptions('Farming', 'Tiller')
 
 Each skill record conforms to the `Skill` interface:
 
-| Field         | Type           | Description                                                 |
-| ------------- | -------------- | ----------------------------------------------------------- |
-| `id`          | `string`       | Unique identifier for the skill.                            |
-| `name`        | `string`       | Display name of the skill (e.g., `"Farming"`, `"Mining"`).  |
-| `description` | `string`       | Description of the skill.                                   |
-| `toolBonus`   | `string`       | The tool proficiency bonus gained from leveling this skill. |
-| `image`       | `string`       | Path to the skill's icon image.                             |
-| `levels`      | `SkillLevel[]` | Array of level progression data (see below).                |
-| `mastery`     | `SkillMastery` | Mastery unlock information for this skill.                  |
+| Field         | Type                 | Description                                                 |
+| ------------- | -------------------- | ----------------------------------------------------------- |
+| `id`          | `string`             | Unique identifier for the skill.                            |
+| `name`        | `string`             | Display name of the skill (e.g., `"Farming"`, `"Mining"`).  |
+| `description` | `string`             | Description of the skill.                                   |
+| `toolBonus`   | `string`             | The tool proficiency bonus gained from leveling this skill. |
+| `image`       | `string`             | Path to the skill's icon image.                             |
+| `levels`      | `SkillLevel[]`       | Array of level progression data (see below).                |
+| `professions` | `ProfessionChoice[]` | Level 5 and level 10 profession choices for this skill.     |
+| `mastery`     | `SkillMastery`       | Mastery unlock information for this skill.                  |
+
+### ProfessionChoice
+
+| Field     | Type           | Description                                     |
+| --------- | -------------- | ----------------------------------------------- |
+| `level`   | `5 \| 10`      | The level at which this choice is made.         |
+| `options` | `Profession[]` | The profession options available at this level. |
+
+### Profession
+
+| Field         | Type                  | Description                                                         |
+| ------------- | --------------------- | ------------------------------------------------------------------- |
+| `name`        | `string`              | Display name of the profession.                                     |
+| `description` | `string`              | Description of what the profession grants.                          |
+| `requires`    | `string` _(optional)_ | The level-5 profession required to unlock this level-10 profession. |
 
 ### SkillLevel
 
@@ -230,7 +246,11 @@ import { skills, getProfessionOptions } from 'stardew-valley-data'
 const farming = skills().findByName('Farming')
 
 if (farming) {
-  // Level 5 options would come from the professions module
+  // Access level-5 professions directly from the skill
+  const level5 = farming.professions.find((p) => p.level === 5)
+  console.log('Level 5 options:', level5?.options.map((p) => p.name).join(', '))
+
+  // Or use getProfessionOptions to get level-10 options for a chosen level-5 profession
   const tillerPath = getProfessionOptions('Farming', 'Tiller')
   const rancherPath = getProfessionOptions('Farming', 'Rancher')
 

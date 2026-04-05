@@ -78,6 +78,7 @@ interface Crop {
 | `stages`          | `Stage[]`                   | Array of `{ name, image }` objects for each growth stage.                                       |
 | `energyHealth`    | `EnergyHealth \| undefined` | Energy and health restored when eaten, if edible.                                               |
 | `farmingXP`       | `number \| undefined`       | Farming XP gained on harvest.                                                                   |
+| `artisanUses`     | `ArtisanUses`               | Which artisan goods this crop can be used to produce (see `ArtisanUses` below).                 |
 
 ## Query Methods
 
@@ -97,18 +98,35 @@ These terminal methods are available on every query builder:
 
 ### Filter Methods
 
-| Method            | Signature                      | Description                                                              |
-| ----------------- | ------------------------------ | ------------------------------------------------------------------------ |
-| `bySeason`        | `bySeason(season: Season)`     | Filter to crops available in the given season.                           |
-| `byCategory`      | `byCategory(category: string)` | Filter by category (e.g. `'Vegetable'`, `'Fruit'`).                      |
-| `byShop`          | `byShop(shop: string)`         | Filter to crops whose seed is sold at the given shop (case-insensitive). |
-| `regrowing`       | `regrowing()`                  | Filter to crops that regrow after harvesting.                            |
-| `giant`           | `giant()`                      | Filter to crops that can become giant crops.                             |
-| `trellis`         | `trellis()`                    | Filter to crops that require a trellis.                                  |
-| `multiSeason`     | `multiSeason()`                | Filter to crops available in more than one season.                       |
-| `extraHarvest`    | `extraHarvest()`               | Filter to crops that can yield more than one item per harvest.           |
-| `availableInShop` | `availableInShop()`            | Filter to crops whose seeds can be purchased from a shop.                |
-| `eatable`         | `eatable()`                    | Filter to crops that are edible (have energy/health values).             |
+| Method            | Signature                                         | Description                                                              |
+| ----------------- | ------------------------------------------------- | ------------------------------------------------------------------------ |
+| `bySeason`        | `bySeason(season: Season)`                        | Filter to crops available in the given season.                           |
+| `byCategory`      | `byCategory(category: string)`                    | Filter by category (e.g. `'Vegetable'`, `'Fruit'`).                      |
+| `byShop`          | `byShop(shop: string)`                            | Filter to crops whose seed is sold at the given shop (case-insensitive). |
+| `regrowing`       | `regrowing()`                                     | Filter to crops that regrow after harvesting.                            |
+| `giant`           | `giant()`                                         | Filter to crops that can become giant crops.                             |
+| `trellis`         | `trellis()`                                       | Filter to crops that require a trellis.                                  |
+| `multiSeason`     | `multiSeason()`                                   | Filter to crops available in more than one season.                       |
+| `extraHarvest`    | `extraHarvest()`                                  | Filter to crops that can yield more than one item per harvest.           |
+| `availableInShop` | `availableInShop()`                               | Filter to crops whose seeds can be purchased from a shop.                |
+| `eatable`         | `eatable()`                                       | Filter to crops that are edible (have energy/health values).             |
+| `byArtisanUse`    | `byArtisanUse(use: keyof ArtisanUses): CropQuery` | Filter to crops that can be used to produce the given artisan good type. |
+
+### ArtisanUses
+
+`ArtisanUses` is an interface where each key is a boolean indicating whether the crop can be used for that artisan product:
+
+```ts
+interface ArtisanUses {
+  honey: boolean
+  wine: boolean
+  juice: boolean
+  pickles: boolean
+  jelly: boolean
+  driedMushrooms: boolean
+  driedFruit: boolean
+}
+```
 
 ### Sort Methods
 
