@@ -46,6 +46,14 @@ updates:
       - dependency-name: 'eslint'
         update-types:
           - 'version-update:semver-major'
+      # typescript-eslint does not support TS 7 yet
+      - dependency-name: 'typescript'
+        update-types:
+          - 'version-update:semver-major'
+      # @markdoc/next.js generates `import yaml from 'js-yaml'`, which v5 removed
+      - dependency-name: 'js-yaml'
+        update-types:
+          - 'version-update:semver-major'
 
   - package-ecosystem: github-actions
     directory: /
