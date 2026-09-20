@@ -45,12 +45,7 @@ Each item conforms to the `PierreItem` interface:
 
 ```ts
 type PierreCategory =
-  | 'seed'
-  | 'sapling'
-  | 'ingredient'
-  | 'fertilizer'
-  | 'recipe'
-  | 'special'
+  'seed' | 'sapling' | 'ingredient' | 'fertilizer' | 'recipe' | 'special'
 ```
 
 ### Season

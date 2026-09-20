@@ -44,11 +44,7 @@ Each item conforms to the `MarnieItem` interface:
 
 ```ts
 type MarnieCategory =
-  | 'animal-supply'
-  | 'tool'
-  | 'furniture'
-  | 'catalogue'
-  | 'special'
+  'animal-supply' | 'tool' | 'furniture' | 'catalogue' | 'special'
 ```
 
 ## Query Methods

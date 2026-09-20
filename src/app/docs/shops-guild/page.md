@@ -46,12 +46,7 @@ Each item conforms to the `GuildItem` interface:
 
 ```ts
 type GuildCategory =
-  | 'weapon'
-  | 'boots'
-  | 'ring'
-  | 'slingshot'
-  | 'ammo'
-  | 'furniture'
+  'weapon' | 'boots' | 'ring' | 'slingshot' | 'ammo' | 'furniture'
 ```
 
 ### GuildWeaponType

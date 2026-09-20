@@ -217,9 +217,7 @@ When you pass custom source data to a factory function, the types flow through a
 ```ts
 import { crops, type Crop } from 'stardew-valley-data'
 
-const customData: Crop[] = [
-  /* your data */
-]
+const customData: Crop[] = [/* your data */]
 const query = crops(customData) // CropQuery (extends QueryBase<Crop>)
 const results = query.get() // Crop[]
 ```

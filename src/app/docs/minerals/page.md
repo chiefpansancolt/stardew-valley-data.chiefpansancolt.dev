@@ -32,12 +32,7 @@ Minerals use a discriminated union with six variants based on the `kind` field:
 
 ```ts
 type Mineral =
-  | MineralItem
-  | GeodeContainer
-  | OreItem
-  | BarItem
-  | NodeItem
-  | ResourceItem
+  MineralItem | GeodeContainer | OreItem | BarItem | NodeItem | ResourceItem
 ```
 
 ### MineralItem

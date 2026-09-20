@@ -45,12 +45,7 @@ Each item conforms to the `WillyItem` interface:
 
 ```ts
 type WillyCategory =
-  | 'rod'
-  | 'bait'
-  | 'tackle'
-  | 'equipment'
-  | 'recipe'
-  | 'furniture'
+  'rod' | 'bait' | 'tackle' | 'equipment' | 'recipe' | 'furniture'
 ```
 
 ## Query Methods

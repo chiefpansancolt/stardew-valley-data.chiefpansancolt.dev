@@ -40,11 +40,7 @@ Each item conforms to the `CasinoItem` interface:
 
 ```ts
 type CasinoCategory =
-  | 'furniture'
-  | 'hat'
-  | 'scarecrow'
-  | 'consumable'
-  | 'decoration'
+  'furniture' | 'hat' | 'scarecrow' | 'consumable' | 'decoration'
 ```
 
 ## Query Methods

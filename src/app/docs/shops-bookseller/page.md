@@ -42,11 +42,7 @@ Each purchasable book conforms to the `BooksellerItem` interface:
 
 ```ts
 type BooksellerAvailability =
-  | 'always'
-  | 'rotating-skill'
-  | 'rotating-year3'
-  | 'chance'
-  | 'golden-walnut'
+  'always' | 'rotating-skill' | 'rotating-year3' | 'chance' | 'golden-walnut'
 ```
 
 ### BooksellerTrade
