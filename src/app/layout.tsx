@@ -1,9 +1,9 @@
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import clsx from 'clsx'
 
-import { Analytics } from '@vercel/analytics/next'
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 
@@ -15,7 +15,6 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-// Use local version of Lexend so that we can use OpenType features
 const lexend = localFont({
   src: '../fonts/lexend.woff2',
   display: 'swap',
@@ -53,7 +52,11 @@ export default function RootLayout({
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
-        <Analytics />
+        <Script
+          defer
+          src="https://static.cloudflare.com/beacon.min.js"
+          data-cf-beacon='{"token": "4335603ffca34276971e3431de6fae1c"}'
+        />
       </body>
     </html>
   )
