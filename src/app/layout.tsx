@@ -1,7 +1,6 @@
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-import Script from 'next/script'
 import clsx from 'clsx'
 
 import { Providers } from '@/app/providers'
@@ -52,11 +51,6 @@ export default function RootLayout({
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
-        <Script
-          defer
-          src="https://static.cloudflare.com/beacon.min.js"
-          data-cf-beacon='{"token": "4335603ffca34276971e3431de6fae1c"}'
-        />
       </body>
     </html>
   )
