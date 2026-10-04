@@ -30,7 +30,12 @@ export const metadata: Metadata = {
     default: 'Stardew Valley Data - NPM package documentation',
   },
   description: siteDescription,
-  keywords: ['Stardew Valley', 'Stardew Valley Data', 'NPM package', 'game data'],
+  keywords: [
+    'Stardew Valley',
+    'Stardew Valley Data',
+    'NPM package',
+    'game data',
+  ],
   alternates: {
     canonical: '/',
   },
